@@ -34,17 +34,16 @@ header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: bottom;
   position: relative;
 }
-/* line 54, default.scss */
+/* line 53, default.scss */
 header nav {
   height: 60px;
   background-color: #1a1a1a;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 59, default.scss */
+/* line 58, default.scss */
 header nav ul {
   width: 80% !important;
   margin-right: auto;
@@ -53,13 +52,13 @@ header nav ul {
   padding: 0;
   width: 100%;
 }
-/* line 67, default.scss */
+/* line 66, default.scss */
 header nav ul li {
   display: inline-block;
   padding-top: 22px;
   margin-right: 40px;
 }
-/* line 72, default.scss */
+/* line 71, default.scss */
 header nav ul li a {
   padding: 10px 0;
   text-decoration: none !important;
@@ -68,12 +67,12 @@ header nav ul li a {
   color: #999;
   transition: all 0.25s ease-in-out;
 }
-/* line 80, default.scss */
+/* line 79, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
   color: #2bb656;
   outline: none;
 }
-/* line 87, default.scss */
+/* line 86, default.scss */
 header nav ul li a:after {
   content: "";
   padding-bottom: 7px;
@@ -83,11 +82,11 @@ header nav ul li a:after {
   transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
-/* line 97, default.scss */
+/* line 96, default.scss */
 header nav ul li a:hover:after {
   width: 100%;
 }
-/* line 105, default.scss */
+/* line 104, default.scss */
 header .hero {
   position: absolute;
   display: flex;
@@ -95,18 +94,19 @@ header .hero {
   justify-content: center;
   height: 500px;
 }
-/* line 112, default.scss */
+/* line 111, default.scss */
 header .hero h1,
 header .hero h2 {
   color: white;
   text-align: center;
 }
-/* line 118, default.scss */
+/* line 117, default.scss */
 header .hero h1 {
   order: 3;
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 1px;
+  color: #cfcfcf;
 }
 /* line 125, default.scss */
 header .hero h2 {
@@ -118,7 +118,7 @@ header .hero h2 {
 header .hero .text-logo {
   order: 1;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 40px;
   color: #2bb656;
 }
 /* line 139, default.scss */
