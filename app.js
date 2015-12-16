@@ -1,5 +1,6 @@
 //Require Dependencies
-var express = require('express');
+var express = require('express'),
+    twitterAPI = require('./twitterAPI');
 
 //Create Express Instance
 //Set Port
@@ -17,6 +18,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+app.use('/api', twitterAPI);
 
 
 app.listen(port);

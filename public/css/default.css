@@ -159,11 +159,13 @@ header .hero #search-bar .btn-default:hover {
 /* line 177, default.scss */
 #dashboard .analysis {
   height: 800px;
+  overflow-y: hidden;
   background-color: #273333;
 }
-/* line 182, default.scss */
+/* line 183, default.scss */
 #dashboard .stream {
   height: 800px;
+  overflow-y: scroll;
   background-color: #f7f7f7;
 }
 

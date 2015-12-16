@@ -176,11 +176,13 @@ header {
 
   .analysis {
     height: 800px;
+    overflow-y: hidden;
     background-color: $background-dark-gray;
   }
 
   .stream {
     height: 800px;
+    overflow-y: scroll;
     background-color: $background-light-gray;
   }
 }
