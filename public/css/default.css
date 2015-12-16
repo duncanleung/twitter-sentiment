@@ -130,6 +130,11 @@ header .hero #search-bar {
   margin-left: auto;
 }
 /* line 146, default.scss */
+header .hero #search-bar input:focus {
+  border: 1px solid #218d43;
+  box-shadow: 0 0 4px #218d43;
+}
+/* line 151, default.scss */
 header .hero #search-bar .btn-default {
   background-color: #2bb656;
   border-color: #2bb656;
@@ -139,7 +144,7 @@ header .hero #search-bar .btn-default {
   text-transform: uppercase;
   transition: all 0.25s ease-in-out;
 }
-/* line 156, default.scss */
+/* line 160, default.scss */
 header .hero #search-bar .btn-default:hover {
   background-color: #218d43;
   border-color: #218d43;

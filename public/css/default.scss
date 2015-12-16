@@ -143,6 +143,11 @@ header {
       margin-right: auto;
       margin-left: auto;
       
+      input:focus {
+        border: 1px solid $CTA-hover-green;
+        box-shadow: 0 0 4px $CTA-hover-green;
+      }
+      
       .btn-default {
         background-color: $primary-green;
         border-color: $primary-green;
