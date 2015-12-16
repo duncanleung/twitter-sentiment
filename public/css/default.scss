@@ -1,0 +1,52 @@
+/* Reusable Styles
+======================== */
+$primary-black: #1a1a1a;
+$primary-green: #2bb656;
+$primary-blue: #1d67a7;
+
+$background-dark-gray: #273333;
+$background-light-gray: #f7f7f7;
+
+$text-black: #4d4d4d;
+$text-gray: #999;
+$CTA-green: #59cb59;
+$CTA-hover-green: #2bb656;
+
+$font-family: 'Open Sans', sans-serif;
+
+html,
+body {
+  font-family: $font-family;
+  color: $text-gray;
+  background-color: white;
+}
+
+.intro-text {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: $text-black;
+
+  h2 {
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+
+/* Header Styles
+======================== */
+
+header {
+  height: 500px;
+  background-image: /* linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  */ url(../img/hero.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+}

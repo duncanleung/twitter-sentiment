@@ -10,12 +10,31 @@ html
     link(rel="stylesheet" href="/css/default.css")
     title Twitterment
   body
+    //- Hero Section
     header.container-fluid
+      //- Nav Bar
+      .row
+        nav.col-sm-12
+          a(href="#home" id="home-nav") Twitterment
+          ul
+            li#features-nav
+              a(href="#features") Features
+            li#about-nav
+              a(href="#about")
+            li#contact-nav
+              a(href="contact")
+      .row
+        title.col-sm-12
+          h1 Track your Brand Sentiment on Twitter
+          h2 What are people saying about your brand?
+          h2.text-logo
+            | Twitterment
+
     section#features.container
         .row
           .col-sm-12
             .intro-text
-              h2 Inform yourself about your Brand's Twitter presence
+              h2 Get Informed on your Brand's Twitter presence
               p See what's happening. Know your brand's sentiment.
           .col-sm-12.col-lg-4
             p Graph Image
