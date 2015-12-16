@@ -11,20 +11,27 @@
   <body>
     <header class="container-fluid">
       <div class="row">
-        <nav class="col-sm-12"><a href="#home" id="home-nav">Twitterment</a>
+        <nav class="col-sm-12">
           <ul>
+            <li id="home-nav"><a href="#home">Twitterment</a></li>
             <li id="features-nav"><a href="#features">Features</a></li>
-            <li id="about-nav"><a href="#about"></a></li>
-            <li id="contact-nav"><a href="contact"></a></li>
+            <li id="about-nav"><a href="#about">About</a></li>
+            <li id="contact-nav"><a href="contact">Contact</a></li>
           </ul>
         </nav>
       </div>
       <div class="row">
-        <title class="col-sm-12">
+        <div class="hero col-sm-12">
           <h1>Track your Brand Sentiment on Twitter</h1>
           <h2>What are people saying about your brand?</h2>
           <h2 class="text-logo">Twitterment</h2>
-        </title>
+          <div id="search-bar">
+            <div class="input-group">
+              <input type="search" id="search" placeholder="Enter Brand or Keyword" class="form-control"><span class="input-group-btn">
+                <button tpe="button" class="btn btn-default">Search</button></span>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
     <section id="features" class="container">

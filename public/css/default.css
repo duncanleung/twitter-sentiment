@@ -31,11 +31,118 @@ body {
 /* line 45, default.scss */
 header {
   height: 500px;
-  background-image: url(../img/hero.jpg);
-  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: top;
+  background-position: bottom;
+  position: relative;
+}
+/* line 54, default.scss */
+header nav {
+  height: 60px;
+  background-color: #1a1a1a;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+/* line 59, default.scss */
+header nav ul {
+  width: 80% !important;
+  margin-right: auto;
+  margin-left: auto;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+/* line 67, default.scss */
+header nav ul li {
+  display: inline-block;
+  padding-top: 22px;
+  margin-right: 40px;
+}
+/* line 72, default.scss */
+header nav ul li a {
+  padding: 10px 0;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #999;
+  transition: all 0.25s ease-in-out;
+}
+/* line 80, default.scss */
+header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
+  color: #2bb656;
+  outline: none;
+}
+/* line 87, default.scss */
+header nav ul li a:after {
+  content: "";
+  padding-bottom: 7px;
+  display: block;
+  border-bottom: 2px solid #2bb656;
+  width: 0;
+  transition: all 0.25s ease-in-out;
+  pointer-events: none;
+}
+/* line 97, default.scss */
+header nav ul li a:hover:after {
+  width: 100%;
+}
+/* line 105, default.scss */
+header .hero {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 500px;
+}
+/* line 112, default.scss */
+header .hero h1,
+header .hero h2 {
+  color: white;
+  text-align: center;
+}
+/* line 118, default.scss */
+header .hero h1 {
+  order: 3;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+/* line 125, default.scss */
+header .hero h2 {
+  order: 2;
+  font-size: 40px;
+  font-weight: 700;
+}
+/* line 131, default.scss */
+header .hero .text-logo {
+  order: 1;
+  font-weight: 600;
+  font-size: 30px;
+  color: #2bb656;
+}
+/* line 139, default.scss */
+header .hero #search-bar {
+  order: 4;
+  width: 350px;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* line 146, default.scss */
+header .hero #search-bar .btn-default {
+  background-color: #2bb656;
+  border-color: #2bb656;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  color: white;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+/* line 156, default.scss */
+header .hero #search-bar .btn-default:hover {
+  background-color: #218d43;
+  border-color: #218d43;
 }
 
 /*# sourceMappingURL=default.css.map */

@@ -15,20 +15,26 @@ html
       //- Nav Bar
       .row
         nav.col-sm-12
-          a(href="#home" id="home-nav") Twitterment
           ul
+            li#home-nav
+              a(href="#home") Twitterment
             li#features-nav
               a(href="#features") Features
             li#about-nav
-              a(href="#about")
+              a(href="#about") About
             li#contact-nav
-              a(href="contact")
+              a(href="contact") Contact
       .row
-        title.col-sm-12
+        .hero.col-sm-12
           h1 Track your Brand Sentiment on Twitter
           h2 What are people saying about your brand?
           h2.text-logo
             | Twitterment
+          #search-bar
+            .input-group
+              input(type="search" id="search" class="form-control" placeholder="Enter Brand or Keyword")
+              span.input-group-btn
+                button(class="btn btn-default" tpe="button") Search
 
     section#features.container
         .row
