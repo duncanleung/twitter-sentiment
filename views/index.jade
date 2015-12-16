@@ -33,9 +33,9 @@ html
             | Twitterment
           #search-bar
             .input-group
-              input(type="search" id="search" class="form-control" placeholder="Enter Brand or Keyword")
+              input(id="search" class="form-control" type="search" placeholder="Enter Brand or Keyword" autofocus="autofocus")
               span.input-group-btn
-                button(class="btn btn-default" tpe="button") Search
+                button(id="submit" class="btn btn-default" type="button") Search
 
     //- Twitterment Features Section
     //- section#features.container
@@ -56,7 +56,10 @@ html
       .row
         .analysis.col-sm-8
 
-        .stream.col-sm-4
+        #stream.col-sm-4
+
+    script(src="/js/default.js")
+
           
 
 

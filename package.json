@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/duncanleung/twitter-sentiment#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "datumbox": "^1.0.1",
     "express": "^4.13.3",
     "jade": "^1.11.0",

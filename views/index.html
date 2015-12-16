@@ -27,8 +27,8 @@
           <h2 class="text-logo">Twitterment</h2>
           <div id="search-bar">
             <div class="input-group">
-              <input type="search" id="search" placeholder="Enter Brand or Keyword" class="form-control"><span class="input-group-btn">
-                <button tpe="button" class="btn btn-default">Search</button></span>
+              <input id="search" type="search" placeholder="Enter Brand or Keyword" autofocus="autofocus" class="form-control"><span class="input-group-btn">
+                <button id="submit" type="button" class="btn btn-default">Search</button></span>
             </div>
           </div>
         </div>
@@ -37,8 +37,9 @@
     <section id="dashboard" class="container-fluid">
       <div class="row">
         <div class="analysis col-sm-8"></div>
-        <div class="stream col-sm-4"></div>
+        <div id="stream" class="col-sm-4"></div>
       </div>
     </section>
+    <script src="/js/default.js"></script>
   </body>
 </html>

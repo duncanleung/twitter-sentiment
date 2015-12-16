@@ -1,11 +1,13 @@
 //Require Dependencies
 var express = require('express'),
     Twitter = require('twitter'),
+    bodyParser = require('body-parser'),
     config = require('./config');
 
 //Create Express Instance, Router Instance, Twitter Instance
 var app = express(),
     router = express.Router(),
+    parseJson = bodyParser(),
     twitter = new Twitter({
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -14,12 +16,15 @@ var app = express(),
     });
 
 var collectedTweets = [];
-var keyword = 'apple';
+var keyword = '';
 
 
-//GET Router /api, then Send Streaming API
-router.get('/', function(req, res) {
+//POST Router /api, then Send Streaming API
+router.post('/', parseJson, function(req, res) {
   //Open Twitter API (English, Apple)
+
+  console.log(req.body.query);
+  keyword = req.body.query;
 
   twitter.stream('statuses/filter', {language: 'en', track: keyword}, function(stream) {
     stream.on('data', function(data) {
@@ -38,7 +43,7 @@ router.get('/', function(req, res) {
 
       console.log('collected ' + collectedTweets.length + ' tweets');
       res.send(collectedTweets);
-    }, 1000);
+    }, 10000);
   });
 });
 
