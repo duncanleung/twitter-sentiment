@@ -150,4 +150,21 @@ header .hero #search-bar .btn-default:hover {
   border-color: #218d43;
 }
 
+/* Dashboard Styles
+======================== */
+/* line 174, default.scss */
+#dashboard {
+  height: 800px;
+}
+/* line 177, default.scss */
+#dashboard .analysis {
+  height: 800px;
+  background-color: #273333;
+}
+/* line 182, default.scss */
+#dashboard .stream {
+  height: 800px;
+  background-color: #f7f7f7;
+}
+
 /*# sourceMappingURL=default.css.map */

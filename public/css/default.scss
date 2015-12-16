@@ -168,9 +168,22 @@ header {
 
 
 
+/* Dashboard Styles
+======================== */
 
+#dashboard {
+  height: 800px;
 
+  .analysis {
+    height: 800px;
+    background-color: $background-dark-gray;
+  }
 
+  .stream {
+    height: 800px;
+    background-color: $background-light-gray;
+  }
+}
 
 
 
