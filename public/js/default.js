@@ -3,21 +3,24 @@
 var elSearch = document.getElementById('search');
 var elSubmit = document.getElementById('submit');
 
-elSubmit.addEventListener('click', submit, true);
+elSubmit.addEventListener('click', postSearch, true);
+elSearch.addEventListener('keypress', submit, true);
 
-function submit() {
+function submit(e) {
+  var key = e.which || e.keyCode;
+  if (key === 13) {
+    postSearch();
+  }
+}
+
+
+function postSearch() {
   var query = {
     query: elSearch.value
   };
 
   console.log(query);
-  
-  postSearch(query);
-}
 
-
-
-function postSearch(query) {
   var xhr = new XMLHttpRequest();
 
   xhr.onload = function() {
@@ -32,9 +35,6 @@ function postSearch(query) {
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   xhr.send(JSON.stringify(query));
 }
-
-
-
 
 
 
