@@ -1,4 +1,5 @@
-
+/* Handle Index Page Behavior
+=================*/
 
 var elSearch = document.getElementById('search');
 var elSubmit = document.getElementById('submit');
