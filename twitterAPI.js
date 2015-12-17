@@ -48,21 +48,27 @@ router.post('/', parseJson, function(req, res) {
 
       console.log('collected ' + collectedTweets.length + ' tweets');
       
-      _.each(collectedTweets, getSentiment);
+      _.each(collectedTweets, function() {
+        getSentiment(tweet)
+        .then(function(data) {
+          appendSentiment(tweet, data);
+        });
+      });
 
       res.send(sentimentCollection);
     }, 5000);
 
 
     function getSentiment(tweet) {
-      //Send Tweet Text to Sentiment API
-      datum.twitterSentimentAnalysis(tweet.text, function(err, data) {
-        if (err) {
-          console.log(err);
-        }
-        
-        appendSentiment(tweet, data);
-        console.log('Sentiment is: ' + data);
+      return new Promise(function(resolve, reject) {
+        //Send Tweet Text to Sentiment API
+        datum.twitterSentimentAnalysis(tweet.text, function(err, data) {
+          reject(err);
+          resolve(data);
+          
+          /*appendSentiment(tweet, data);
+          console.log('Sentiment is: ' + data);*/
+        });
       });
     }
 
