@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
     _ = require('underscore'),
+    Promise = require('bluebird'),
     Twitter = require('twitter'),
     datum = require('datumbox').factory('3f370865e56303cf6f145aa40485f1f0'),
     config = require('./config');
@@ -55,20 +56,18 @@ router.post('/', parseJson, function(req, res) {
 
     function getSentiment(tweet) {
       //Send Tweet Text to Sentiment API
-
       datum.twitterSentimentAnalysis(tweet.text, function(err, data) {
         if (err) {
           console.log(err);
         }
         
-        console.log('Sentiment is: ' + data);
         appendSentiment(tweet, data);
+        console.log('Sentiment is: ' + data);
       });
     }
 
     function appendSentiment(tweet, sentiment) {
-      console.log('pushing sentiment');
-      sentimentCollection.push = {
+      sentimentCollection.push( {
           sentiment: sentiment,
           created_at: tweet.created_at,
           timestamp_ms: tweet.timestamp_ms,
@@ -81,9 +80,10 @@ router.post('/', parseJson, function(req, res) {
           },
           text: tweet.text,
           lang: tweet.lang
-        };
+        });
 
-        console.log(sentimentCollection);
+        console.log('pushing sentiment');
+        console.log(sentimentCollection.length);
     }
 
 
