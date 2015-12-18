@@ -48,26 +48,36 @@ router.post('/', parseJson, function(req, res) {
 
       console.log('collected ' + collectedTweets.length + ' tweets');
       
-      _.each(collectedTweets, function() {
-        getSentiment(tweet)
-        .then(function(data) {
-          appendSentiment(tweet, data);
-        });
-      });
+      getSentiment()
+        .done(res.send(sentimentCollection));
 
-      res.send(sentimentCollection);
+      console.log('hopefully nothing after this message...');
+
     }, 5000);
-
 
     function getSentiment(tweet) {
       return new Promise(function(resolve, reject) {
+        
+        _.each(collectedTweets, function(tweet) {
+          sentimentAPI(tweet)
+            .then(function(data) {
+              appendSentiment(tweet, data);
+              console.log('sentiment returned: ' + data);
+            });
+        });
+
+      });
+    }
+
+    function sentimentAPI(tweet) {
+      return new Promise(function(resolve, reject) {
         //Send Tweet Text to Sentiment API
         datum.twitterSentimentAnalysis(tweet.text, function(err, data) {
-          reject(err);
-          resolve(data);
-          
-          /*appendSentiment(tweet, data);
-          console.log('Sentiment is: ' + data);*/
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
         });
       });
     }
@@ -87,9 +97,10 @@ router.post('/', parseJson, function(req, res) {
           text: tweet.text,
           lang: tweet.lang
         });
+        
 
-        console.log('pushing sentiment');
         console.log(sentimentCollection.length);
+        console.log('pushing sentiment');
     }
 
 

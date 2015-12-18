@@ -5,7 +5,7 @@ var express = require('express'),
 //Create Express Instance
 //Set Port
 var app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 8000;
 
 //Set Jade as Templating Engine
 app.set('views', './views');
