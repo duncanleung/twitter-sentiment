@@ -4,16 +4,18 @@
 var elSearch = document.getElementById('search');
 var elSubmit = document.getElementById('submit');
 
+var tweetHistory = [];
+
 elSubmit.addEventListener('click', postSearch, true);
 elSearch.addEventListener('keypress', submit, true);
 
 function submit(e) {
   var key = e.which || e.keyCode;
   if (key === 13) {
+    
     postSearch();
   }
 }
-
 
 function postSearch() {
   var query = {
@@ -28,7 +30,17 @@ function postSearch() {
     if (xhr.status === 200) {
       response = JSON.parse(xhr.responseText);
 
-      populate(response);
+      tweetHistory = tweetHistory.concat(response);
+      
+      console.log(tweetHistory);
+
+
+      setTimeout(function() {
+        postSearch();
+
+        console.log('stream starting');
+      }, 5000);
+
     }
   };
 
