@@ -23,18 +23,22 @@ var keyword = '';
 //POST Router /api, then Send Streaming API
 router.post('/', parseJson, function(req, res) {
 
+  var stream = T.stream('statuses/filter', {language: 'en', track: keyword});
   var sentimentHolder = [];
 
-  console.log(req.body.query);
   keyword = req.body.query;
 
-  //Open Twitter API (English, Apple)
-  var stream = T.stream('statuses/filter', {language: 'en', track: keyword});
+  console.log(req.body.query);
 
+  
+
+  //Turn on Twitter Stream
   stream.on('tweet', function(tweet) {
-    /*console.log('collecting data');*/
-    console.log('Collected Tweet: ' + tweet.text);
+    socket.emit('sendTweet', {tweet: tweet});
 
+    //console.log('collecting data');
+    console.log('Collected Tweet: ' + tweet.text);
+    
     //getSentiment(tweet);
   });
 

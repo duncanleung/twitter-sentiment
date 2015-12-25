@@ -17,12 +17,12 @@ componentWillMount() {
   render: function() {
     return (
       <div className="row">
-        // Twitter Sentiment Column
+        
         <div className="analysis col-sm-8">
           <h1>Twitter Dashboard</h1>
         </div>
-        // Twitter Stream Column
-        <TwitterStream />
+        
+        /*<TwitterStream />*/
       </div>
     );
   }

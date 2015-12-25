@@ -19636,8 +19636,8 @@
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    io = __webpack_require__(159),
-	    TwitterStream = __webpack_require__(209);
+	    io = __webpack_require__(159) /*,
+	                                     TwitterStream = require('./parts/TwitterStream.jsx')*/;
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -19655,7 +19655,6 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'row' },
-	      '// Twitter Sentiment Column',
 	      React.createElement(
 	        'div',
 	        { className: 'analysis col-sm-8' },
@@ -19665,8 +19664,9 @@
 	          'Twitter Dashboard'
 	        )
 	      ),
-	      '// Twitter Stream Column',
-	      React.createElement(TwitterStream, null)
+	      '/*',
+	      React.createElement(TwitterStream, null),
+	      '*/'
 	    );
 	  }
 	});
@@ -26862,32 +26862,6 @@
 	};
 
 
-
-/***/ },
-/* 209 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-
-	var TwitterStream = React.createClass({
-	  displayName: "TwitterStream",
-
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { className: "col-sm-4" },
-	      React.createElement(
-	        "h1",
-	        null,
-	        "Twitter Stream"
-	      )
-	    );
-	  }
-	});
-
-	module.exports = TwitterStream;
 
 /***/ }
 /******/ ]);
