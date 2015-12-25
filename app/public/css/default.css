@@ -153,17 +153,17 @@ header .hero #search-bar .btn-default:hover {
 /* Dashboard Styles
 ======================== */
 /* line 174, default.scss */
-#dashboard {
+#App {
   height: 800px;
 }
 /* line 177, default.scss */
-#dashboard .analysis {
+#App .analysis {
   height: 800px;
   overflow-y: hidden;
   background-color: #273333;
 }
 /* line 183, default.scss */
-#dashboard .stream {
+#App .stream {
   height: 800px;
   overflow-y: scroll;
   background-color: #f7f7f7;

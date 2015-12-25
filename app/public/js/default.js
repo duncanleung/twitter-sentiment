@@ -35,11 +35,11 @@ function postSearch() {
       console.log(tweetHistory);
 
 
-      setTimeout(function() {
+      /*setTimeout(function() {
         postSearch();
 
         console.log('stream starting');
-      }, 5000);
+      }, 5000);*/
 
     }
   };
