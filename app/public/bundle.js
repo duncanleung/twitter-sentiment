@@ -19636,8 +19636,8 @@
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    io = __webpack_require__(159) /*,
-	                                     TwitterStream = require('./parts/TwitterStream.jsx')*/;
+	    io = __webpack_require__(159),
+	    TwitterStream = __webpack_require__(209);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -19664,9 +19664,7 @@
 	          'Twitter Dashboard'
 	        )
 	      ),
-	      '/*',
-	      React.createElement(TwitterStream, null),
-	      '*/'
+	      React.createElement(TwitterStream, null)
 	    );
 	  }
 	});
@@ -26862,6 +26860,115 @@
 	};
 
 
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    TweetList = __webpack_require__(210),
+	    io = __webpack_require__(159);
+
+	var TwitterStream = React.createClass({
+	  displayName: 'TwitterStream',
+
+	  //Array of Collected Tweets
+	  getInitialState: function getInitialState() {
+	    return { collectedTweets: [{ text: 'hello' }] };
+	  },
+
+	  componentWillMount: function componentWillMount() {
+	    var socket = io.connect();
+	    var self = this;
+
+	    //When socket receives 'sendTweet', run addTweet
+	    socket.on('sendTweet', function (receivedTweet) {
+	      self.addTweet(receivedTweet.tweet);
+	      console.log(receivedTweet.tweet);
+	    });
+	  },
+
+	  //Add receivedTweet onto end of array
+	  //Update the state of collectedTweets
+	  addTweet: function addTweet(tweet) {
+	    var tweets = this.state.collectedTweets;
+	    var newTweets = tweets.concat([tweet]);
+
+	    this.setState({ collectedTweets: newTweets });
+	  },
+
+	  render: function render() {
+	    //Pass collectedTweets to TweetList
+	    return React.createElement(
+	      'div',
+	      { className: 'col-sm-4' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Twitter Stream'
+	      ),
+	      React.createElement(TweetList, { collectedTweets: this.state.collectedTweets })
+	    );
+	  }
+	});
+
+	module.exports = TwitterStream;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    Tweet = __webpack_require__(211);
+
+	var TweetList = React.createClass({
+	  displayName: 'TweetList',
+
+	  render: function render() {
+
+	    var tweets = this.props.collectedTweets.map(function (tweet) {
+	      return React.createElement(Tweet, { tweet: tweet });
+	    });
+
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'ul',
+	        null,
+	        tweets
+	      )
+	    );
+	  }
+	});
+
+	module.exports = TweetList;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Tweet = React.createClass({
+	  displayName: 'Tweet',
+
+	  render: function render() {
+	    return React.createElement(
+	      'li',
+	      null,
+	      this.props.tweet.text
+	    );
+	  }
+	});
+
+	module.exports = Tweet;
 
 /***/ }
 /******/ ]);

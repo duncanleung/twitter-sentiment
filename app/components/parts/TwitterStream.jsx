@@ -1,5 +1,6 @@
 var React = require('react'),
-    TweetList = require('./TweetList.jsx');
+    TweetList = require('./TweetList.jsx'),
+    io = require('socket.io-client');
 
 
 var TwitterStream = React.createClass({
@@ -16,6 +17,7 @@ var TwitterStream = React.createClass({
     //When socket receives 'sendTweet', run addTweet
     socket.on('sendTweet', function(receivedTweet) {
       self.addTweet(receivedTweet.tweet);
+      console.log(receivedTweet.tweet);
     });
   },
 
@@ -29,13 +31,13 @@ var TwitterStream = React.createClass({
   },
 
   render: function() {
+    //Pass collectedTweets to TweetList
     return (
       <div className="col-sm-4">
         <h1>Twitter Stream</h1>
-        //Pass collectedTweets to TweetList
         <TweetList collectedTweets={this.state.collectedTweets} />
       </div>
-    )
+    );
   }
 });
   

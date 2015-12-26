@@ -1,23 +1,28 @@
 //Require Dependencies
 var express = require('express'),
-    twitterAPI = require('./twitterAPI');
+    twitterStream = require('./streamHandler')/*,
+    twitterAPI = require('./twitterAPI')*/;
 
-//Create Express Instance
-//Set Port
+//Create Express Server Instance
 var app = express(),
     port = process.env.PORT || 3000;
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
 app.use(express.static(__dirname + './../.tmp')); // Serve Bundled React Files
-app.use('/api', twitterAPI);
+/*app.use('/api', twitterAPI);*/
 
 
 var server = app.listen(port);
-var io = require('socket.io').listen(server); // Create Socket server listening on Port
+console.log('Server on port: %s', port);
+
+
+ //Create socket.io Listener on Server Port
+var io = require('socket.io').listen(server);
 var connections = [];
 
-io.sockets.on('connection', function(socket) { // When a new socket connection happens
+//Create socket.io Connection with Client
+io.sockets.on('connection', function(socket) {
   
   socket.once('disconnect', function() {
     connections.splice(connections.indexOf(socket), 1);
@@ -27,6 +32,14 @@ io.sockets.on('connection', function(socket) { // When a new socket connection h
 
   connections.push(socket);
   console.log('%s Connected. %s sockets connected', socket.id, connections.length);
-});
+  
 
-console.log('Server on port: %s', port);
+  //Turn on Twitter Stream
+  twitterStream.on('tweet', function(tweet) {
+    
+    //sendTweet to Client
+    socket.emit('sendTweet', {tweet: tweet});
+
+    console.log('Collected Tweet: ' + tweet.text);
+  });
+}); //END io.sockets.on

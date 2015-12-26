@@ -22,7 +22,7 @@ componentWillMount() {
           <h1>Twitter Dashboard</h1>
         </div>
         
-        /*<TwitterStream />*/
+        <TwitterStream />
       </div>
     );
   }
