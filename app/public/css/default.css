@@ -31,6 +31,7 @@ body {
 /* line 45, default.scss */
 header {
   height: 500px;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -65,7 +66,8 @@ header nav ul li a {
   text-transform: uppercase;
   font-size: 13px;
   color: #999;
-  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+          transition: all 0.25s ease-in-out;
 }
 /* line 79, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
@@ -79,7 +81,8 @@ header nav ul li a:after {
   display: block;
   border-bottom: 2px solid #2bb656;
   width: 0;
-  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+          transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
 /* line 96, default.scss */
@@ -89,9 +92,19 @@ header nav ul li a:hover:after {
 /* line 104, default.scss */
 header .hero {
   position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 500px;
 }
 /* line 111, default.scss */
@@ -102,7 +115,10 @@ header .hero h2 {
 }
 /* line 117, default.scss */
 header .hero h1 {
-  order: 3;
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+      -ms-flex-order: 3;
+          order: 3;
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -110,20 +126,29 @@ header .hero h1 {
 }
 /* line 125, default.scss */
 header .hero h2 {
-  order: 2;
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
   font-size: 40px;
   font-weight: 700;
 }
 /* line 131, default.scss */
 header .hero .text-logo {
-  order: 1;
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
   font-weight: 600;
   font-size: 40px;
   color: #2bb656;
 }
 /* line 139, default.scss */
 header .hero #search-bar {
-  order: 4;
+  -webkit-box-ordinal-group: 5;
+  -webkit-order: 4;
+      -ms-flex-order: 4;
+          order: 4;
   width: 350px;
   margin-top: 40px;
   margin-right: auto;
@@ -142,7 +167,8 @@ header .hero #search-bar .btn-default {
   font-weight: 300;
   color: white;
   text-transform: uppercase;
-  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+          transition: all 0.25s ease-in-out;
 }
 /* line 160, default.scss */
 header .hero #search-bar .btn-default:hover {
@@ -154,7 +180,7 @@ header .hero #search-bar .btn-default:hover {
 ======================== */
 /* line 174, default.scss */
 #App {
-  height: 800px;
+  height: 100vh;
 }
 /* line 177, default.scss */
 #App .analysis {
@@ -167,6 +193,37 @@ header .hero #search-bar .btn-default:hover {
   height: 800px;
   overflow-y: scroll;
   background-color: #f7f7f7;
+}
+/* line 188, default.scss */
+#App .stream h1 {
+  color: #4d4d4d;
+  text-align: center;
+}
+/* line 195, default.scss */
+#App .stream .tweet-list .tweet-card {
+  padding: 5px;
+  margin: 10px -5px 10px -5px;
+  border-bottom: 1px solid #ccc;
+}
+/* line 200, default.scss */
+#App .stream .tweet-list .tweet-card .profile-image {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+}
+/* line 209, default.scss */
+#App .stream .tweet-list .tweet-card .content {
+  display: inline-block;
+  width: 80%;
+}
+/* line 213, default.scss */
+#App .stream .tweet-list .tweet-card .content .user .name {
+  color: #4d4d4d;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=default.css.map */

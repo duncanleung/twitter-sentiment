@@ -184,6 +184,49 @@ header {
     height: 800px;
     overflow-y: scroll;
     background-color: $background-light-gray;
+
+    h1 {
+      color: $text-black;
+      text-align: center;
+    }
+
+    .tweet-list {
+
+      .tweet-card {
+        padding: 5px;
+        margin: 10px -5px 10px -5px;
+        border-bottom: 1px solid #ccc;
+
+        .profile-image {
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 10px;
+          height: 50px;
+          width: 50px;
+          border-radius: 5px;
+        }
+
+        .content {
+          display: inline-block;
+          width: 80%;
+          .user {
+            .name {
+              color: $text-black;
+              font-weight: 700;
+              margin-right: 10px;
+            }
+
+            .username {
+
+            }
+          }
+
+          .text {
+
+          }
+        }
+      }
+    }
   }
 }
 

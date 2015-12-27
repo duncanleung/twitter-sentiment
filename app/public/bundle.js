@@ -27344,27 +27344,31 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      null,
-	      React.createElement("img", { className: "profile-image", src: this.props.tweet.user.profile_image_url }),
+	      { className: "tweet-card" },
+	      React.createElement("img", { className: "profile-image", src: this.props.tweet.user.profile_image_url_https }),
 	      React.createElement(
 	        "div",
-	        { className: "user" },
+	        { className: "content" },
 	        React.createElement(
-	          "span",
-	          { className: "name" },
-	          this.props.tweet.user.name
+	          "div",
+	          { className: "user" },
+	          React.createElement(
+	            "span",
+	            { className: "name" },
+	            this.props.tweet.user.name
+	          ),
+	          React.createElement(
+	            "span",
+	            { className: "username" },
+	            "@",
+	            this.props.tweet.user.screen_name
+	          )
 	        ),
 	        React.createElement(
-	          "span",
-	          { className: "username" },
-	          "@",
-	          this.props.tweet.user.screen_name
+	          "div",
+	          { className: "text" },
+	          this.props.tweet.text
 	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "text" },
-	        this.props.tweet.text
 	      )
 	    );
 	  }
