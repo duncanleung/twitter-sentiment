@@ -1,4 +1,5 @@
 var React = require('react'),
+    update = require('react-addons-update'),
     TweetList = require('./TweetList.jsx'),
     io = require('socket.io-client');
 
@@ -7,7 +8,7 @@ var TwitterStream = React.createClass({
 
   //Array of Collected Tweets
   getInitialState: function() {
-    return { collectedTweets: [{text: 'hello'}] };
+    return { collectedTweets: [] };
   },
 
   componentWillMount: function() {
@@ -21,11 +22,11 @@ var TwitterStream = React.createClass({
     });
   },
 
-  //Add receivedTweet onto end of array
+  //Add receivedTweet onto beginning of array
   //Update the state of collectedTweets
   addTweet: function(tweet) {
     var tweets = this.state.collectedTweets;
-    var newTweets = tweets.concat([tweet]);
+    var newTweets = update(tweets, {$unshift: [tweet]});
 
     this.setState({collectedTweets: newTweets});
   },
@@ -33,7 +34,7 @@ var TwitterStream = React.createClass({
   render: function() {
     //Pass collectedTweets to TweetList
     return (
-      <div className="col-sm-4">
+      <div className="stream col-sm-4">
         <h1>Twitter Stream</h1>
         <TweetList collectedTweets={this.state.collectedTweets} />
       </div>

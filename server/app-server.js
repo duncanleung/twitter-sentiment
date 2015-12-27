@@ -1,6 +1,6 @@
 //Require Dependencies
 var express = require('express'),
-    twitterStream = require('./streamHandler')/*,
+    twitterStream = require('./twitterStream')/*,
     twitterAPI = require('./twitterAPI')*/;
 
 //Create Express Server Instance
@@ -17,7 +17,7 @@ var server = app.listen(port);
 console.log('Server on port: %s', port);
 
 
- //Create socket.io Listener on Server Port
+//Create socket.io Listener on Server Port
 var io = require('socket.io').listen(server);
 var connections = [];
 
@@ -37,9 +37,7 @@ io.sockets.on('connection', function(socket) {
   //Turn on Twitter Stream
   twitterStream.on('tweet', function(tweet) {
     
-    //sendTweet to Client
-    socket.emit('sendTweet', {tweet: tweet});
-
+    socket.emit('sendTweet', {tweet: tweet}); //sendTweet to Client
     console.log('Collected Tweet: ' + tweet.text);
   });
 }); //END io.sockets.on
