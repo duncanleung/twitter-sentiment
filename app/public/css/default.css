@@ -26,25 +26,15 @@ body {
   font-size: 16px;
 }
 
-/* Header Styles
+/* Header and Nav Styles
 ======================== */
-/* line 45, default.scss */
-header {
-  height: 500px;
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  position: relative;
-}
-/* line 53, default.scss */
+/* line 47, default.scss */
 header nav {
   height: 60px;
   background-color: #1a1a1a;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 58, default.scss */
+/* line 52, default.scss */
 header nav ul {
   width: 80% !important;
   margin-right: auto;
@@ -53,13 +43,13 @@ header nav ul {
   padding: 0;
   width: 100%;
 }
-/* line 66, default.scss */
+/* line 60, default.scss */
 header nav ul li {
   display: inline-block;
   padding-top: 22px;
   margin-right: 40px;
 }
-/* line 71, default.scss */
+/* line 65, default.scss */
 header nav ul li a {
   padding: 10px 0;
   text-decoration: none !important;
@@ -69,12 +59,12 @@ header nav ul li a {
   -webkit-transition: all 0.25s ease-in-out;
           transition: all 0.25s ease-in-out;
 }
-/* line 79, default.scss */
+/* line 73, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
   color: #2bb656;
   outline: none;
 }
-/* line 86, default.scss */
+/* line 80, default.scss */
 header nav ul li a:after {
   content: "";
   padding-bottom: 7px;
@@ -85,12 +75,25 @@ header nav ul li a:after {
           transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
-/* line 96, default.scss */
+/* line 90, default.scss */
 header nav ul li a:hover:after {
   width: 100%;
 }
-/* line 104, default.scss */
-header .hero {
+
+/* Hero and Search Bar Styles
+======================== */
+/* line 101, default.scss */
+.hero {
+  height: 500px;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  position: relative;
+}
+/* line 109, default.scss */
+.hero .content {
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -107,14 +110,14 @@ header .hero {
           justify-content: center;
   height: 500px;
 }
-/* line 111, default.scss */
-header .hero h1,
-header .hero h2 {
+/* line 116, default.scss */
+.hero .content h1,
+.hero .content h2 {
   color: white;
   text-align: center;
 }
-/* line 117, default.scss */
-header .hero h1 {
+/* line 122, default.scss */
+.hero .content h1 {
   -webkit-box-ordinal-group: 4;
   -webkit-order: 3;
       -ms-flex-order: 3;
@@ -124,8 +127,8 @@ header .hero h1 {
   letter-spacing: 1px;
   color: #cfcfcf;
 }
-/* line 125, default.scss */
-header .hero h2 {
+/* line 130, default.scss */
+.hero .content h2 {
   -webkit-box-ordinal-group: 3;
   -webkit-order: 2;
       -ms-flex-order: 2;
@@ -133,8 +136,8 @@ header .hero h2 {
   font-size: 40px;
   font-weight: 700;
 }
-/* line 131, default.scss */
-header .hero .text-logo {
+/* line 136, default.scss */
+.hero .content .text-logo {
   -webkit-box-ordinal-group: 2;
   -webkit-order: 1;
       -ms-flex-order: 1;
@@ -143,8 +146,8 @@ header .hero .text-logo {
   font-size: 40px;
   color: #2bb656;
 }
-/* line 139, default.scss */
-header .hero #search-bar {
+/* line 144, default.scss */
+.hero .content #search-bar {
   -webkit-box-ordinal-group: 5;
   -webkit-order: 4;
       -ms-flex-order: 4;
@@ -154,13 +157,13 @@ header .hero #search-bar {
   margin-right: auto;
   margin-left: auto;
 }
-/* line 146, default.scss */
-header .hero #search-bar input:focus {
+/* line 151, default.scss */
+.hero .content #search-bar input:focus {
   border: 1px solid #218d43;
   box-shadow: 0 0 4px #218d43;
 }
-/* line 151, default.scss */
-header .hero #search-bar .btn-default {
+/* line 156, default.scss */
+.hero .content #search-bar .btn-default {
   background-color: #2bb656;
   border-color: #2bb656;
   font-family: "Open Sans", sans-serif;
@@ -170,42 +173,42 @@ header .hero #search-bar .btn-default {
   -webkit-transition: all 0.25s ease-in-out;
           transition: all 0.25s ease-in-out;
 }
-/* line 160, default.scss */
-header .hero #search-bar .btn-default:hover {
+/* line 165, default.scss */
+.hero .content #search-bar .btn-default:hover {
   background-color: #218d43;
   border-color: #218d43;
 }
 
 /* Dashboard Styles
 ======================== */
-/* line 174, default.scss */
+/* line 178, default.scss */
 #App {
   height: 100vh;
 }
-/* line 177, default.scss */
+/* line 181, default.scss */
 #App .analysis {
   height: 800px;
   overflow-y: hidden;
   background-color: #273333;
 }
-/* line 183, default.scss */
+/* line 187, default.scss */
 #App .stream {
   height: 800px;
   overflow-y: scroll;
   background-color: #f7f7f7;
 }
-/* line 188, default.scss */
+/* line 192, default.scss */
 #App .stream h1 {
   color: #4d4d4d;
   text-align: center;
 }
-/* line 195, default.scss */
+/* line 199, default.scss */
 #App .stream .tweet-list .tweet-card {
-  padding: 5px;
+  padding: 5px 5px 10px 5px;
   margin: 10px -5px 10px -5px;
   border-bottom: 1px solid #ccc;
 }
-/* line 200, default.scss */
+/* line 204, default.scss */
 #App .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -214,12 +217,12 @@ header .hero #search-bar .btn-default:hover {
   width: 50px;
   border-radius: 5px;
 }
-/* line 209, default.scss */
+/* line 213, default.scss */
 #App .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 213, default.scss */
+/* line 217, default.scss */
 #App .stream .tweet-list .tweet-card .content .user .name {
   color: #4d4d4d;
   font-weight: 700;

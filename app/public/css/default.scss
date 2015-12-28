@@ -39,17 +39,11 @@ body {
 }
 
 
-/* Header Styles
+/* Header and Nav Styles
 ======================== */
 
 header {
-  height: 500px;
-  background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  position: relative;
-
+  
   nav {
     height: 60px;
     background-color: $primary-black;
@@ -100,8 +94,19 @@ header {
       }
     }
   }
+}
 
-  .hero {
+/* Hero and Search Bar Styles
+======================== */
+.hero {
+  height: 500px;
+  background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  position: relative;
+
+  .content {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -167,7 +172,6 @@ header {
 }
 
 
-
 /* Dashboard Styles
 ======================== */
 
@@ -193,7 +197,7 @@ header {
     .tweet-list {
 
       .tweet-card {
-        padding: 5px;
+        padding: 5px 5px 10px 5px;
         margin: 10px -5px 10px -5px;
         border-bottom: 1px solid #ccc;
 

@@ -4,15 +4,29 @@ var React = require('react'),
 
 var App = React.createClass({
 
-componentWillMount() {
+  getInitialState() {
+      return {
+          status: 'disconnected',
+          keyword: ''
+      };
+  },
+
+  componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
+    this.socket.on('disconnect', this.disconnect);
   },
 
   //Connect Handler
   connect() {
-    console.log('Connected on socket: ' + this.socket.id);
+    this.setState({ status: 'connected' });
+    console.log('Connected on socket: %s', this.socket.id);
   },
+
+  disconnect() {
+    this.setState({ status: 'disconnected' });
+    console.log('Disconnected: %s', this.socket.id);
+  }
 
   render: function() {
     return (
