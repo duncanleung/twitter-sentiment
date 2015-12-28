@@ -4,8 +4,6 @@ A Twitter sentiment dashboard for companies who want to monitor the sentiment ar
 Planning to use the following technologies:
 
 - Twitter API
-- D3.js
 - Underscore.js
 - Node (Express)
-- Socket IO
 - Sass and Jade
