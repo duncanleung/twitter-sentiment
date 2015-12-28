@@ -1,0 +1,271 @@
+/* Reusable Styles
+======================== */
+$primary-black: #1a1a1a;
+$primary-green: #2bb656;
+$primary-blue: #1d67a7;
+
+$background-dark-gray: #273333;
+$background-light-gray: #f7f7f7;
+
+$text-black: #4d4d4d;
+$text-gray: #999;
+$CTA-green: #59cb59;
+$CTA-hover-green: #218d43;
+
+$font-family: 'Open Sans', sans-serif;
+
+html,
+body {
+  font-family: $font-family;
+  color: $text-gray;
+  background-color: white;
+}
+
+.intro-text {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: $text-black;
+
+  h2 {
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+
+/* Header and Nav Styles
+======================== */
+
+header {
+  
+  nav {
+    height: 60px;
+    background-color: $primary-black;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0, 0.3);
+
+    ul {
+      width: 80% !important;
+      margin-right: auto;
+      margin-left: auto;
+      list-style: none;
+      padding: 0;
+      width: 100%;
+
+      li {
+        display: inline-block;
+        padding-top: 22px;
+        margin-right: 40px;
+
+        a {
+          padding: 10px 0;
+          text-decoration: none !important;
+          text-transform: uppercase;
+          font-size: 13px;
+          color: $text-gray;
+          transition: all 0.25s ease-in-out;
+
+          &:hover,
+          &:active,
+          &:focus {
+            color: $primary-green;
+            outline: none;
+          }
+
+          &:after {
+            content: "";
+            padding-bottom: 7px;
+            display: block;
+            border-bottom: 2px solid $primary-green;
+            width: 0;
+            transition: all 0.25s ease-in-out;
+            pointer-events: none;
+          }
+
+          &:hover:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Hero and Search Bar Styles
+======================== */
+.hero {
+  height: 500px;
+  background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  position: relative;
+
+  .content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 500px;
+
+    h1,
+    h2 {
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      order: 3;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #cfcfcf;
+    }
+
+    h2 {
+      order: 2;
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    .text-logo {
+      order: 1;
+      font-weight: 600;
+      font-size: 40px;
+      color: $primary-green;
+    }
+
+
+    #search-bar {
+      order: 4;
+      width: 350px;
+      margin-top: 40px;
+      margin-right: auto;
+      margin-left: auto;
+      
+      input:focus {
+        border: 1px solid $CTA-hover-green;
+        box-shadow: 0 0 4px $CTA-hover-green;
+      }
+      
+      .btn-default {
+        background-color: $primary-green;
+        border-color: $primary-green;
+        font-family: $font-family;
+        font-weight: 300;
+        color: white;
+        text-transform: uppercase;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+          background-color: $CTA-hover-green;
+          border-color: $CTA-hover-green;
+        }
+      }
+    }
+  }
+}
+
+
+/* Dashboard Styles
+======================== */
+
+#App {
+  height: 100vh;
+
+  .analysis {
+    height: 800px;
+    overflow-y: hidden;
+    background-color: $background-dark-gray;
+  }
+
+  .stream {
+    height: 800px;
+    overflow-y: scroll;
+    background-color: $background-light-gray;
+
+    h1 {
+      color: $text-black;
+      text-align: center;
+    }
+
+    .tweet-list {
+
+      .tweet-card {
+        padding: 5px 5px 10px 5px;
+        margin: 10px -5px 10px -5px;
+        border-bottom: 1px solid #ccc;
+
+        .profile-image {
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 10px;
+          height: 50px;
+          width: 50px;
+          border-radius: 5px;
+        }
+
+        .content {
+          display: inline-block;
+          width: 80%;
+          .user {
+            .name {
+              color: $text-black;
+              font-weight: 700;
+              margin-right: 10px;
+            }
+
+            .username {
+
+            }
+          }
+
+          .text {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
