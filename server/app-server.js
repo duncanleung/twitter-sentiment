@@ -9,7 +9,6 @@ var app = express(),
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
-app.use(express.static(__dirname + './../.tmp')); // Serve Bundled React Files
 /*app.use('/api', twitterAPI);*/
 
 
@@ -35,9 +34,9 @@ io.sockets.on('connection', function(socket) {
   
 
   //Turn on Twitter Stream
- /* twitterStream.on('tweet', function(tweet) {
+  twitterStream.on('tweet', function(tweet) {
     
     socket.emit('sendTweet', {tweet: tweet}); //sendTweet to Client
     console.log('Collected Tweet: ' + tweet.text);
-  });*/
+  });
 }); //END io.sockets.on

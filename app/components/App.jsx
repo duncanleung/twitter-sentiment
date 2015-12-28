@@ -4,12 +4,12 @@ var React = require('react'),
 
 var App = React.createClass({
 
-  getInitialState() {
+  /*getInitialState: function() {
       return {
           status: 'disconnected',
           keyword: ''
       };
-  },
+  },*/
 
   componentWillMount() {
     this.socket = io('http://localhost:3000');
@@ -19,14 +19,14 @@ var App = React.createClass({
 
   //Connect Handler
   connect() {
-    this.setState({ status: 'connected' });
+    /*this.setState({ status: 'connected' });*/
     console.log('Connected on socket: %s', this.socket.id);
   },
 
-  disconnect() {
+  /*disconnect() {
     this.setState({ status: 'disconnected' });
     console.log('Disconnected: %s', this.socket.id);
-  }
+  },*/
 
   render: function() {
     return (
