@@ -1,1 +1,0 @@
-var express=require("express"),twitterAPI=require("./twitterAPI"),app=express(),port=process.env.PORT||8e3;app.set("views","./views"),app.set("view engine","jade"),app.use(express["static"](__dirname+"/public")),app.get("/",function(e,p){p.render("index")}),app.use("/api",twitterAPI),app.listen(port),console.log("Server on port: "+port);
