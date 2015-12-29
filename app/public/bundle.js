@@ -19637,17 +19637,18 @@
 
 	var React = __webpack_require__(1),
 	    io = __webpack_require__(159),
-	    TwitterStream = __webpack_require__(209);
+	    Hero = __webpack_require__(209),
+	    Dashboard = __webpack_require__(211);
 
 	var App = React.createClass({
 	  displayName: 'App',
 
-	  /*getInitialState: function() {
-	      return {
-	          status: 'disconnected',
-	          keyword: ''
-	      };
-	  },*/
+	  getInitialState: function getInitialState() {
+	    return {
+	      status: 'disconnected',
+	      keyword: ''
+	    };
+	  },
 
 	  componentWillMount: function componentWillMount() {
 	    this.socket = io('http://localhost:3000');
@@ -19657,29 +19658,20 @@
 
 	  //Connect Handler
 	  connect: function connect() {
-	    /*this.setState({ status: 'connected' });*/
+	    this.setState({ status: 'connected' });
 	    console.log('Connected on socket: %s', this.socket.id);
 	  },
-
-	  /*disconnect() {
+	  disconnect: function disconnect() {
 	    this.setState({ status: 'disconnected' });
 	    console.log('Disconnected: %s', this.socket.id);
-	  },*/
+	  },
 
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'row' },
-	      React.createElement(
-	        'div',
-	        { className: 'analysis col-sm-8' },
-	        React.createElement(
-	          'h1',
-	          null,
-	          'Twitter Dashboard'
-	        )
-	      ),
-	      React.createElement(TwitterStream, null)
+	      null,
+	      React.createElement(Hero, null),
+	      React.createElement(Dashboard, null)
 	    );
 	  }
 	});
@@ -26883,8 +26875,126 @@
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    update = __webpack_require__(210),
-	    TweetList = __webpack_require__(212),
+	    SearchForm = __webpack_require__(210);
+
+	var Hero = React.createClass({
+	  displayName: 'Hero',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'hero container-fluid' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'content col-sm-12' },
+	          React.createElement(
+	            'h1',
+	            null,
+	            'Track your Brand Sentiment on Twitter'
+	          ),
+	          React.createElement(
+	            'h2',
+	            null,
+	            'What are people saying about your brand?'
+	          ),
+	          React.createElement(
+	            'h2',
+	            { className: 'text-logo' },
+	            'Twitterment'
+	          ),
+	          React.createElement(SearchForm, null)
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Hero;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var SearchForm = React.createClass({
+	  displayName: 'SearchForm',
+	  search: function search() {
+	    var keyword = React.findDOMNode(this.refs.keyword).value;
+	    this.props.emit('search', { keyword: keyword });
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { id: 'search-bar' },
+	      React.createElement(
+	        'form',
+	        { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search },
+	        React.createElement('input', { id: 'search', ref: 'search', type: 'search', placeholder: 'Enter Brand or Keyword',
+	          autofocus: 'autofocus', className: 'form-control' }),
+	        React.createElement(
+	          'span',
+	          { className: 'input-group-btn' },
+	          React.createElement(
+	            'button',
+	            { id: 'submit', type: 'button', className: 'btn btn-default' },
+	            'Search'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = SearchForm;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    TwitterStream = __webpack_require__(212);
+
+	var Dashboard = React.createClass({
+	  displayName: 'Dashboard',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'dashboard row' },
+	      React.createElement(
+	        'div',
+	        { className: 'analysis col-sm-8' },
+	        React.createElement(
+	          'h1',
+	          null,
+	          'Twitter Dashboard'
+	        )
+	      ),
+	      React.createElement(TwitterStream, null)
+	    );
+	  }
+	});
+
+	module.exports = Dashboard;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    update = __webpack_require__(213),
+	    TweetList = __webpack_require__(215),
 	    io = __webpack_require__(159);
 
 	var TwitterStream = React.createClass({
@@ -27199,13 +27309,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 210 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(211);
+	module.exports = __webpack_require__(214);
 
 /***/ },
-/* 211 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -27318,13 +27428,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 212 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(213);
+	    TweetCard = __webpack_require__(216);
 
 	var TweetList = React.createClass({
 	  displayName: 'TweetList',
@@ -27346,7 +27456,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 213 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

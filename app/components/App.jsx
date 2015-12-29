@@ -1,15 +1,16 @@
 var React = require('react'),
     io = require('socket.io-client'),
-    TwitterStream = require('./parts/TwitterStream.jsx');
+    Hero = require('./Hero.jsx'),
+    Dashboard = require('./Dashboard.jsx');
 
 var App = React.createClass({
 
-  /*getInitialState: function() {
+  getInitialState: function() {
       return {
           status: 'disconnected',
           keyword: ''
       };
-  },*/
+  },
 
   componentWillMount() {
     this.socket = io('http://localhost:3000');
@@ -19,24 +20,20 @@ var App = React.createClass({
 
   //Connect Handler
   connect() {
-    /*this.setState({ status: 'connected' });*/
+    this.setState({ status: 'connected' });
     console.log('Connected on socket: %s', this.socket.id);
   },
 
-  /*disconnect() {
+  disconnect() {
     this.setState({ status: 'disconnected' });
     console.log('Disconnected: %s', this.socket.id);
-  },*/
+  },
 
   render: function() {
     return (
-      <div className="row">
-        
-        <div className="analysis col-sm-8">
-          <h1>Twitter Dashboard</h1>
-        </div>
-        
-        <TwitterStream />
+      <div>
+        <Hero />
+        <Dashboard />
       </div>
     );
   }

@@ -34,9 +34,9 @@ io.sockets.on('connection', function(socket) {
   
 
   //Turn on Twitter Stream
-  twitterStream.on('tweet', function(tweet) {
+ /* twitterStream.on('tweet', function(tweet) {
     
     socket.emit('sendTweet', {tweet: tweet}); //sendTweet to Client
     console.log('Collected Tweet: ' + tweet.text);
-  });
+  });*/
 }); //END io.sockets.on

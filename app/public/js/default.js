@@ -6,8 +6,8 @@ var elSubmit = document.getElementById('submit');
 
 var tweetHistory = [];
 
-elSubmit.addEventListener('click', postSearch, true);
-elSearch.addEventListener('keypress', submit, true);
+/*elSubmit.addEventListener('click', postSearch, true);
+elSearch.addEventListener('keypress', submit, true);*/
 
 function submit(e) {
   var key = e.which || e.keyCode;
