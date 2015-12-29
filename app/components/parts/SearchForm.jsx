@@ -1,9 +1,10 @@
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var SearchForm = React.createClass({
   
   search() {
-    var keyword = React.findDOMNode(this.refs.keyword).value;
+    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
     this.props.emit('search', { keyword: keyword });
   },
 
@@ -11,7 +12,7 @@ var SearchForm = React.createClass({
     return (
       <div id="search-bar">
           <form className="input-group" action="javascript:void(0)" onSubmit={this.search}>
-            <input id="search" ref="search" type="search" placeholder="Enter Brand or Keyword"
+            <input id="search" ref="keyword" type="search" placeholder="Enter Brand or Keyword"
                     autofocus="autofocus" className="form-control" />
             <span className="input-group-btn">
               <button id="submit" type="button" className="btn btn-default">Search</button>

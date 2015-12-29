@@ -1,11 +1,12 @@
 //Require Dependencies
 var express = require('express'),
-    twitterStream = require('./twitterStream')/*,
+    Twitter = require('./Twitter')/*,
     twitterAPI = require('./twitterAPI')*/;
 
 //Create Express Server Instance
 var app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    twitterStream = Twitter;
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
@@ -21,6 +22,7 @@ var io = require('socket.io').listen(server);
 var connections = [];
 
 //Create socket.io Connection with Client
+//All Socket Listeners Here
 io.sockets.on('connection', function(socket) {
   
   socket.once('disconnect', function() {
@@ -32,11 +34,17 @@ io.sockets.on('connection', function(socket) {
   connections.push(socket);
   console.log('%s Connected. %s sockets connected', socket.id, connections.length);
   
+  socket.on('search', function(payload) {
+    console.log('Keyword: %s', payload.keyword);
 
-  //Turn on Twitter Stream
- /* twitterStream.on('tweet', function(tweet) {
-    
-    socket.emit('sendTweet', {tweet: tweet}); //sendTweet to Client
-    console.log('Collected Tweet: ' + tweet.text);
-  });*/
+    var twitterStream = Twitter.stream('statuses/filter', {language: 'en', track: payload.keyword});
+
+    //Turn on Twitter Stream
+    twitterStream.on('tweet', function(tweet) {
+      
+      socket.emit('sendTweet', {tweet: tweet}); //sendTweet to Client
+      console.log('Collected Tweet: ' + tweet.text);
+    });
+  });
+
 }); //END io.sockets.on

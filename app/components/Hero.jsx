@@ -11,7 +11,7 @@ var Hero = React.createClass({
             <h2>What are people saying about your brand?</h2>
             <h2 className="text-logo">Twitterment</h2>
             
-            <SearchForm />
+            <SearchForm emit={ this.props.emit } />
           </div>
         </div>
       </div>

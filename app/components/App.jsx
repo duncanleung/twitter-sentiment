@@ -12,6 +12,7 @@ var App = React.createClass({
       };
   },
 
+  //Incoming Data from Server Handlers
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
@@ -24,15 +25,21 @@ var App = React.createClass({
     console.log('Connected on socket: %s', this.socket.id);
   },
 
+  //Disconnect Handler
   disconnect() {
     this.setState({ status: 'disconnected' });
     console.log('Disconnected: %s', this.socket.id);
   },
 
+  //Outgoing Data to Server Handler
+  emit(eventName, payload) {
+    this.socket.emit(eventName, payload)
+  },
+
   render: function() {
     return (
       <div>
-        <Hero />
+        <Hero emit={this.emit} />
         <Dashboard />
       </div>
     );

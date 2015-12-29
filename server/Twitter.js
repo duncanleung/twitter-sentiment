@@ -3,7 +3,7 @@ var Twit = require('twit'),
     config = require('./config');
 
 //Create Twitter Instance
-var T = new Twit({
+var Twitter = new Twit({
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
       access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
@@ -11,8 +11,8 @@ var T = new Twit({
     });
 
 
-var twitterStream = T.stream('statuses/filter', {language: 'en', track: 'nike'});
+/*var twitterStream = T.stream('statuses/filter', {language: 'en', track: 'nike'});*/
   
 
-module.exports = twitterStream;
+module.exports = Twitter;
 
