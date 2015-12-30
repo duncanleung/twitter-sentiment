@@ -10,7 +10,7 @@ var Dashboard = React.createClass({
           <h1>Twitter Dashboard</h1>
         </div>
         
-        <TwitterStream />
+        <TwitterStream collectedTweets={this.props.collectedTweets} />
       </div>
     );
   }

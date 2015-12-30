@@ -19647,8 +19647,9 @@
 
 	var React = __webpack_require__(1),
 	    io = __webpack_require__(160),
-	    Hero = __webpack_require__(210),
-	    Dashboard = __webpack_require__(212);
+	    update = __webpack_require__(210),
+	    Hero = __webpack_require__(212),
+	    Dashboard = __webpack_require__(214);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -19656,15 +19657,23 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      status: 'disconnected',
-	      keyword: ''
+	      keyword: '',
+	      collectedTweets: []
 	    };
 	  },
 
 	  //Incoming Data from Server Handlers
 	  componentWillMount: function componentWillMount() {
+	    var self = this;
+
 	    this.socket = io('http://localhost:3000');
 	    this.socket.on('connect', this.connect);
 	    this.socket.on('disconnect', this.disconnect);
+
+	    this.socket.on('sendTweet', function (receivedTweet) {
+	      self.addTweet(receivedTweet.tweet);
+	      console.log(receivedTweet.tweet);
+	    });
 	  },
 
 	  //Connect Handler
@@ -19679,6 +19688,15 @@
 	    console.log('Disconnected: %s', this.socket.id);
 	  },
 
+	  //Add receivedTweet onto beginning of array
+	  //Update the state of collectedTweets
+	  addTweet: function addTweet(tweet) {
+	    var tweets = this.state.collectedTweets;
+	    var newTweets = update(tweets, { $unshift: [tweet] });
+
+	    this.setState({ collectedTweets: newTweets });
+	  },
+
 	  //Outgoing Data to Server Handler
 	  emit: function emit(eventName, payload) {
 	    this.socket.emit(eventName, payload);
@@ -19689,7 +19707,7 @@
 	      'div',
 	      null,
 	      React.createElement(Hero, { emit: this.emit }),
-	      React.createElement(Dashboard, null)
+	      React.createElement(Dashboard, { collectedTweets: this.state.collectedTweets })
 	    );
 	  }
 	});
@@ -26890,185 +26908,10 @@
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var React = __webpack_require__(1),
-	    SearchForm = __webpack_require__(211);
-
-	var Hero = React.createClass({
-	  displayName: 'Hero',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'hero container-fluid' },
-	      React.createElement(
-	        'div',
-	        { className: 'row' },
-	        React.createElement(
-	          'div',
-	          { className: 'content col-sm-12' },
-	          React.createElement(
-	            'h1',
-	            null,
-	            'Track your Brand Sentiment on Twitter'
-	          ),
-	          React.createElement(
-	            'h2',
-	            null,
-	            'What are people saying about your brand?'
-	          ),
-	          React.createElement(
-	            'h2',
-	            { className: 'text-logo' },
-	            'Twitterment'
-	          ),
-	          React.createElement(SearchForm, { emit: this.props.emit })
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Hero;
+	module.exports = __webpack_require__(211);
 
 /***/ },
 /* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1),
-	    ReactDOM = __webpack_require__(158);
-
-	var SearchForm = React.createClass({
-	  displayName: 'SearchForm',
-	  search: function search() {
-	    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
-	    this.props.emit('search', { keyword: keyword });
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { id: 'search-bar' },
-	      React.createElement(
-	        'form',
-	        { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search },
-	        React.createElement('input', { id: 'search', ref: 'keyword', type: 'search', placeholder: 'Enter Brand or Keyword',
-	          autofocus: 'autofocus', className: 'form-control' }),
-	        React.createElement(
-	          'span',
-	          { className: 'input-group-btn' },
-	          React.createElement(
-	            'button',
-	            { id: 'submit', type: 'button', className: 'btn btn-default' },
-	            'Search'
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = SearchForm;
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1),
-	    TwitterStream = __webpack_require__(213);
-
-	var Dashboard = React.createClass({
-	  displayName: 'Dashboard',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'dashboard row' },
-	      React.createElement(
-	        'div',
-	        { className: 'analysis col-sm-8' },
-	        React.createElement(
-	          'h1',
-	          null,
-	          'Twitter Dashboard'
-	        )
-	      ),
-	      React.createElement(TwitterStream, null)
-	    );
-	  }
-	});
-
-	module.exports = Dashboard;
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1),
-	    update = __webpack_require__(214),
-	    TweetList = __webpack_require__(216),
-	    io = __webpack_require__(160);
-
-	var TwitterStream = React.createClass({
-	  displayName: 'TwitterStream',
-
-	  //Array of Collected Tweets
-	  getInitialState: function getInitialState() {
-	    return { collectedTweets: [] };
-	  },
-
-	  componentWillMount: function componentWillMount() {
-	    var socket = io.connect();
-	    var self = this;
-
-	    //When socket receives 'sendTweet', run addTweet
-	    socket.on('sendTweet', function (receivedTweet) {
-	      self.addTweet(receivedTweet.tweet);
-	      console.log(receivedTweet.tweet);
-	    });
-	  },
-
-	  //Add receivedTweet onto beginning of array
-	  //Update the state of collectedTweets
-	  addTweet: function addTweet(tweet) {
-	    var tweets = this.state.collectedTweets;
-	    var newTweets = update(tweets, { $unshift: [tweet] });
-
-	    this.setState({ collectedTweets: newTweets });
-	  },
-
-	  render: function render() {
-	    //Pass collectedTweets to TweetList
-	    return React.createElement(
-	      'div',
-	      { className: 'stream col-sm-4' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Twitter Stream'
-	      ),
-	      React.createElement(TweetList, { collectedTweets: this.state.collectedTweets })
-	    );
-	  }
-	});
-
-	module.exports = TwitterStream;
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(215);
-
-/***/ },
-/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -27181,6 +27024,156 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    SearchForm = __webpack_require__(213);
+
+	var Hero = React.createClass({
+	  displayName: 'Hero',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'hero container-fluid' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'content col-sm-12' },
+	          React.createElement(
+	            'h1',
+	            null,
+	            'Track your Brand Sentiment on Twitter'
+	          ),
+	          React.createElement(
+	            'h2',
+	            null,
+	            'What are people saying about your brand?'
+	          ),
+	          React.createElement(
+	            'h2',
+	            { className: 'text-logo' },
+	            'Twitterment'
+	          ),
+	          React.createElement(SearchForm, { emit: this.props.emit })
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Hero;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    ReactDOM = __webpack_require__(158);
+
+	var SearchForm = React.createClass({
+	  displayName: 'SearchForm',
+	  search: function search() {
+	    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
+	    this.props.emit('search', { keyword: keyword });
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { id: 'search-bar' },
+	      React.createElement(
+	        'form',
+	        { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search },
+	        React.createElement('input', { id: 'search', ref: 'keyword', type: 'search', placeholder: 'Enter Brand or Keyword',
+	          autofocus: 'autofocus', className: 'form-control' }),
+	        React.createElement(
+	          'span',
+	          { className: 'input-group-btn' },
+	          React.createElement(
+	            'button',
+	            { id: 'submit', type: 'button', className: 'btn btn-default' },
+	            'Search'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = SearchForm;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    TwitterStream = __webpack_require__(215);
+
+	var Dashboard = React.createClass({
+	  displayName: 'Dashboard',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'dashboard row' },
+	      React.createElement(
+	        'div',
+	        { className: 'analysis col-sm-8' },
+	        React.createElement(
+	          'h1',
+	          null,
+	          'Twitter Dashboard'
+	        )
+	      ),
+	      React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
+	    );
+	  }
+	});
+
+	module.exports = Dashboard;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    TweetList = __webpack_require__(216);
+
+	//TwitterStream Displays A List of All Twitter Messages as Cards
+	//Uses TweetList.jsx
+	var TwitterStream = React.createClass({
+	  displayName: 'TwitterStream',
+
+	  render: function render() {
+	    //Pass collectedTweets to TweetList
+	    return React.createElement(
+	      'div',
+	      { className: 'stream col-sm-4' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Twitter Stream'
+	      ),
+	      React.createElement(TweetList, { collectedTweets: this.props.collectedTweets })
+	    );
+	  }
+	});
+
+	module.exports = TwitterStream;
+
+/***/ },
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27189,6 +27182,8 @@
 	var React = __webpack_require__(1),
 	    TweetCard = __webpack_require__(217);
 
+	//TweetList Contains All Twitter Messages as Cards
+	//Uses TweetCard.jsx
 	var TweetList = React.createClass({
 	  displayName: 'TweetList',
 
@@ -27216,6 +27211,7 @@
 
 	var React = __webpack_require__(1);
 
+	//TweetCard Is a Reusable Component to Construct Each Tweet Message
 	var TweetCard = React.createClass({
 	  displayName: "TweetCard",
 
@@ -27246,11 +27242,6 @@
 	          "div",
 	          { className: "text" },
 	          this.props.tweet.text
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "sentiment" },
-	          this.props.tweet.sentiment
 	        )
 	      )
 	    );

@@ -40,7 +40,6 @@ io.sockets.on('connection', function(socket) {
 
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
-      
       getSentiment(tweet, socket);
     });
   });
