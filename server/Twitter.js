@@ -9,9 +9,6 @@ var Twitter = new Twit({
       access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
       access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
     });
-
-
-/*var twitterStream = T.stream('statuses/filter', {language: 'en', track: 'nike'});*/
   
 
 module.exports = Twitter;

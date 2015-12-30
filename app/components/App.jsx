@@ -13,26 +13,26 @@ var App = React.createClass({
   },
 
   //Incoming Data from Server Handlers
-  componentWillMount() {
+  componentWillMount: function() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
   },
 
   //Connect Handler
-  connect() {
+  connect: function() {
     this.setState({ status: 'connected' });
     console.log('Connected on socket: %s', this.socket.id);
   },
 
   //Disconnect Handler
-  disconnect() {
+  disconnect: function() {
     this.setState({ status: 'disconnected' });
     console.log('Disconnected: %s', this.socket.id);
   },
 
   //Outgoing Data to Server Handler
-  emit(eventName, payload) {
+  emit: function(eventName, payload) {
     this.socket.emit(eventName, payload)
   },
 

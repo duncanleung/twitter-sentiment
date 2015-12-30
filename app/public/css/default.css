@@ -56,8 +56,7 @@ header nav ul li a {
   text-transform: uppercase;
   font-size: 13px;
   color: #999;
-  -webkit-transition: all 0.25s ease-in-out;
-          transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 /* line 73, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
@@ -71,8 +70,7 @@ header nav ul li a:after {
   display: block;
   border-bottom: 2px solid #2bb656;
   width: 0;
-  -webkit-transition: all 0.25s ease-in-out;
-          transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
 /* line 90, default.scss */
@@ -85,7 +83,6 @@ header nav ul li a:hover:after {
 /* line 101, default.scss */
 .hero {
   height: 500px;
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -95,19 +92,9 @@ header nav ul li a:hover:after {
 /* line 109, default.scss */
 .hero .content {
   position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   height: 500px;
 }
 /* line 116, default.scss */
@@ -118,10 +105,7 @@ header nav ul li a:hover:after {
 }
 /* line 122, default.scss */
 .hero .content h1 {
-  -webkit-box-ordinal-group: 4;
-  -webkit-order: 3;
-      -ms-flex-order: 3;
-          order: 3;
+  order: 3;
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -129,29 +113,20 @@ header nav ul li a:hover:after {
 }
 /* line 130, default.scss */
 .hero .content h2 {
-  -webkit-box-ordinal-group: 3;
-  -webkit-order: 2;
-      -ms-flex-order: 2;
-          order: 2;
+  order: 2;
   font-size: 40px;
   font-weight: 700;
 }
 /* line 136, default.scss */
 .hero .content .text-logo {
-  -webkit-box-ordinal-group: 2;
-  -webkit-order: 1;
-      -ms-flex-order: 1;
-          order: 1;
+  order: 1;
   font-weight: 600;
   font-size: 40px;
   color: #2bb656;
 }
 /* line 144, default.scss */
 .hero .content #search-bar {
-  -webkit-box-ordinal-group: 5;
-  -webkit-order: 4;
-      -ms-flex-order: 4;
-          order: 4;
+  order: 4;
   width: 350px;
   margin-top: 40px;
   margin-right: auto;
@@ -170,8 +145,7 @@ header nav ul li a:hover:after {
   font-weight: 300;
   color: white;
   text-transform: uppercase;
-  -webkit-transition: all 0.25s ease-in-out;
-          transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 /* line 165, default.scss */
 .hero .content #search-bar .btn-default:hover {
@@ -191,24 +165,29 @@ header nav ul li a:hover:after {
   overflow-y: hidden;
   background-color: #273333;
 }
-/* line 187, default.scss */
+/* line 186, default.scss */
+#App .analysis h1 {
+  color: #4d4d4d;
+  text-align: center;
+}
+/* line 192, default.scss */
 #App .stream {
   height: 800px;
   overflow-y: scroll;
   background-color: #f7f7f7;
 }
-/* line 192, default.scss */
+/* line 197, default.scss */
 #App .stream h1 {
   color: #4d4d4d;
   text-align: center;
 }
-/* line 199, default.scss */
+/* line 204, default.scss */
 #App .stream .tweet-list .tweet-card {
   padding: 5px 5px 10px 5px;
   margin: 10px -5px 10px -5px;
   border-bottom: 1px solid #ccc;
 }
-/* line 204, default.scss */
+/* line 209, default.scss */
 #App .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -217,12 +196,12 @@ header nav ul li a:hover:after {
   width: 50px;
   border-radius: 5px;
 }
-/* line 213, default.scss */
+/* line 218, default.scss */
 #App .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 217, default.scss */
+/* line 222, default.scss */
 #App .stream .tweet-list .tweet-card .content .user .name {
   color: #4d4d4d;
   font-weight: 700;

@@ -1,6 +1,8 @@
 var React = require('react'),
     TweetCard = require('./TweetCard.jsx');
 
+//TweetList Contains All Twitter Messages as Cards
+//Uses TweetCard.jsx
 var TweetList = React.createClass({
   render: function() {
     

@@ -182,6 +182,11 @@ header {
     height: 800px;
     overflow-y: hidden;
     background-color: $background-dark-gray;
+
+    h1 {
+      color: $text-black;
+      text-align: center;
+    }
   }
 
   .stream {
