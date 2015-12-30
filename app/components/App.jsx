@@ -2,7 +2,7 @@ var React = require('react'),
     io = require('socket.io-client'),
     update = require('react-addons-update'),
     Hero = require('./Hero.jsx'),
-    Dashboard = require('./Dashboard.jsx');
+    Results = require('./Results.jsx');
 
 var App = React.createClass({
 
@@ -21,7 +21,6 @@ var App = React.createClass({
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
-
     this.socket.on('sendTweet', function(receivedTweet) {
       self.addTweet(receivedTweet.tweet);
       console.log(receivedTweet.tweet);
@@ -58,7 +57,7 @@ var App = React.createClass({
     return (
       <div>
         <Hero emit={this.emit} />
-        <Dashboard collectedTweets={this.state.collectedTweets} />
+        <Results collectedTweets={this.state.collectedTweets} />
       </div>
     );
   }

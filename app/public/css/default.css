@@ -153,20 +153,20 @@ header nav ul li a:hover:after {
   border-color: #218d43;
 }
 
-/* Dashboard Styles
+/* Results Styles
 ======================== */
 /* line 178, default.scss */
 #App {
   height: 100vh;
 }
 /* line 181, default.scss */
-#App .analysis {
+#App .dashboard {
   height: 800px;
   overflow-y: hidden;
   background-color: #273333;
 }
 /* line 186, default.scss */
-#App .analysis h1 {
+#App .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
 }

@@ -19649,7 +19649,7 @@
 	    io = __webpack_require__(160),
 	    update = __webpack_require__(210),
 	    Hero = __webpack_require__(212),
-	    Dashboard = __webpack_require__(214);
+	    Results = __webpack_require__(214);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -19669,7 +19669,6 @@
 	    this.socket = io('http://localhost:3000');
 	    this.socket.on('connect', this.connect);
 	    this.socket.on('disconnect', this.disconnect);
-
 	    this.socket.on('sendTweet', function (receivedTweet) {
 	      self.addTweet(receivedTweet.tweet);
 	      console.log(receivedTweet.tweet);
@@ -19707,7 +19706,7 @@
 	      'div',
 	      null,
 	      React.createElement(Hero, { emit: this.emit }),
-	      React.createElement(Dashboard, { collectedTweets: this.state.collectedTweets })
+	      React.createElement(Results, { collectedTweets: this.state.collectedTweets })
 	    );
 	  }
 	});
@@ -27117,25 +27116,46 @@
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TwitterStream = __webpack_require__(215);
+	    Dashboard = __webpack_require__(215),
+	    TwitterStream = __webpack_require__(216);
 
-	var Dashboard = React.createClass({
-	  displayName: 'Dashboard',
+	//Results Holds the Dashboard and TwitterStream Components
+	//Uses Dashboard.jsx and TwitterStream.jsx
+	var Results = React.createClass({
+	  displayName: 'Results',
 
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'dashboard row' },
-	      React.createElement(
-	        'div',
-	        { className: 'analysis col-sm-8' },
-	        React.createElement(
-	          'h1',
-	          null,
-	          'Twitter Dashboard'
-	        )
-	      ),
+	      { className: 'results row' },
+	      React.createElement(Dashboard, null),
 	      React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
+	    );
+	  }
+	});
+
+	module.exports = Results;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Dashboard = React.createClass({
+	  displayName: "Dashboard",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "dashboard col-sm-8" },
+	      React.createElement(
+	        "h1",
+	        null,
+	        "Twitter Dashboard"
+	      )
 	    );
 	  }
 	});
@@ -27143,13 +27163,13 @@
 	module.exports = Dashboard;
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(216);
+	    TweetList = __webpack_require__(217);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -27174,13 +27194,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(217);
+	    TweetCard = __webpack_require__(218);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
@@ -27204,7 +27224,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
