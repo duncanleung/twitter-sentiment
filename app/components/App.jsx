@@ -10,7 +10,9 @@ var App = React.createClass({
       return {
           status: 'disconnected',
           keyword: '',
-          collectedTweets: []
+          initTimestamp: '',
+          collectedTweets: [],
+          tweetCount: []
       };
   },
 
@@ -46,6 +48,23 @@ var App = React.createClass({
     var newTweets = update(tweets, {$unshift: [tweet]});
 
     this.setState({collectedTweets: newTweets});
+    this.tweetCount();
+    console.log('search time: ' + this.state.initTimestamp);
+    console.log('tweet timestamp: ' + tweet.timestamp_ms);
+
+    var diffTime = (tweet.timestamp_ms - this.state.initTimestamp)/1000;
+    console.log(diffTime);
+  },
+
+  tweetCount: function() {
+    //go through collectedTweets array
+    //check timestamp of each tweet
+    //starttime
+
+  },
+
+  initTimestamp: function(timestamp) {
+    this.setState({ initTimestamp: timestamp.initTimestamp });
   },
 
   //Outgoing Data to Server Handler
@@ -56,7 +75,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Hero emit={this.emit} />
+        <Hero emit={this.emit} initTimestamp={this.initTimestamp} />
         <Results collectedTweets={this.state.collectedTweets} />
       </div>
     );

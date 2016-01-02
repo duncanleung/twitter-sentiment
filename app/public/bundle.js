@@ -19658,7 +19658,9 @@
 	    return {
 	      status: 'disconnected',
 	      keyword: '',
-	      collectedTweets: []
+	      initTimestamp: '',
+	      collectedTweets: [],
+	      tweetCount: []
 	    };
 	  },
 
@@ -19694,6 +19696,23 @@
 	    var newTweets = update(tweets, { $unshift: [tweet] });
 
 	    this.setState({ collectedTweets: newTweets });
+	    this.tweetCount();
+	    console.log('search time: ' + this.state.initTimestamp);
+	    console.log('tweet timestamp: ' + tweet.timestamp_ms);
+
+	    var diffTime = (tweet.timestamp_ms - this.state.initTimestamp) / 1000;
+	    console.log(diffTime);
+	  },
+
+	  tweetCount: function tweetCount() {
+	    //go through collectedTweets array
+	    //check timestamp of each tweet
+	    //starttime
+
+	  },
+
+	  initTimestamp: function initTimestamp(timestamp) {
+	    this.setState({ initTimestamp: timestamp.initTimestamp });
 	  },
 
 	  //Outgoing Data to Server Handler
@@ -19705,7 +19724,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Hero, { emit: this.emit }),
+	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
 	      React.createElement(Results, { collectedTweets: this.state.collectedTweets })
 	    );
 	  }
@@ -27059,7 +27078,7 @@
 	            { className: 'text-logo' },
 	            'Twitterment'
 	          ),
-	          React.createElement(SearchForm, { emit: this.props.emit })
+	          React.createElement(SearchForm, { emit: this.props.emit, initTimestamp: this.props.initTimestamp })
 	        )
 	      )
 	    );
@@ -27081,7 +27100,9 @@
 	  displayName: 'SearchForm',
 	  search: function search() {
 	    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
+	    var initTimestamp = new Date().getTime();
 	    this.props.emit('search', { keyword: keyword });
+	    this.props.initTimestamp({ initTimestamp: initTimestamp });
 	  },
 
 	  render: function render() {
