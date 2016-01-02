@@ -1,6 +1,7 @@
 var React = require('react'),
     io = require('socket.io-client'),
     update = require('react-addons-update'),
+    d3 = require('d3'),
     Hero = require('./Hero.jsx'),
     Results = require('./Results.jsx');
 
@@ -47,20 +48,28 @@ var App = React.createClass({
     var tweets = this.state.collectedTweets;
     var newTweets = update(tweets, {$unshift: [tweet]});
 
-    this.setState({collectedTweets: newTweets});
-    this.tweetCount();
-    console.log('search time: ' + this.state.initTimestamp);
-    console.log('tweet timestamp: ' + tweet.timestamp_ms);
-
-    var diffTime = (tweet.timestamp_ms - this.state.initTimestamp)/1000;
-    console.log(diffTime);
+    this.setState({ collectedTweets: newTweets });
+    this.tweetHistogram();
   },
 
-  tweetCount: function() {
-    //go through collectedTweets array
-    //check timestamp of each tweet
-    //starttime
+  tweetHistogram: function() {
+    var initTimestamp = this.state.initTimestamp;
+    var timeDiff = [];
 
+    //return array for each tweet, with time diff from search
+    timeDiff = this.state.collectedTweets.map(function(i) {
+      return (i.timestamp_ms - initTimestamp)/1000;
+    });
+
+    console.log(timeDiff);
+
+    var histogram = d3.layout.histogram()
+        .bins(5)
+        (timeDiff);
+
+    this.setState({ histogram: histogram });
+
+    console.log(this.state.histogram);
   },
 
   initTimestamp: function(timestamp) {
@@ -75,8 +84,8 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Hero emit={this.emit} initTimestamp={this.initTimestamp} />
-        <Results collectedTweets={this.state.collectedTweets} />
+        <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
+        <Results collectedTweets={ this.state.collectedTweets } />
       </div>
     );
   }

@@ -5,6 +5,7 @@ var Dashboard = React.createClass({
     return (
       <div className="dashboard col-sm-8">
         <h1>Twitter Dashboard</h1>
+        <div className="histogram"></div>
       </div>
     );
   }
