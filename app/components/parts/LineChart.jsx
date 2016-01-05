@@ -1,6 +1,7 @@
 var React = require('react');
 
-var DataPoints = require('./DataPoints.jsx');
+var DataPoints = require('./DataPoints.jsx'),
+    XYAxes = require('./XYAxes.jsx');
 
 
 //LineChart Holds All Data Points and Axes
@@ -34,6 +35,10 @@ var LineChart = React.createClass({
           yScale= { yScale }
           { ...props }
         />
+        <XYAxes
+        xScale={ xScale }
+        yScale={ yScale }
+        { ...props } />
       </svg>
       
     );

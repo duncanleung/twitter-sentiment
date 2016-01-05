@@ -12,13 +12,6 @@ var DataPoints = React.createClass({
       r: 2,
       key: uuid.v4()
     };
-    
-    console.log(data.timeBin);
-    console.log(data.numTweets);
-    console.log(this.props.binnedTweets);
-    console.log(props.cx);
-    console.log(props.cy);
-    console.log('renderbars running');
 
     return(
       <circle {...props}>

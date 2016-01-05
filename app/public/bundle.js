@@ -36714,7 +36714,7 @@
 	var React = __webpack_require__(1);
 
 	var Dashboard = __webpack_require__(216),
-	    TwitterStream = __webpack_require__(243);
+	    TwitterStream = __webpack_require__(245);
 
 	//Results Holds the Dashboard and TwitterStream Components
 	//Uses Dashboard.jsx and TwitterStream.jsx
@@ -36815,7 +36815,8 @@
 
 	var React = __webpack_require__(1);
 
-	var DataPoints = __webpack_require__(219);
+	var DataPoints = __webpack_require__(219),
+	    XYAxes = __webpack_require__(243);
 
 	//LineChart Holds All Data Points and Axes
 	var LineChart = React.createClass({
@@ -36848,6 +36849,10 @@
 	      React.createElement(DataPoints, _extends({
 	        xScale: xScale,
 	        yScale: yScale
+	      }, props)),
+	      React.createElement(XYAxes, _extends({
+	        xScale: xScale,
+	        yScale: yScale
 	      }, props))
 	    );
 	  }
@@ -36875,13 +36880,6 @@
 	      r: 2,
 	      key: uuid.v4()
 	    };
-
-	    console.log(data.timeBin);
-	    console.log(data.numTweets);
-	    console.log(this.props.binnedTweets);
-	    console.log(props.cx);
-	    console.log(props.cy);
-	    console.log('renderbars running');
 
 	    return React.createElement('circle', props);
 	  },
@@ -40958,8 +40956,82 @@
 
 	'use strict';
 
+	var React = __webpack_require__(1);
+
+	var Axis = __webpack_require__(244);
+
+	var XYAxes = React.createClass({
+	  displayName: 'XYAxes',
+
+	  render: function render() {
+	    var props = this.props;
+
+	    var xSettings = {
+	      translate: 'translate(0,' + (props.height - props.padding) + ')',
+	      scale: props.xScale,
+	      orient: 'bottom'
+	    };
+
+	    var ySettings = {
+	      translate: 'translate(' + props.padding + ', 0)',
+	      scale: props.yScale,
+	      orient: 'left'
+	    };
+
+	    return React.createElement(
+	      'g',
+	      { className: 'xy-axes' },
+	      React.createElement(Axis, xSettings),
+	      React.createElement(Axis, ySettings)
+	    );
+	  }
+	});
+
+	module.exports = XYAxes;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(244);
+	    d3 = __webpack_require__(212);
+
+	var Axis = React.createClass({
+	  displayName: 'Axis',
+
+	  componentDidUpdate: function componentDidUpdate() {
+	    this.renderAxis();
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.renderAxis();
+	  },
+
+	  renderAxis: function renderAxis() {
+	    var props = this.props;
+	    var node = this.getDOMNode();
+	    var axis = d3.svg.axis().orient(props.orient).ticks(5).scale(props.scale);
+
+	    d3.select(node).call(axis);
+	  },
+
+	  render: function render() {
+	    return React.createElement('g', { className: 'axis', transform: this.props.translate });
+	  }
+	});
+
+	module.exports = Axis;
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1),
+	    TweetList = __webpack_require__(246);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -40984,13 +41056,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 244 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(245);
+	    TweetCard = __webpack_require__(247);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
@@ -41014,7 +41086,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 245 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
