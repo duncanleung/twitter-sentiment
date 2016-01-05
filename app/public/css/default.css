@@ -170,24 +170,28 @@ header nav ul li a:hover:after {
   color: #4d4d4d;
   text-align: center;
 }
-/* line 192, default.scss */
+/* line 193, default.scss */
+#App .dashboard .twitter-activity-chart svg {
+  background-color: #f7f7f7;
+}
+/* line 203, default.scss */
 #App .stream {
   height: 800px;
   overflow-y: scroll;
   background-color: #f7f7f7;
 }
-/* line 197, default.scss */
+/* line 208, default.scss */
 #App .stream h1 {
   color: #4d4d4d;
   text-align: center;
 }
-/* line 204, default.scss */
+/* line 215, default.scss */
 #App .stream .tweet-list .tweet-card {
   padding: 5px 5px 10px 5px;
   margin: 10px -5px 10px -5px;
   border-bottom: 1px solid #ccc;
 }
-/* line 209, default.scss */
+/* line 220, default.scss */
 #App .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -196,12 +200,12 @@ header nav ul li a:hover:after {
   width: 50px;
   border-radius: 5px;
 }
-/* line 218, default.scss */
+/* line 229, default.scss */
 #App .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 222, default.scss */
+/* line 233, default.scss */
 #App .stream .tweet-list .tweet-card .content .user .name {
   color: #4d4d4d;
   font-weight: 700;

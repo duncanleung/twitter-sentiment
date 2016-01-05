@@ -1,7 +1,9 @@
 var React = require('react');
 
-//TweetCard Is a Reusable Component to Construct Each Tweet Message
+//TweetCard Constructs Each Tweet Card
+//Reusable Component
 var TweetCard = React.createClass({
+
   render: function() {
     return (
       <div className="tweet-card">

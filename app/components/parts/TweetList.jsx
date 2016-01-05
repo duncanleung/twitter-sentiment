@@ -6,13 +6,13 @@ var React = require('react'),
 var TweetList = React.createClass({
   render: function() {
     
-    var tweets = this.props.collectedTweets.map(function(tweet) {
-      return (<TweetCard tweet={tweet} />);
+    var tweetLoop = this.props.collectedTweets.map(function(mappedTweet) {
+      return (<TweetCard tweet={mappedTweet} />);
     });
 
     return (
       <div className="tweet-list">
-        {tweets}
+        {tweetLoop}
       </div>
     )
   }

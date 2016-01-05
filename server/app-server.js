@@ -1,6 +1,7 @@
 //Require Dependencies
-var express = require('express'),
-    Twitter = require('./Twitter'),
+var express = require('express');
+
+var Twitter = require('./Twitter'),
     sentiment = require('./Sentiment');
 
 //Create Express Server Instance
@@ -11,6 +12,9 @@ var app = express(),
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
 
+
+
+
 /*
 Create Server and Socket.io Instance
 ==================*/
@@ -18,7 +22,6 @@ var server = app.listen(port);
 console.log('Server on port: %s', port);
 var io = require('socket.io').listen(server);
 var connections = [];
-
 
 //Create socket.io Connection with Client
 //All Socket Listeners Here

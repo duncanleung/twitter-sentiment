@@ -29,6 +29,7 @@
     "d3": "^3.5.12",
     "datumbox": "^1.0.1",
     "express": "^4.13.3",
+    "node-uuid": "^1.4.7",
     "react": "^0.14.3",
     "react-addons-update": "^0.14.3",
     "react-dom": "^0.14.3",

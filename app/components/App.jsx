@@ -1,10 +1,13 @@
 var React = require('react'),
     io = require('socket.io-client'),
     update = require('react-addons-update'),
-    d3 = require('d3'),
-    Hero = require('./Hero.jsx'),
+    d3 = require('d3');
+
+var Hero = require('./Hero.jsx'),
     Results = require('./Results.jsx');
 
+
+//App is the Main Container
 var App = React.createClass({
 
   getInitialState: function() {
@@ -56,6 +59,8 @@ var App = React.createClass({
     this.binTweets(tweet.timestamp_ms);
   },
 
+  //Push Tweet Counts into Bins: 5sec, 10sec, etc.
+  //Update the state of binnedTweets
   binTweets: function(tweetTimestamp) {
     var initTimestamp = this.state.initTimestamp;
     var timeDiff = (tweetTimestamp - initTimestamp)/1000;
@@ -70,37 +75,13 @@ var App = React.createClass({
       newBinnedTweets[binIndex].numTweets++;
 
       this.setState({ binnedTweets: newBinnedTweets });
+    } else {
+      newBinnedTweets.push({ numTweets: 1, timeBin: currentBin+=5 });
+
+      this.setState({ binnedTweets: newBinnedTweets });
     }
 
     console.log(this.state.binnedTweets);
-    
-    /*   
-
-
-    for(var i = 0; i < timeDiff.length; i++) {
-      if(timeDiff[i] < currentBin) {
-        binnedTweets[binIndex].count += 1;
-      } else {
-        currentBin += 5;
-        binIndex ++;
-
-        binnedTweets[binIndex].count += 1;
-      }
-    }*/
-
-
-    //return array of each Tweet's timediff from initTimestamp
-    /*timeDiff = this.state.collectedTweets.map(function(i) {
-      return (i.timestamp_ms - initTimestamp)/1000;
-    });*/
-
-  /*  var binnedTweets = d3.layout.histogram()
-        .bins(10)
-        (timeDiff);*/
-
-
-
-    
   },
 
   //Outgoing Data to Server Handler
@@ -108,6 +89,7 @@ var App = React.createClass({
     this.socket.emit(eventName, payload)
   },
 
+  //Render the App!
   render: function() {
     return (
       <div>
