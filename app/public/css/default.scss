@@ -101,7 +101,7 @@ header {
 /* Hero and Search Bar Styles
 ======================== */
 .hero {
-  height: 500px;
+  height: 800px;
   background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -113,7 +113,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 500px;
+    height: 800px;
 
     h1,
     h2 {
@@ -177,9 +177,6 @@ header {
 /* Results Styles
 ======================== */
 
-#App {
-  height: 100vh;
-
   .dashboard {
     height: 800px;
     padding: 20px 0;
@@ -229,7 +226,7 @@ header {
     height: 800px;
     overflow-y: scroll;
     background-color: $background-dark-gray;
-    padding: 20px 80px;
+    padding: 20px 20px;
 
     h1 {
       margin-bottom: 0;
@@ -245,8 +242,8 @@ header {
       padding-bottom: 20px;
 
       .tweet-card {
-        padding: 20px 10px 20px 30px;
-        margin: 0 50px 5px 50px;
+        padding: 20px 0px 20px 15px;
+        margin: 0 10px 5px 10px;
         border-bottom: 1px solid #ccc;
         background-color: white;
 
@@ -282,13 +279,17 @@ header {
           }
 
           .text {
+            margin-right: -40px;
             font-size: 18px;
+
+            @media (max-width: 1921px) {
+              margin-right: -20px;
+            }
           }
         }
       }
     }
   }
-}
 
 
 
