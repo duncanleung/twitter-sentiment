@@ -21,6 +21,7 @@ body {
   color: $text-gray;
   background-color: white;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 .intro-text {
@@ -221,9 +222,8 @@ header {
 
   .stream {
     height: 800px;
-    overflow-y: scroll;
     background-color: $background-dark-gray;
-    padding: 0 20px;
+    padding: 0 25px 0 15px;
 
     h1 {
       margin-bottom: 0;
@@ -236,8 +236,10 @@ header {
     }
 
     .tweet-list {
+      height: 700px;
       background-color: $background-light-gray;
       padding-bottom: 20px;
+      overflow-y: scroll;
 
       .tweet-card {
         padding: 10px 0px 10px 15px;
