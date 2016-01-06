@@ -167,13 +167,14 @@ header nav ul li a:hover:after {
 .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
+  font-size: 32px;
   margin-bottom: 30px;
 }
-/* line 194, default.scss */
+/* line 195, default.scss */
 .dashboard .twitter-activity-chart h4 {
   text-align: center;
 }
-/* line 198, default.scss */
+/* line 199, default.scss */
 .dashboard .twitter-activity-chart svg {
   background-color: #f7f7f7;
   display: block;
@@ -181,52 +182,49 @@ header nav ul li a:hover:after {
   border-radius: 5px;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 206, default.scss */
+/* line 207, default.scss */
 .dashboard .twitter-activity-chart svg .axis path,
 .dashboard .twitter-activity-chart svg .axis line {
   fill: none;
   stroke: black;
   shape-rendering: crispEdges;
 }
-/* line 213, default.scss */
+/* line 214, default.scss */
 .dashboard .twitter-activity-chart svg .axis text {
   font-family: sans-serif;
-  font-size: 11px;
+  font-size: 14px;
 }
 
-/* line 225, default.scss */
+/* line 222, default.scss */
 .stream {
   height: 800px;
   overflow-y: scroll;
   background-color: #273333;
-  padding: 20px 20px;
+  padding: 0 20px;
 }
-/* line 231, default.scss */
+/* line 228, default.scss */
 .stream h1 {
   margin-bottom: 0;
-  padding: 20px 5px 30px;
+  padding: 15px 5px 10px;
   color: #4d4d4d;
-  border-radius: 10px 10px 0 0;
+  border-radius: 5px 5px 0 0;
+  font-size: 32px;
   text-align: center;
   background-color: #e6e6e6;
 }
-/* line 240, default.scss */
+/* line 238, default.scss */
 .stream .tweet-list {
   background-color: #e6e6e6;
   padding-bottom: 20px;
 }
-/* line 244, default.scss */
+/* line 242, default.scss */
 .stream .tweet-list .tweet-card {
-  padding: 20px 0px 20px 15px;
+  padding: 10px 0px 10px 15px;
   margin: 0 10px 5px 10px;
   border-bottom: 1px solid #ccc;
   background-color: white;
 }
-/* line 250, default.scss */
-.stream .tweet-list .tweet-card:first-child {
-  border-radius: 10px 10px 0 0;
-}
-/* line 254, default.scss */
+/* line 248, default.scss */
 .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -235,32 +233,25 @@ header nav ul li a:hover:after {
   width: 50px;
   border-radius: 5px;
 }
-/* line 265, default.scss */
+/* line 259, default.scss */
 .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 269, default.scss */
+/* line 263, default.scss */
 .stream .tweet-list .tweet-card .content .user .name {
-  font-size: 18px;
+  font-size: 14px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
 }
-/* line 276, default.scss */
+/* line 270, default.scss */
 .stream .tweet-list .tweet-card .content .user .username {
-  font-size: 18px;
+  font-size: 14px;
 }
-/* line 281, default.scss */
+/* line 275, default.scss */
 .stream .tweet-list .tweet-card .content .text {
-  margin-right: -40px;
-  font-size: 18px;
-}
-@media (max-width: 1921px) {
-  /* line 281, default.scss */
-  .stream .tweet-list .tweet-card .content .text {
-    margin-right: -20px;
-  }
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=default.css.map */

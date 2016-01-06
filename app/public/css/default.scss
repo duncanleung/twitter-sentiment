@@ -186,6 +186,7 @@ header {
     h1 {
       color: $text-black;
       text-align: center;
+      font-size: 32px;
       margin-bottom: 30px;
     }
 
@@ -212,11 +213,7 @@ header {
 
         .axis text {
           font-family: sans-serif;
-          font-size: 11px;
-        }
-
-        g {
-
+          font-size: 14px;
         }
       }
     }
@@ -226,13 +223,14 @@ header {
     height: 800px;
     overflow-y: scroll;
     background-color: $background-dark-gray;
-    padding: 20px 20px;
+    padding: 0 20px;
 
     h1 {
       margin-bottom: 0;
-      padding: 20px 5px 30px;
+      padding: 15px 5px 10px;
       color: $text-black;
-      border-radius: 10px 10px 0 0;
+      border-radius: 5px 5px 0 0;
+      font-size: 32px;
       text-align: center;
       background-color: $background-light-gray;
     }
@@ -242,14 +240,10 @@ header {
       padding-bottom: 20px;
 
       .tweet-card {
-        padding: 20px 0px 20px 15px;
+        padding: 10px 0px 10px 15px;
         margin: 0 10px 5px 10px;
         border-bottom: 1px solid #ccc;
         background-color: white;
-
-        &:first-child {
-          border-radius: 10px 10px 0 0;
-        }
 
         .profile-image {
           display: inline-block;
@@ -267,24 +261,19 @@ header {
           width: 80%;
           .user {
             .name {
-              font-size: 18px;
+              font-size: 14px;
               color: $text-black;
               font-weight: 700;
               margin-right: 10px;
             }
 
             .username {
-              font-size: 18px;
+              font-size: 14px;
             }
           }
 
           .text {
-            margin-right: -40px;
-            font-size: 18px;
-
-            @media (max-width: 1921px) {
-              margin-right: -20px;
-            }
+            font-size: 12px;
           }
         }
       }
