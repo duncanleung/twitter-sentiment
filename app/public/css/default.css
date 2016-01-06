@@ -1,26 +1,27 @@
 /* Reusable Styles
 ======================== */
-/* line 17, default.scss */
+/* line 18, default.scss */
 html,
 body {
   font-family: "Open Sans", sans-serif;
   color: #999;
   background-color: white;
+  font-size: 16px;
 }
 
-/* line 24, default.scss */
+/* line 26, default.scss */
 .intro-text {
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
   color: #4d4d4d;
 }
-/* line 30, default.scss */
+/* line 32, default.scss */
 .intro-text h2 {
   font-size: 35px;
   font-weight: 700;
 }
-/* line 35, default.scss */
+/* line 37, default.scss */
 .intro-text p {
   font-weight: 400;
   font-size: 16px;
@@ -28,13 +29,13 @@ body {
 
 /* Header and Nav Styles
 ======================== */
-/* line 47, default.scss */
+/* line 49, default.scss */
 header nav {
   height: 60px;
   background-color: #1a1a1a;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 52, default.scss */
+/* line 54, default.scss */
 header nav ul {
   width: 80% !important;
   margin-right: auto;
@@ -43,13 +44,13 @@ header nav ul {
   padding: 0;
   width: 100%;
 }
-/* line 60, default.scss */
+/* line 62, default.scss */
 header nav ul li {
   display: inline-block;
   padding-top: 22px;
   margin-right: 40px;
 }
-/* line 65, default.scss */
+/* line 67, default.scss */
 header nav ul li a {
   padding: 10px 0;
   text-decoration: none !important;
@@ -58,12 +59,12 @@ header nav ul li a {
   color: #999;
   transition: all 0.25s ease-in-out;
 }
-/* line 73, default.scss */
+/* line 75, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
   color: #2bb656;
   outline: none;
 }
-/* line 80, default.scss */
+/* line 82, default.scss */
 header nav ul li a:after {
   content: "";
   padding-bottom: 7px;
@@ -73,14 +74,14 @@ header nav ul li a:after {
   transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
-/* line 90, default.scss */
+/* line 92, default.scss */
 header nav ul li a:hover:after {
   width: 100%;
 }
 
 /* Hero and Search Bar Styles
 ======================== */
-/* line 101, default.scss */
+/* line 103, default.scss */
 .hero {
   height: 500px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
@@ -89,7 +90,7 @@ header nav ul li a:hover:after {
   background-position: bottom;
   position: relative;
 }
-/* line 109, default.scss */
+/* line 111, default.scss */
 .hero .content {
   position: absolute;
   display: flex;
@@ -97,13 +98,13 @@ header nav ul li a:hover:after {
   justify-content: center;
   height: 500px;
 }
-/* line 116, default.scss */
+/* line 118, default.scss */
 .hero .content h1,
 .hero .content h2 {
   color: white;
   text-align: center;
 }
-/* line 122, default.scss */
+/* line 124, default.scss */
 .hero .content h1 {
   order: 3;
   font-size: 20px;
@@ -111,20 +112,20 @@ header nav ul li a:hover:after {
   letter-spacing: 1px;
   color: #cfcfcf;
 }
-/* line 130, default.scss */
+/* line 132, default.scss */
 .hero .content h2 {
   order: 2;
   font-size: 40px;
   font-weight: 700;
 }
-/* line 136, default.scss */
+/* line 138, default.scss */
 .hero .content .text-logo {
   order: 1;
   font-weight: 600;
   font-size: 40px;
   color: #2bb656;
 }
-/* line 144, default.scss */
+/* line 146, default.scss */
 .hero .content #search-bar {
   order: 4;
   width: 350px;
@@ -132,12 +133,12 @@ header nav ul li a:hover:after {
   margin-right: auto;
   margin-left: auto;
 }
-/* line 151, default.scss */
+/* line 153, default.scss */
 .hero .content #search-bar input:focus {
   border: 1px solid #218d43;
   box-shadow: 0 0 4px #218d43;
 }
-/* line 156, default.scss */
+/* line 158, default.scss */
 .hero .content #search-bar .btn-default {
   background-color: #2bb656;
   border-color: #2bb656;
@@ -147,7 +148,7 @@ header nav ul li a:hover:after {
   text-transform: uppercase;
   transition: all 0.25s ease-in-out;
 }
-/* line 165, default.scss */
+/* line 167, default.scss */
 .hero .content #search-bar .btn-default:hover {
   background-color: #218d43;
   border-color: #218d43;
@@ -155,43 +156,80 @@ header nav ul li a:hover:after {
 
 /* Results Styles
 ======================== */
-/* line 178, default.scss */
+/* line 180, default.scss */
 #App {
   height: 100vh;
 }
-/* line 181, default.scss */
+/* line 183, default.scss */
 #App .dashboard {
   height: 800px;
+  padding: 20px 0;
   overflow-y: hidden;
-  background-color: #273333;
+  background-color: #e6e6e6;
 }
-/* line 186, default.scss */
+/* line 189, default.scss */
 #App .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
+  margin-bottom: 30px;
 }
-/* line 193, default.scss */
+/* line 197, default.scss */
+#App .dashboard .twitter-activity-chart h4 {
+  text-align: center;
+}
+/* line 201, default.scss */
 #App .dashboard .twitter-activity-chart svg {
   background-color: #f7f7f7;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 203, default.scss */
+/* line 209, default.scss */
+#App .dashboard .twitter-activity-chart svg .axis path,
+#App .dashboard .twitter-activity-chart svg .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+/* line 216, default.scss */
+#App .dashboard .twitter-activity-chart svg .axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+/* line 228, default.scss */
 #App .stream {
   height: 800px;
   overflow-y: scroll;
-  background-color: #f7f7f7;
+  background-color: #273333;
+  padding: 20px 80px;
 }
-/* line 208, default.scss */
+/* line 234, default.scss */
 #App .stream h1 {
+  margin-bottom: 0;
+  padding: 20px 5px 30px;
   color: #4d4d4d;
+  border-radius: 10px 10px 0 0;
   text-align: center;
+  background-color: #e6e6e6;
 }
-/* line 215, default.scss */
+/* line 243, default.scss */
+#App .stream .tweet-list {
+  background-color: #e6e6e6;
+  padding-bottom: 20px;
+}
+/* line 247, default.scss */
 #App .stream .tweet-list .tweet-card {
-  padding: 5px 5px 10px 5px;
-  margin: 10px -5px 10px -5px;
+  padding: 20px 10px 20px 30px;
+  margin: 0 50px 5px 50px;
   border-bottom: 1px solid #ccc;
+  background-color: white;
 }
-/* line 220, default.scss */
+/* line 253, default.scss */
+#App .stream .tweet-list .tweet-card:first-child {
+  border-radius: 10px 10px 0 0;
+}
+/* line 257, default.scss */
 #App .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -200,16 +238,25 @@ header nav ul li a:hover:after {
   width: 50px;
   border-radius: 5px;
 }
-/* line 229, default.scss */
+/* line 268, default.scss */
 #App .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 233, default.scss */
+/* line 272, default.scss */
 #App .stream .tweet-list .tweet-card .content .user .name {
+  font-size: 18px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
+}
+/* line 279, default.scss */
+#App .stream .tweet-list .tweet-card .content .user .username {
+  font-size: 18px;
+}
+/* line 284, default.scss */
+#App .stream .tweet-list .tweet-card .content .text {
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=default.css.map */

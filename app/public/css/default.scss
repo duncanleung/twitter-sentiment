@@ -5,7 +5,8 @@ $primary-green: #2bb656;
 $primary-blue: #1d67a7;
 
 $background-dark-gray: #273333;
-$background-light-gray: #f7f7f7;
+$background-chart-gray: #f7f7f7;
+$background-light-gray: #e6e6e6;
 
 $text-black: #4d4d4d;
 $text-gray: #999;
@@ -19,6 +20,7 @@ body {
   font-family: $font-family;
   color: $text-gray;
   background-color: white;
+  font-size: 16px;
 }
 
 .intro-text {
@@ -180,18 +182,41 @@ header {
 
   .dashboard {
     height: 800px;
+    padding: 20px 0;
     overflow-y: hidden;
-    background-color: $background-dark-gray;
+    background-color: $background-light-gray;
 
     h1 {
       color: $text-black;
       text-align: center;
+      margin-bottom: 30px;
     }
 
     .twitter-activity-chart {
       
+      h4 {
+        text-align: center;
+      }
+
       svg {
-        background-color: $background-light-gray;
+        background-color: $background-chart-gray;
+        display: block;
+        margin: auto;
+        border-radius: 5px;
+        box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
+
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: black;
+          shape-rendering: crispEdges;
+        }
+
+        .axis text {
+          font-family: sans-serif;
+          font-size: 11px;
+        }
 
         g {
 
@@ -203,19 +228,31 @@ header {
   .stream {
     height: 800px;
     overflow-y: scroll;
-    background-color: $background-light-gray;
+    background-color: $background-dark-gray;
+    padding: 20px 80px;
 
     h1 {
+      margin-bottom: 0;
+      padding: 20px 5px 30px;
       color: $text-black;
+      border-radius: 10px 10px 0 0;
       text-align: center;
+      background-color: $background-light-gray;
     }
 
     .tweet-list {
+      background-color: $background-light-gray;
+      padding-bottom: 20px;
 
       .tweet-card {
-        padding: 5px 5px 10px 5px;
-        margin: 10px -5px 10px -5px;
+        padding: 20px 10px 20px 30px;
+        margin: 0 50px 5px 50px;
         border-bottom: 1px solid #ccc;
+        background-color: white;
+
+        &:first-child {
+          border-radius: 10px 10px 0 0;
+        }
 
         .profile-image {
           display: inline-block;
@@ -224,6 +261,8 @@ header {
           height: 50px;
           width: 50px;
           border-radius: 5px;
+
+
         }
 
         .content {
@@ -231,18 +270,19 @@ header {
           width: 80%;
           .user {
             .name {
+              font-size: 18px;
               color: $text-black;
               font-weight: 700;
               margin-right: 10px;
             }
 
             .username {
-
+              font-size: 18px;
             }
           }
 
           .text {
-
+            font-size: 18px;
           }
         }
       }
