@@ -5,14 +5,15 @@ var LineChart = require('./LineChart.jsx');
 
 
 var settings = {
-  width: 900,
-  height: 500,
+  width: 800,
+  height: 400,
   padding: 30
 };
 
 //TwitterActivityChart Is the LineChart Container
 var TwitterActivityChart = React.createClass({
 
+  //{...settings} combines all props (aka. binnedTweets) into 'props'
   render: function() {
     return(
       <div className="twitter-activity-chart">

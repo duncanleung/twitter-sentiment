@@ -19676,7 +19676,6 @@
 	    this.socket.on('disconnect', this.disconnect);
 	    this.socket.on('sendTweet', function (receivedTweet) {
 	      self.addTweet(receivedTweet.tweet);
-	      //console.log(receivedTweet.tweet);
 	    });
 	  },
 
@@ -19727,8 +19726,6 @@
 
 	      this.setState({ binnedTweets: newBinnedTweets });
 	    }
-
-	    console.log(this.state.binnedTweets);
 	  },
 
 	  //Outgoing Data to Server Handler
@@ -36714,7 +36711,7 @@
 	var React = __webpack_require__(1);
 
 	var Dashboard = __webpack_require__(216),
-	    TwitterStream = __webpack_require__(245);
+	    TwitterStream = __webpack_require__(247);
 
 	//Results Holds the Dashboard and TwitterStream Components
 	//Uses Dashboard.jsx and TwitterStream.jsx
@@ -36764,8 +36761,6 @@
 
 	module.exports = Dashboard;
 
-	// <StreamHistogram histogramTweets={ this.props.histogramTweets }/>
-
 /***/ },
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
@@ -36780,8 +36775,8 @@
 	var LineChart = __webpack_require__(218);
 
 	var settings = {
-	  width: 900,
-	  height: 500,
+	  width: 800,
+	  height: 400,
 	  padding: 30
 	};
 
@@ -36789,6 +36784,7 @@
 	var TwitterActivityChart = React.createClass({
 	  displayName: 'TwitterActivityChart',
 
+	  //{...settings} combines all props (aka. binnedTweets) into 'props'
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -36816,12 +36812,15 @@
 	var React = __webpack_require__(1);
 
 	var DataPoints = __webpack_require__(219),
-	    XYAxes = __webpack_require__(243);
+	    LinePath = __webpack_require__(243),
+	    XYAxes = __webpack_require__(245);
 
-	//LineChart Holds All Data Points and Axes
+	//LineChart Holds All Data Points and the XYAxes
 	var LineChart = React.createClass({
 	  displayName: 'LineChart',
 
+	  //Use D3 to Scale 'x' Data Points to Fit Chart Area
+	  //Use for Data Points and for Axis
 	  getXScale: function getXScale(props) {
 	    var xMax = d3.max(props.binnedTweets, function (d) {
 	      return d.timeBin;
@@ -36830,6 +36829,8 @@
 	    return d3.scale.linear().domain([0, xMax]).range([props.padding, props.width - props.padding * 2]);
 	  },
 
+	  //Use D3 to Scale 'y' Data Points to Fit Chart Area
+	  //Use for Data Points and for Axis
 	  getYScale: function getYScale(props) {
 	    var yMax = d3.max(props.binnedTweets, function (d) {
 	      return d.numTweets;
@@ -36838,22 +36839,27 @@
 	    return d3.scale.linear().domain([0, yMax]).range([props.height - props.padding, props.padding]);
 	  },
 
+	  //Use React to Append svg Element (Usually D3 Handles This)
 	  render: function render() {
-	    var props = this.props;
-	    var xScale = this.getXScale(props);
-	    var yScale = this.getYScale(props);
+	    var xScale = this.getXScale(this.props);
+	    var yScale = this.getYScale(this.props);
 
+	    //{...props} combines all props (aka. xScale, yScale) into 'props'
 	    return React.createElement(
 	      'svg',
-	      { width: props.width, height: props.height },
-	      React.createElement(DataPoints, _extends({
-	        xScale: xScale,
-	        yScale: yScale
-	      }, props)),
+	      { width: this.props.width, height: this.props.height },
 	      React.createElement(XYAxes, _extends({
 	        xScale: xScale,
 	        yScale: yScale
-	      }, props))
+	      }, this.props)),
+	      React.createElement(DataPoints, _extends({
+	        xScale: xScale,
+	        yScale: yScale
+	      }, this.props)),
+	      React.createElement(LinePath, _extends({
+	        xScale: xScale,
+	        yScale: yScale
+	      }, this.props))
 	    );
 	  }
 	});
@@ -36866,6 +36872,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1),
 	    uuid = __webpack_require__(220);
 
@@ -36873,22 +36881,28 @@
 	var DataPoints = React.createClass({
 	  displayName: 'DataPoints',
 
-	  renderBars: function renderBars(data) {
-	    var props = {
+	  //renderPoints Returns a <circle></circle> for Each Data Point
+	  renderPoints: function renderPoints(data) {
+	    var dataProps = {
 	      cx: this.props.xScale(data.timeBin),
 	      cy: this.props.yScale(data.numTweets),
-	      r: 2,
+	      r: 4,
+	      fill: "none",
+	      stroke: "green",
+	      strokeWidth: 2,
 	      key: uuid.v4()
 	    };
 
-	    return React.createElement('circle', props);
+	    return React.createElement('circle', _extends({ className: 'point' }, dataProps));
 	  },
 
+	  //Use React to Append g Element (Usually D3 Handles This)
+	  //Run renderBars for all binnedTweet Data Values
 	  render: function render() {
 	    return React.createElement(
 	      'g',
 	      null,
-	      this.props.binnedTweets.map(this.renderBars)
+	      this.props.binnedTweets.map(this.renderPoints)
 	    );
 	  }
 	});
@@ -40956,28 +40970,103 @@
 
 	'use strict';
 
+	var React = __webpack_require__(1),
+	    d3 = __webpack_require__(212);
+
+	var Line = __webpack_require__(244);
+
+	var LinePath = React.createClass({
+	  displayName: 'LinePath',
+
+	  render: function render() {
+	    var props = this.props,
+	        xScale = props.xScale,
+	        yScale = props.yScale;
+
+	    var path = d3.svg.line().x(function (d) {
+	      return xScale(d.timeBin);
+	    }).y(function (d) {
+	      return yScale(d.numTweets);
+	    }).interpolate("cardinal");
+
+	    return React.createElement(Line, { path: path(this.props.binnedTweets), color: 'green' });
+	  }
+	});
+
+	module.exports = LinePath;
+
+	/*
+
+	renderLine: function(data) {
+	    
+
+	    var lineData = line([data]);
+	    
+	    console.log(data);
+	    console.log('renderLine running');
+	    console.log(typeof lineData);
+	    console.log(lineData);
+
+	    return (
+	      lineData
+	    );
+	  },
+
+
+	<path className="trendline" d={ this.renderLine(this.props.binnedTweets) }>
+	      </path>
+	  */
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
 	var React = __webpack_require__(1);
 
-	var Axis = __webpack_require__(244);
+	var Line = React.createClass({
+	  displayName: "Line",
 
+	  render: function render() {
+	    return React.createElement("path", { d: this.props.path, stroke: "gray", strokeWidth: "2", fill: "none" });
+	  }
+	});
+
+	module.exports = Line;
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Axis = __webpack_require__(246);
+
+	//XYAxes Holds the Separate X and Y Axis Components
 	var XYAxes = React.createClass({
 	  displayName: 'XYAxes',
 
+	  //Create x and y props to Pass into <Axis />
 	  render: function render() {
-	    var props = this.props;
-
 	    var xSettings = {
-	      translate: 'translate(0,' + (props.height - props.padding) + ')',
-	      scale: props.xScale,
-	      orient: 'bottom'
+	      translate: 'translate(0,' + (this.props.height - this.props.padding) + ')',
+	      scale: this.props.xScale,
+	      orient: 'bottom',
+	      ticks: 4
 	    };
 
 	    var ySettings = {
-	      translate: 'translate(' + props.padding + ', 0)',
-	      scale: props.yScale,
-	      orient: 'left'
+	      translate: 'translate(' + this.props.padding + ', 0)',
+	      scale: this.props.yScale,
+	      orient: 'left',
+	      ticks: 6
 	    };
 
+	    //Use React to Append g Element (Usually D3 Handles This)
+	    //Append <Axis /> for X and Y Axis
 	    return React.createElement(
 	      'g',
 	      { className: 'xy-axes' },
@@ -40990,7 +41079,7 @@
 	module.exports = XYAxes;
 
 /***/ },
-/* 244 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40998,6 +41087,7 @@
 	var React = __webpack_require__(1),
 	    d3 = __webpack_require__(212);
 
+	//Axis is a Reusable Axis Creator for Charts
 	var Axis = React.createClass({
 	  displayName: 'Axis',
 
@@ -41009,14 +41099,17 @@
 	    this.renderAxis();
 	  },
 
+	  //Use D3 to Create Axis on 'this DOM Node'
 	  renderAxis: function renderAxis() {
-	    var props = this.props;
 	    var node = this.getDOMNode();
-	    var axis = d3.svg.axis().orient(props.orient).ticks(5).scale(props.scale);
 
+	    var axis = d3.svg.axis().scale(this.props.scale).orient(this.props.orient).ticks(this.props.ticks);
+
+	    //This is where the magic happens!
 	    d3.select(node).call(axis);
 	  },
 
+	  //Use React to Append g Element (Usually D3 Handles This)
 	  render: function render() {
 	    return React.createElement('g', { className: 'axis', transform: this.props.translate });
 	  }
@@ -41025,13 +41118,13 @@
 	module.exports = Axis;
 
 /***/ },
-/* 245 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(246);
+	    TweetList = __webpack_require__(248);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -41056,13 +41149,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 246 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(247);
+	    TweetCard = __webpack_require__(249);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
@@ -41086,7 +41179,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 247 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -18,5 +18,3 @@ var Dashboard = React.createClass({
 });
 
 module.exports = Dashboard;
-
-// <StreamHistogram histogramTweets={ this.props.histogramTweets }/>

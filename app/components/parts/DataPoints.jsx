@@ -5,22 +5,28 @@ var React = require('react'),
 //Datapoints Draws Each Tweet on the Chart
 var DataPoints = React.createClass({
 
-  renderBars: function(data) {
-    var props = {
+  //renderPoints Returns a <circle></circle> for Each Data Point
+  renderPoints: function(data) {
+    var dataProps = {
       cx: this.props.xScale(data.timeBin),
       cy: this.props.yScale(data.numTweets),
-      r: 2,
+      r: 4,
+      fill: "none",
+      stroke: "green",
+      strokeWidth: 2,
       key: uuid.v4()
     };
 
     return(
-      <circle {...props}>
+      <circle className="point" {...dataProps}>
       </circle>
     );
   },
 
+  //Use React to Append g Element (Usually D3 Handles This)
+  //Run renderBars for all binnedTweet Data Values
   render: function() {
-    return <g>{ this.props.binnedTweets.map(this.renderBars) }</g>
+    return <g>{ this.props.binnedTweets.map(this.renderPoints) }</g>
   }
 });
 

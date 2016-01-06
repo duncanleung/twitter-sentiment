@@ -29,7 +29,6 @@ var App = React.createClass({
     this.socket.on('disconnect', this.disconnect);
     this.socket.on('sendTweet', function(receivedTweet) {
       self.addTweet(receivedTweet.tweet);
-      //console.log(receivedTweet.tweet);
     });
   },
 
@@ -80,8 +79,6 @@ var App = React.createClass({
 
       this.setState({ binnedTweets: newBinnedTweets });
     }
-
-    console.log(this.state.binnedTweets);
   },
 
   //Outgoing Data to Server Handler
