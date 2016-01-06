@@ -5,8 +5,8 @@ var LineChart = require('./LineChart.jsx');
 
 
 var settings = {
-  width: 800,
-  height: 400,
+  width: 900,
+  height: 500,
   padding: 30
 };
 

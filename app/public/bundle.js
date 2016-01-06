@@ -36688,7 +36688,7 @@
 	        'form',
 	        { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search },
 	        React.createElement('input', { id: 'search', ref: 'keyword', type: 'search', placeholder: 'Enter Brand or Keyword',
-	          autofocus: 'autofocus', className: 'form-control' }),
+	          autoFocus: 'autofocus', className: 'form-control' }),
 	        React.createElement(
 	          'span',
 	          { className: 'input-group-btn' },
@@ -36755,7 +36755,7 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'Twitter Dashboard'
+	        'Twitterment Dashboard'
 	      ),
 	      React.createElement(TwitterActivityChart, { binnedTweets: this.props.binnedTweets })
 	    );
@@ -36780,8 +36780,8 @@
 	var LineChart = __webpack_require__(218);
 
 	var settings = {
-	  width: 800,
-	  height: 400,
+	  width: 900,
+	  height: 500,
 	  padding: 30
 	};
 
