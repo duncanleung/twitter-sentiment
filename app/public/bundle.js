@@ -36800,7 +36800,7 @@
 
 	var chartProps = {
 	  chartWidth: 800,
-	  chartHeight: 600,
+	  chartHeight: 400,
 	  margin: {
 	    top: 60,
 	    bottom: 60,
@@ -36880,13 +36880,13 @@
 	    var yScale = this.getYScale(this.props);
 
 	    var chartDisplay = {
-	      className: 'display',
+	      className: 'chart-area',
 	      transform: 'translate(' + this.props.margin.left + ', ' + this.props.margin.top + ')'
 	    };
 	    //{...props} combines all props (aka. xScale, yScale) into 'props'
 	    return React.createElement(
 	      'svg',
-	      { width: this.props.chartWidth, height: this.props.chartHeight },
+	      { className: 'line-chart', width: this.props.chartWidth, height: this.props.chartHeight },
 	      React.createElement(
 	        'g',
 	        chartDisplay,
@@ -41128,6 +41128,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1);
 
 	var Axis = __webpack_require__(246);
@@ -41139,7 +41141,7 @@
 	  //Create x and y props to Pass into <Axis />
 	  render: function render() {
 	    var xAxis = {
-	      className: 'axis',
+	      className: 'x axis',
 	      translate: 'translate(0,' + this.props.height + ')',
 	      scale: this.props.xScale,
 	      orient: 'bottom',
@@ -41147,7 +41149,7 @@
 	    };
 
 	    var yAxis = {
-	      className: 'axis',
+	      className: 'y axis',
 	      translate: 'translate(0, 0)',
 	      scale: this.props.yScale,
 	      orient: 'left',
@@ -41159,8 +41161,8 @@
 	    return React.createElement(
 	      'g',
 	      { className: 'xy-axes' },
-	      React.createElement(Axis, xAxis),
-	      React.createElement(Axis, yAxis)
+	      React.createElement(Axis, _extends({}, xAxis, this.props)),
+	      React.createElement(Axis, _extends({}, yAxis, this.props))
 	    );
 	  }
 	});
@@ -41186,6 +41188,7 @@
 
 	  componentDidMount: function componentDidMount() {
 	    this.renderAxis();
+	    this.renderLabels();
 	  },
 
 	  //Use D3 to Create Axis on 'this DOM Node'
@@ -41196,6 +41199,17 @@
 
 	    //This is where the magic happens!
 	    d3.select(node).call(axis);
+	  },
+
+	  renderLabels: function renderLabels() {
+	    var node = this.getDOMNode();
+
+	    var xLabel = d3.select(".x.axis").append("text").text("Time in Seconds Since Search Started").classed("x-label", true).attr("x", 350).attr("y", 50).style("text-anchor", "middle");
+
+	    var yLabel = d3.select(".y.axis").append("text").text("Number of Tweets").classed("y-label", true).attr("x", -(this.props.height / 2)).attr("y", -30).style("text-anchor", "middle").attr("transform", "rotate(-90)");
+
+	    d3.select(node).call(xLabel);
+	    d3.select(node).call(yLabel);
 	  },
 
 	  //Use React to Append g Element (Usually D3 Handles This)

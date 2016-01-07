@@ -8,7 +8,7 @@ var XYAxes = React.createClass({
   //Create x and y props to Pass into <Axis />
   render: function() { 
     var xAxis =  {
-      className: 'axis',
+      className: 'x axis',
       translate: 'translate(0,' + this.props.height + ')',
       scale: this.props.xScale,
       orient: 'bottom',
@@ -16,7 +16,7 @@ var XYAxes = React.createClass({
     };
 
     var yAxis = {
-      className: 'axis',
+      className: 'y axis',
       translate: 'translate(0, 0)',
       scale: this.props.yScale,
       orient: 'left',
@@ -27,8 +27,8 @@ var XYAxes = React.createClass({
     //Append <Axis /> for X and Y Axis
     return (
       <g className="xy-axes">
-        <Axis { ...xAxis } />
-        <Axis { ...yAxis } />
+        <Axis { ...xAxis } { ...this.props }/>
+        <Axis { ...yAxis } { ...this.props }/>
       </g>
     );
   }

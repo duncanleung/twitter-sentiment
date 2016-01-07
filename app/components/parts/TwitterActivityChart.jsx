@@ -1,12 +1,12 @@
 var React = require('react'),
     d3 = require('d3');
 
-var LineChart = require('./LineChart.jsx');
+var LineChart = require('./chart/LineChart.jsx');
 
 
 var chartProps = {
   chartWidth: 800,
-  chartHeight: 600,
+  chartHeight: 400,
   margin: {
     top: 60,
     bottom: 60,

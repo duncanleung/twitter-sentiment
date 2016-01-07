@@ -183,9 +183,12 @@ header {
 
 /* Results Styles
 ======================== */
+.results {
+  height: 100vh;
+
 
   .dashboard {
-    height: 800px;
+    height: 100vh;
     padding: 20px 0;
     overflow-y: hidden;
     background-color: $background-light-gray;
@@ -203,11 +206,11 @@ header {
         text-align: center;
       }
 
-      svg {
+      .line-chart {
         background-color: $background-chart-gray;
         display: block;
         margin: auto;
-        border-radius: 5px;
+        border-radius: 5px 5px 0 0;
         box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
 
         .gridline path,
@@ -225,15 +228,21 @@ header {
         }
 
         .axis text {
-          font-family: sans-serif;
+          font-family: $font-family;
           font-size: 14px;
+        }
+
+        .axis text.x-label,
+        .axis text.y-label {
+          font-family: $font-family;
+          fill: $text-gray;
         }
       }
     }
   }
 
   .stream {
-    height: 800px;
+    height: 100vh;
     background-color: $background-dark-gray;
     padding: 0 25px 0 15px;
 
@@ -248,7 +257,7 @@ header {
     }
 
     .tweet-list {
-      height: 700px;
+      height: 90vh;
       background-color: $background-light-gray;
       padding-bottom: 20px;
       overflow-y: scroll;
@@ -292,7 +301,8 @@ header {
         }
       }
     }
-  }
+  } 
+}
 
 
 

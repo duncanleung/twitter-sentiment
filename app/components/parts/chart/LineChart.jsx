@@ -35,12 +35,12 @@ var LineChart = React.createClass({
     var yScale = this.getYScale(this.props);
 
     var chartDisplay = {
-      className: 'display',
+      className: 'chart-area',
       transform: 'translate(' + this.props.margin.left + ', ' + this.props.margin.top + ')',
     };
     //{...props} combines all props (aka. xScale, yScale) into 'props'
     return (
-      <svg width={ this.props.chartWidth } height={ this.props.chartHeight }>
+      <svg className="line-chart" width={ this.props.chartWidth } height={ this.props.chartHeight }>
         <g { ...chartDisplay }>
           <GridLine
             xScale={ xScale }
