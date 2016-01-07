@@ -4,11 +4,21 @@ var React = require('react'),
 var LineChart = require('./LineChart.jsx');
 
 
-var settings = {
-  width: 800,
-  height: 400,
-  padding: 30
+var chartProps = {
+  chartWidth: 800,
+  chartHeight: 600,
+  margin: {
+    top: 60,
+    bottom: 60,
+    left: 60,
+    right: 40
+  },
 };
+
+var chartArea = {
+  width: chartProps.chartWidth - chartProps.margin.left - chartProps.margin.right,
+  height: chartProps.chartHeight - chartProps.margin.top - chartProps.margin.bottom,
+}
 
 //TwitterActivityChart Is the LineChart Container
 var TwitterActivityChart = React.createClass({
@@ -18,7 +28,7 @@ var TwitterActivityChart = React.createClass({
     return(
       <div className="twitter-activity-chart">
         <h4>Twitter Activity</h4>
-        <LineChart binnedTweets={ this.props.binnedTweets } { ...settings } />
+        <LineChart binnedTweets={ this.props.binnedTweets } { ...chartProps } { ...chartArea }/>
       </div>
     );
   }

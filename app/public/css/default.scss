@@ -204,11 +204,17 @@ header {
         border-radius: 5px;
         box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
 
+        .gridline path,
+        .gridline line {
+          fill: none;
+          stroke: #ccc;
+          shape-rendering: crispEdges;
+        }
 
         .axis path,
         .axis line {
           fill: none;
-          stroke: black;
+          stroke: $background-dark-gray;
           shape-rendering: crispEdges;
         }
 

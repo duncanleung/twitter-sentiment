@@ -2,7 +2,8 @@ var React = require('react');
 
 var DataPoints = require('./DataPoints.jsx'),
     LinePath = require('./LinePath.jsx'),
-    XYAxes = require('./XYAxes.jsx');
+    XYAxes = require('./XYAxes.jsx'),
+    GridLine = require('./GridLine.jsx');
 
 
 //LineChart Holds All Data Points and the XYAxes
@@ -15,7 +16,7 @@ var LineChart = React.createClass({
 
     return d3.scale.linear()
       .domain([0, xMax])
-      .range([props.padding, props.width - props.padding *2]);
+      .range([0, props.width]);
   },
 
   //Use D3 to Scale 'y' Data Points to Fit Chart Area
@@ -25,7 +26,7 @@ var LineChart = React.createClass({
 
     return d3.scale.linear()
       .domain([0, yMax])
-      .range([props.height - props.padding, props.padding]);
+      .range([props.height, 0]);
   },
 
   //Use React to Append svg Element (Usually D3 Handles This)
@@ -33,24 +34,35 @@ var LineChart = React.createClass({
     var xScale = this.getXScale(this.props);
     var yScale = this.getYScale(this.props);
 
+    var chartDisplay = {
+      className: 'display',
+      transform: 'translate(' + this.props.margin.left + ', ' + this.props.margin.top + ')',
+    };
     //{...props} combines all props (aka. xScale, yScale) into 'props'
     return (
-      <svg width={ this.props.width } height={ this.props.height }>
-        <XYAxes
-          xScale={ xScale }
-          yScale={ yScale }
-          { ...this.props }
-        />
-        <LinePath 
-          xScale = { xScale }
-          yScale= { yScale }
-          { ...this.props }
-        />
-        <DataPoints
-          xScale = { xScale }
-          yScale= { yScale }
-          { ...this.props }
-        />
+      <svg width={ this.props.chartWidth } height={ this.props.chartHeight }>
+        <g { ...chartDisplay }>
+          <GridLine
+            xScale={ xScale }
+            yScale={ yScale }
+            { ...this.props }
+          />
+          <XYAxes
+            xScale={ xScale }
+            yScale={ yScale }
+            { ...this.props }
+          />
+          <LinePath 
+            xScale = { xScale }
+            yScale= { yScale }
+            { ...this.props }
+          />
+          <DataPoints
+            xScale = { xScale }
+            yScale= { yScale }
+            { ...this.props }
+          />
+        </g>
       </svg>
       
     );

@@ -36735,7 +36735,7 @@
 	var React = __webpack_require__(1);
 
 	var Dashboard = __webpack_require__(216),
-	    TwitterStream = __webpack_require__(247);
+	    TwitterStream = __webpack_require__(248);
 
 	//Results Holds the Dashboard and TwitterStream Components
 	//Uses Dashboard.jsx and TwitterStream.jsx
@@ -36798,10 +36798,20 @@
 
 	var LineChart = __webpack_require__(218);
 
-	var settings = {
-	  width: 800,
-	  height: 400,
-	  padding: 30
+	var chartProps = {
+	  chartWidth: 800,
+	  chartHeight: 600,
+	  margin: {
+	    top: 60,
+	    bottom: 60,
+	    left: 60,
+	    right: 40
+	  }
+	};
+
+	var chartArea = {
+	  width: chartProps.chartWidth - chartProps.margin.left - chartProps.margin.right,
+	  height: chartProps.chartHeight - chartProps.margin.top - chartProps.margin.bottom
 	};
 
 	//TwitterActivityChart Is the LineChart Container
@@ -36818,7 +36828,7 @@
 	        null,
 	        'Twitter Activity'
 	      ),
-	      React.createElement(LineChart, _extends({ binnedTweets: this.props.binnedTweets }, settings))
+	      React.createElement(LineChart, _extends({ binnedTweets: this.props.binnedTweets }, chartProps, chartArea))
 	    );
 	  }
 	});
@@ -36837,7 +36847,8 @@
 
 	var DataPoints = __webpack_require__(219),
 	    LinePath = __webpack_require__(243),
-	    XYAxes = __webpack_require__(245);
+	    XYAxes = __webpack_require__(245),
+	    GridLine = __webpack_require__(247);
 
 	//LineChart Holds All Data Points and the XYAxes
 	var LineChart = React.createClass({
@@ -36850,7 +36861,7 @@
 	      return d.timeBin;
 	    });
 
-	    return d3.scale.linear().domain([0, xMax]).range([props.padding, props.width - props.padding * 2]);
+	    return d3.scale.linear().domain([0, xMax]).range([0, props.width]);
 	  },
 
 	  //Use D3 to Scale 'y' Data Points to Fit Chart Area
@@ -36860,7 +36871,7 @@
 	      return d.numTweets;
 	    });
 
-	    return d3.scale.linear().domain([0, yMax]).range([props.height - props.padding, props.padding]);
+	    return d3.scale.linear().domain([0, yMax]).range([props.height, 0]);
 	  },
 
 	  //Use React to Append svg Element (Usually D3 Handles This)
@@ -36868,22 +36879,34 @@
 	    var xScale = this.getXScale(this.props);
 	    var yScale = this.getYScale(this.props);
 
+	    var chartDisplay = {
+	      className: 'display',
+	      transform: 'translate(' + this.props.margin.left + ', ' + this.props.margin.top + ')'
+	    };
 	    //{...props} combines all props (aka. xScale, yScale) into 'props'
 	    return React.createElement(
 	      'svg',
-	      { width: this.props.width, height: this.props.height },
-	      React.createElement(XYAxes, _extends({
-	        xScale: xScale,
-	        yScale: yScale
-	      }, this.props)),
-	      React.createElement(LinePath, _extends({
-	        xScale: xScale,
-	        yScale: yScale
-	      }, this.props)),
-	      React.createElement(DataPoints, _extends({
-	        xScale: xScale,
-	        yScale: yScale
-	      }, this.props))
+	      { width: this.props.chartWidth, height: this.props.chartHeight },
+	      React.createElement(
+	        'g',
+	        chartDisplay,
+	        React.createElement(GridLine, _extends({
+	          xScale: xScale,
+	          yScale: yScale
+	        }, this.props)),
+	        React.createElement(XYAxes, _extends({
+	          xScale: xScale,
+	          yScale: yScale
+	        }, this.props)),
+	        React.createElement(LinePath, _extends({
+	          xScale: xScale,
+	          yScale: yScale
+	        }, this.props)),
+	        React.createElement(DataPoints, _extends({
+	          xScale: xScale,
+	          yScale: yScale
+	        }, this.props))
+	      )
 	    );
 	  }
 	});
@@ -41074,7 +41097,7 @@
 	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
 	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "gray" }),
 	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" }),
-	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" })
+	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "sky blue" })
 	    );
 	  }
 	});
@@ -41115,15 +41138,17 @@
 
 	  //Create x and y props to Pass into <Axis />
 	  render: function render() {
-	    var xSettings = {
-	      translate: 'translate(0,' + (this.props.height - this.props.padding) + ')',
+	    var xAxis = {
+	      className: 'axis',
+	      translate: 'translate(0,' + this.props.height + ')',
 	      scale: this.props.xScale,
 	      orient: 'bottom',
 	      ticks: 4
 	    };
 
-	    var ySettings = {
-	      translate: 'translate(' + this.props.padding + ', 0)',
+	    var yAxis = {
+	      className: 'axis',
+	      translate: 'translate(0, 0)',
 	      scale: this.props.yScale,
 	      orient: 'left',
 	      ticks: 6
@@ -41134,8 +41159,8 @@
 	    return React.createElement(
 	      'g',
 	      { className: 'xy-axes' },
-	      React.createElement(Axis, xSettings),
-	      React.createElement(Axis, ySettings)
+	      React.createElement(Axis, xAxis),
+	      React.createElement(Axis, yAxis)
 	    );
 	  }
 	});
@@ -41175,7 +41200,7 @@
 
 	  //Use React to Append g Element (Usually D3 Handles This)
 	  render: function render() {
-	    return React.createElement('g', { className: 'axis', transform: this.props.translate });
+	    return React.createElement('g', { className: this.props.className, transform: this.props.translate });
 	  }
 	});
 
@@ -41185,10 +41210,52 @@
 /* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	//GridLine
+	var GridLine = React.createClass({
+	  displayName: "GridLine",
+
+	  componentDidUpdate: function componentDidUpdate() {
+	    this.renderGridline();
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.renderGridline();
+	  },
+
+	  //Use D3 to Create Axis on 'this DOM Node'
+	  renderGridline: function renderGridline() {
+	    var node = this.getDOMNode();
+
+	    var gridline = d3.svg.axis().scale(this.props.yScale).tickSize(-this.props.width, 0, 0).ticks(6).tickFormat("").orient("left");
+
+	    //This is where the magic happens!
+	    d3.select(node).call(gridline);
+	  },
+
+	  render: function render() {
+	    var yGridline = {
+	      className: 'gridline',
+	      transform: 'translate(0, 0)'
+	    };
+
+	    return React.createElement("g", yGridline);
+	  }
+	});
+
+	module.exports = GridLine;
+
+/***/ },
+/* 248 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(248);
+	    TweetList = __webpack_require__(249);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -41213,13 +41280,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(249);
+	    TweetCard = __webpack_require__(250);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
@@ -41243,7 +41310,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

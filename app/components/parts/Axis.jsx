@@ -19,7 +19,7 @@ var Axis = React.createClass({
     var axis = d3.svg.axis()
               .scale(this.props.scale)
               .orient(this.props.orient)
-              .ticks(this.props.ticks);
+              .ticks(this.props.ticks)
 
     //This is where the magic happens!
     d3.select(node).call(axis);
@@ -28,7 +28,7 @@ var Axis = React.createClass({
   //Use React to Append g Element (Usually D3 Handles This)
   render: function() {
     return(
-      <g className="axis" transform={ this.props.translate }></g>
+      <g className={ this.props.className } transform={ this.props.translate }></g>
     );
   }
 });
