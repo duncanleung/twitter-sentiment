@@ -17,6 +17,7 @@ $font-family: 'Open Sans', sans-serif;
 
 html,
 body {
+  position: relative;
   font-family: $font-family;
   color: $text-gray;
   background-color: white;
@@ -46,7 +47,12 @@ body {
 ======================== */
 
 header {
-  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+
   nav {
     height: 60px;
     background-color: $primary-black;
@@ -102,7 +108,7 @@ header {
 /* Hero and Search Bar Styles
 ======================== */
 .hero {
-  height: 800px;
+  height: 100vh;
   background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
