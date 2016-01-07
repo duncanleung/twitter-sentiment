@@ -16,7 +16,10 @@ var App = React.createClass({
           keyword: '',
           initTimestamp: '',
           collectedTweets: [],
-          binnedTweets: [{numTweets: 0, timeBin: 5}]
+          binnedTweets: [
+            {numTweets: 0, posTweets: 0,
+              negTweets: 0, neutTweets: 0,
+              timeBin: 5}]
       };
   },
 
@@ -55,12 +58,14 @@ var App = React.createClass({
     var newTweets = update(tweets, {$unshift: [tweet]});
     
     this.setState({ collectedTweets: newTweets });
-    this.binTweets(tweet.timestamp_ms);
+    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
+
+    // console.log(tweet.sentiment);
   },
 
   //Push Tweet Counts into Bins: 5sec, 10sec, etc.
   //Update the state of binnedTweets
-  binTweets: function(tweetTimestamp) {
+  binTweets: function(tweetTimestamp, sentiment) {
     var initTimestamp = this.state.initTimestamp;
     var timeDiff = (tweetTimestamp - initTimestamp)/1000;
 
@@ -72,12 +77,35 @@ var App = React.createClass({
 
     if(timeDiff < currentBin) {
       newBinnedTweets[binIndex].numTweets++;
+      //this.setState({ binnedTweets: newBinnedTweets });
 
-      this.setState({ binnedTweets: newBinnedTweets });
+      if(sentiment == "positive") {
+        newBinnedTweets[binIndex].posTweets++;
+        this.setState({ binnedTweets: newBinnedTweets });
+
+      } else if(sentiment == "negative") {
+          newBinnedTweets[binIndex].negTweets++;
+          this.setState({ binnedTweets: newBinnedTweets });
+      } else {
+          newBinnedTweets[binIndex].neutTweets++;
+          this.setState({ binnedTweets: newBinnedTweets });
+      }
+
     } else {
-      newBinnedTweets.push({ numTweets: 1, timeBin: currentBin+=5 });
+      //newBinnedTweets.push({ numTweets: 1, timeBin: currentBin+=5 });
+      //this.setState({ binnedTweets: newBinnedTweets });
 
-      this.setState({ binnedTweets: newBinnedTweets });
+      if(sentiment == "positive") {
+        newBinnedTweets.push({ numTweets: 1, posTweets: 1, negTweets: 0, neutTweets: 0, timeBin: currentBin+=5 });
+        this.setState({ binnedTweets: newBinnedTweets });
+
+      } else if(sentiment == "negative") {
+          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin+=5 });
+          this.setState({ binnedTweets: newBinnedTweets });
+      } else {
+          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin+=5 });
+          this.setState({ binnedTweets: newBinnedTweets });
+      }
     }
   },
 

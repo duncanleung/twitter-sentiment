@@ -1,5 +1,5 @@
 var datum = require('datumbox')
-            .factory('3f370865e56303cf6f145aa40485f1f0');
+            .factory('579b83f98a3cb64561a4bf3915db111f');
 
 var sentiment = {};
 

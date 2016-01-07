@@ -11,7 +11,7 @@ var LinePath = React.createClass({
         xScale = props.xScale,
         yScale = props.yScale;
 
-    var path = d3.svg.line()
+    var pathTotal = d3.svg.line()
       .x(function(d) {
         return xScale(d.timeBin);
       })
@@ -20,8 +20,40 @@ var LinePath = React.createClass({
       })
       .interpolate("cardinal");
 
+    var pathPositive = d3.svg.line()
+      .x(function(d) {
+        return xScale(d.timeBin);
+      })
+      .y(function(d) {
+        return yScale(d.posTweets);
+      })
+      .interpolate("cardinal");
+
+    var pathNegative = d3.svg.line()
+      .x(function(d) {
+        return xScale(d.timeBin);
+      })
+      .y(function(d) {
+        return yScale(d.negTweets);
+      })
+      .interpolate("cardinal");
+
+    var pathNeutral = d3.svg.line()
+      .x(function(d) {
+        return xScale(d.timeBin);
+      })
+      .y(function(d) {
+        return yScale(d.neutTweets);
+      })
+      .interpolate("cardinal");
+
     return (
-      <Line path={ path(this.props.binnedTweets) } color="green"/>
+      <g>
+        <Line path={ pathNegative(this.props.binnedTweets) } stroke={ "red" }/>
+        <Line path={ pathNeutral(this.props.binnedTweets) } stroke={ "gray" }/>
+        <Line path={ pathPositive(this.props.binnedTweets) } stroke={ "green" }/>
+        <Line path={ pathTotal(this.props.binnedTweets) } stroke={ "blue" }/>
+      </g>
     );
   }
 });

@@ -7,9 +7,19 @@ var DataPoints = React.createClass({
 
   //renderPoints Returns a <circle></circle> for Each Data Point
   renderPoints: function(data) {
-    var dataProps = {
+    var dataNegativeProps = {
       cx: this.props.xScale(data.timeBin),
-      cy: this.props.yScale(data.numTweets),
+      cy: this.props.yScale(data.negTweets),
+      r: 4,
+      fill: "none",
+      stroke: "red",
+      strokeWidth: 2,
+      key: uuid.v4()
+    };
+
+    var dataPositiveProps = {
+      cx: this.props.xScale(data.timeBin),
+      cy: this.props.yScale(data.posTweets),
       r: 4,
       fill: "none",
       stroke: "green",
@@ -17,9 +27,37 @@ var DataPoints = React.createClass({
       key: uuid.v4()
     };
 
-    return(
-      <circle className="point" {...dataProps}>
-      </circle>
+    var dataNeutralProps = {
+      cx: this.props.xScale(data.timeBin),
+      cy: this.props.yScale(data.neutTweets),
+      r: 4,
+      fill: "none",
+      stroke: "gray",
+      strokeWidth: 2,
+      key: uuid.v4()
+    };
+
+    var dataTotalProps = {
+      cx: this.props.xScale(data.timeBin),
+      cy: this.props.yScale(data.numTweets),
+      r: 4,
+      fill: "none",
+      stroke: "blue",
+      strokeWidth: 2,
+      key: uuid.v4()
+    };
+
+    return (
+      <g>
+        <circle className="negative point" {...dataNegativeProps}>
+        </circle>
+        <circle className="positive point" {...dataPositiveProps}>
+        </circle>
+        <circle className="neutral point" {...dataNeutralProps}>
+        </circle>
+        <circle className="total point" {...dataTotalProps}>
+        </circle>
+      </g>
     );
   },
 

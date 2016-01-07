@@ -19663,7 +19663,9 @@
 	      keyword: '',
 	      initTimestamp: '',
 	      collectedTweets: [],
-	      binnedTweets: [{ numTweets: 0, timeBin: 5 }]
+	      binnedTweets: [{ numTweets: 0, posTweets: 0,
+	        negTweets: 0, neutTweets: 0,
+	        timeBin: 5 }]
 	    };
 	  },
 
@@ -19702,12 +19704,14 @@
 	    var newTweets = update(tweets, { $unshift: [tweet] });
 
 	    this.setState({ collectedTweets: newTweets });
-	    this.binTweets(tweet.timestamp_ms);
+	    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
+
+	    // console.log(tweet.sentiment);
 	  },
 
 	  //Push Tweet Counts into Bins: 5sec, 10sec, etc.
 	  //Update the state of binnedTweets
-	  binTweets: function binTweets(tweetTimestamp) {
+	  binTweets: function binTweets(tweetTimestamp, sentiment) {
 	    var initTimestamp = this.state.initTimestamp;
 	    var timeDiff = (tweetTimestamp - initTimestamp) / 1000;
 
@@ -19719,12 +19723,32 @@
 
 	    if (timeDiff < currentBin) {
 	      newBinnedTweets[binIndex].numTweets++;
+	      //this.setState({ binnedTweets: newBinnedTweets });
 
-	      this.setState({ binnedTweets: newBinnedTweets });
+	      if (sentiment == "positive") {
+	        newBinnedTweets[binIndex].posTweets++;
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      } else if (sentiment == "negative") {
+	        newBinnedTweets[binIndex].negTweets++;
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      } else {
+	        newBinnedTweets[binIndex].neutTweets++;
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      }
 	    } else {
-	      newBinnedTweets.push({ numTweets: 1, timeBin: currentBin += 5 });
+	      //newBinnedTweets.push({ numTweets: 1, timeBin: currentBin+=5 });
+	      //this.setState({ binnedTweets: newBinnedTweets });
 
-	      this.setState({ binnedTweets: newBinnedTweets });
+	      if (sentiment == "positive") {
+	        newBinnedTweets.push({ numTweets: 1, posTweets: 1, negTweets: 0, neutTweets: 0, timeBin: currentBin += 5 });
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      } else if (sentiment == "negative") {
+	        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin += 5 });
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      } else {
+	        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin += 5 });
+	        this.setState({ binnedTweets: newBinnedTweets });
+	      }
 	    }
 	  },
 
@@ -36852,11 +36876,11 @@
 	        xScale: xScale,
 	        yScale: yScale
 	      }, this.props)),
-	      React.createElement(DataPoints, _extends({
+	      React.createElement(LinePath, _extends({
 	        xScale: xScale,
 	        yScale: yScale
 	      }, this.props)),
-	      React.createElement(LinePath, _extends({
+	      React.createElement(DataPoints, _extends({
 	        xScale: xScale,
 	        yScale: yScale
 	      }, this.props))
@@ -36883,9 +36907,19 @@
 
 	  //renderPoints Returns a <circle></circle> for Each Data Point
 	  renderPoints: function renderPoints(data) {
-	    var dataProps = {
+	    var dataNegativeProps = {
 	      cx: this.props.xScale(data.timeBin),
-	      cy: this.props.yScale(data.numTweets),
+	      cy: this.props.yScale(data.negTweets),
+	      r: 4,
+	      fill: "none",
+	      stroke: "red",
+	      strokeWidth: 2,
+	      key: uuid.v4()
+	    };
+
+	    var dataPositiveProps = {
+	      cx: this.props.xScale(data.timeBin),
+	      cy: this.props.yScale(data.posTweets),
 	      r: 4,
 	      fill: "none",
 	      stroke: "green",
@@ -36893,7 +36927,34 @@
 	      key: uuid.v4()
 	    };
 
-	    return React.createElement('circle', _extends({ className: 'point' }, dataProps));
+	    var dataNeutralProps = {
+	      cx: this.props.xScale(data.timeBin),
+	      cy: this.props.yScale(data.neutTweets),
+	      r: 4,
+	      fill: "none",
+	      stroke: "gray",
+	      strokeWidth: 2,
+	      key: uuid.v4()
+	    };
+
+	    var dataTotalProps = {
+	      cx: this.props.xScale(data.timeBin),
+	      cy: this.props.yScale(data.numTweets),
+	      r: 4,
+	      fill: "none",
+	      stroke: "blue",
+	      strokeWidth: 2,
+	      key: uuid.v4()
+	    };
+
+	    return React.createElement(
+	      'g',
+	      null,
+	      React.createElement('circle', _extends({ className: 'negative point' }, dataNegativeProps)),
+	      React.createElement('circle', _extends({ className: 'positive point' }, dataPositiveProps)),
+	      React.createElement('circle', _extends({ className: 'neutral point' }, dataNeutralProps)),
+	      React.createElement('circle', _extends({ className: 'total point' }, dataTotalProps))
+	    );
 	  },
 
 	  //Use React to Append g Element (Usually D3 Handles This)
@@ -40983,39 +41044,42 @@
 	        xScale = props.xScale,
 	        yScale = props.yScale;
 
-	    var path = d3.svg.line().x(function (d) {
+	    var pathTotal = d3.svg.line().x(function (d) {
 	      return xScale(d.timeBin);
 	    }).y(function (d) {
 	      return yScale(d.numTweets);
 	    }).interpolate("cardinal");
 
-	    return React.createElement(Line, { path: path(this.props.binnedTweets), color: 'green' });
+	    var pathPositive = d3.svg.line().x(function (d) {
+	      return xScale(d.timeBin);
+	    }).y(function (d) {
+	      return yScale(d.posTweets);
+	    }).interpolate("cardinal");
+
+	    var pathNegative = d3.svg.line().x(function (d) {
+	      return xScale(d.timeBin);
+	    }).y(function (d) {
+	      return yScale(d.negTweets);
+	    }).interpolate("cardinal");
+
+	    var pathNeutral = d3.svg.line().x(function (d) {
+	      return xScale(d.timeBin);
+	    }).y(function (d) {
+	      return yScale(d.neutTweets);
+	    }).interpolate("cardinal");
+
+	    return React.createElement(
+	      'g',
+	      null,
+	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
+	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "gray" }),
+	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" }),
+	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" })
+	    );
 	  }
 	});
 
 	module.exports = LinePath;
-
-	/*
-
-	renderLine: function(data) {
-	    
-
-	    var lineData = line([data]);
-	    
-	    console.log(data);
-	    console.log('renderLine running');
-	    console.log(typeof lineData);
-	    console.log(lineData);
-
-	    return (
-	      lineData
-	    );
-	  },
-
-
-	<path className="trendline" d={ this.renderLine(this.props.binnedTweets) }>
-	      </path>
-	  */
 
 /***/ },
 /* 244 */
@@ -41029,7 +41093,7 @@
 	  displayName: "Line",
 
 	  render: function render() {
-	    return React.createElement("path", { d: this.props.path, stroke: "gray", strokeWidth: "2", fill: "none" });
+	    return React.createElement("path", { d: this.props.path, stroke: this.props.stroke, strokeWidth: "2", fill: "none" });
 	  }
 	});
 

@@ -41,12 +41,12 @@ var LineChart = React.createClass({
           yScale={ yScale }
           { ...this.props }
         />
-        <DataPoints
+        <LinePath 
           xScale = { xScale }
           yScale= { yScale }
           { ...this.props }
         />
-        <LinePath 
+        <DataPoints
           xScale = { xScale }
           yScale= { yScale }
           { ...this.props }
