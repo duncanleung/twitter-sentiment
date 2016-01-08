@@ -15,7 +15,16 @@ var App = React.createClass({
           status: 'disconnected',
           keyword: '',
           initTimestamp: '',
-          collectedTweets: [],
+          collectedTweets: [{
+            sentiment: "neutral",
+            text: "bla bla bla",
+            user: {
+              name: "Tomlinson",
+              profile_image_url_https: "https://pbs.twimg.com/profile_images/607143037026902017/euduoJij_normal.jpg",
+              screen_name: "Yaiza_06455"
+            }
+
+          }],
           binnedTweets: [{numTweets: 0, posTweets: 0,
               negTweets: 0, neutTweets: 0, timeBin: 5}],
           totalTweets: {total: 0, posTotal: 0,
@@ -61,7 +70,7 @@ var App = React.createClass({
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
     this.countTweets(tweet.sentiment);
 
-    // console.log(tweet.sentiment);
+    console.log(tweet);
   },
 
   //Inspect Sentiment Value. Increase count of Sentiment

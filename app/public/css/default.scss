@@ -342,7 +342,7 @@ header {
 
       .tweet-card {
         padding: 10px 0px 10px 15px;
-        margin: 0 10px 5px 10px;
+        margin: 5px 10px 5px 10px;
         border-bottom: 1px solid #ccc;
         background-color: white;
         box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
@@ -359,6 +359,8 @@ header {
         .content {
           display: inline-block;
           width: 80%;
+          position: relative;
+
           .user {
             display: inline-block;
             width: 90%;
@@ -374,13 +376,36 @@ header {
               font-size: 14px;
             }
           }
-          .sentiment {
-            display: inline-block;
-            width: 10%;
-            border-radius: 50%;
 
-            .positive & {
-              background-color: $positive;
+          .sentiment {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            display: inline-block;            
+
+            &.positive {
+              width: 0;
+              height: 0;
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid $positive;
+            }
+
+            &.neutral,
+            &.null {
+              height: 10px;
+              width: 10px;
+              border-radius: 50%;
+              background-color: $neutral;
+
+            }
+
+            &.negative {
+              width: 0;
+              height: 0;
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-top: 10px solid $negative;
             }
           }
 

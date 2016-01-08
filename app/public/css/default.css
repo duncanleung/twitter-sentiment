@@ -319,7 +319,7 @@ header nav ul li a:hover:after {
 /* line 343, default.scss */
 .results .stream .tweet-list .tweet-card {
   padding: 10px 0px 10px 15px;
-  margin: 0 10px 5px 10px;
+  margin: 5px 10px 5px 10px;
   border-bottom: 1px solid #ccc;
   background-color: white;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -337,34 +337,55 @@ header nav ul li a:hover:after {
 .results .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
+  position: relative;
 }
-/* line 362, default.scss */
+/* line 364, default.scss */
 .results .stream .tweet-list .tweet-card .content .user {
   display: inline-block;
   width: 90%;
 }
-/* line 366, default.scss */
+/* line 368, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .name {
   font-size: 14px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
 }
-/* line 373, default.scss */
+/* line 375, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .username {
   font-size: 14px;
 }
-/* line 377, default.scss */
+/* line 380, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment {
+  position: absolute;
+  top: 5px;
+  right: 0;
   display: inline-block;
-  width: 10%;
+}
+/* line 386, default.scss */
+.results .stream .tweet-list .tweet-card .content .sentiment.positive {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid green;
+}
+/* line 394, default.scss */
+.results .stream .tweet-list .tweet-card .content .sentiment.neutral, .results .stream .tweet-list .tweet-card .content .sentiment.null {
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
+  background-color: gray;
 }
-/* line 382, default.scss */
-.positive .results .stream .tweet-list .tweet-card .content .sentiment {
-  background-color: green;
+/* line 403, default.scss */
+.results .stream .tweet-list .tweet-card .content .sentiment.negative {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid red;
 }
-/* line 387, default.scss */
+/* line 412, default.scss */
 .results .stream .tweet-list .tweet-card .content .text {
   font-size: 12px;
 }

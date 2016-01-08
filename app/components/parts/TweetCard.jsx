@@ -14,7 +14,7 @@ var TweetCard = React.createClass({
             <span className="name">{this.props.tweet.user.name}</span>
             <span className="username">@{this.props.tweet.user.screen_name}</span>
           </div>
-          <div className="sentiment"></div>
+          <div className={"sentiment " + this.props.tweet.sentiment}></div>
           <div className="text">{this.props.tweet.text}</div>
         </div>
       </div>
