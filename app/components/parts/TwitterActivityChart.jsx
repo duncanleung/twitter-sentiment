@@ -37,22 +37,22 @@ var TwitterActivityChart = React.createClass({
           <div className="total">
             <h3>Total Tweets</h3>
             <div className="total-tweets"></div>
-            <div>{ this.props.totalTweets.total }</div>
+            <div className="counter">{ this.props.totalTweets.total }</div>
           </div>
           <div className="total">
             <h3>Positive Tweets</h3>
             <div className="total-positive"></div>
-            <div>{ this.props.totalTweets.posTotal }</div>
+            <div className="counter">{ this.props.totalTweets.posTotal }</div>
           </div>
           <div className="total">
             <h3>Neutral Tweets</h3>
             <div className="total-neutral"></div>
-            <div>{ this.props.totalTweets.neutTotal }</div>
+            <div className="counter">{ this.props.totalTweets.neutTotal }</div>
           </div>
           <div className="total">
             <h3>Negative Tweets</h3>
             <div className="total-negative"></div>
-            <div>{ this.props.totalTweets.negTotal }</div>
+            <div className="counter">{ this.props.totalTweets.negTotal }</div>
           </div>
         </div>
       </div>

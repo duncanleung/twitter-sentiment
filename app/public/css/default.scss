@@ -5,13 +5,19 @@ $primary-green: #2bb656;
 $primary-blue: #1d67a7;
 
 $background-dark-gray: #273333;
-$background-chart-gray: #e6e6e6;
+$background-header-gray: #b3b3b3;
+$background-chart-gray: #f7f7f7;
 $background-light-gray: #d5d5d5;
 
 $text-black: #4d4d4d;
 $text-gray: #999;
 $CTA-green: #59cb59;
 $CTA-hover-green: #218d43;
+
+$total: blue;
+$positive: green;
+$neutral: gray;
+$negative: red;
 
 $font-family: 'Open Sans', sans-serif;
 
@@ -217,7 +223,7 @@ header {
         border-radius: 5px 5px 0 0;
         font-size: 20px;
         text-align: center;
-        background-color: $background-light-gray;
+        background-color: $background-header-gray;
       }
 
       .line-chart {
@@ -266,7 +272,43 @@ header {
             font-size: 14px;
             text-align: center;
             background-color: $background-light-gray;
+          }
 
+          .total-tweets {
+            height: 5px;
+            background-color: $total;
+          }
+
+          .total-positive {
+            height: 5px;
+            background-color: $positive;
+          }
+
+          .total-neutral {
+            height: 5px;
+            background-color: $neutral;
+          }
+
+          .total-negative {
+            height: 5px;
+            background-color: $negative;
+          }
+
+          .counter {
+            padding: 10px 0;
+            color: $text-black;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            background-color: white;
+          }
+
+          .total-tweets + .counter {
+            border-radius: 0 0 0 5px;
+          }
+
+          .total-negative + .counter {
+            border-radius: 0 0 5px 0;
           }
         }
       }
@@ -288,7 +330,7 @@ header {
       border-radius: 5px 5px 0 0;
       font-size: 20px;
       text-align: center;
-      background-color: $background-light-gray;
+      background-color: $background-header-gray;
     }
 
     .tweet-list {
@@ -312,14 +354,15 @@ header {
           height: 50px;
           width: 50px;
           border-radius: 5px;
-
-
         }
 
         .content {
           display: inline-block;
           width: 80%;
           .user {
+            display: inline-block;
+            width: 90%;
+
             .name {
               font-size: 14px;
               color: $text-black;
@@ -329,6 +372,15 @@ header {
 
             .username {
               font-size: 14px;
+            }
+          }
+          .sentiment {
+            display: inline-block;
+            width: 10%;
+            border-radius: 50%;
+
+            .positive & {
+              background-color: $positive;
             }
           }
 

@@ -36864,7 +36864,7 @@
 	          React.createElement('div', { className: 'total-tweets' }),
 	          React.createElement(
 	            'div',
-	            null,
+	            { className: 'counter' },
 	            this.props.totalTweets.total
 	          )
 	        ),
@@ -36879,7 +36879,7 @@
 	          React.createElement('div', { className: 'total-positive' }),
 	          React.createElement(
 	            'div',
-	            null,
+	            { className: 'counter' },
 	            this.props.totalTweets.posTotal
 	          )
 	        ),
@@ -36894,7 +36894,7 @@
 	          React.createElement('div', { className: 'total-neutral' }),
 	          React.createElement(
 	            'div',
-	            null,
+	            { className: 'counter' },
 	            this.props.totalTweets.neutTotal
 	          )
 	        ),
@@ -36909,7 +36909,7 @@
 	          React.createElement('div', { className: 'total-negative' }),
 	          React.createElement(
 	            'div',
-	            null,
+	            { className: 'counter' },
 	            this.props.totalTweets.negTotal
 	          )
 	        )
@@ -41424,6 +41424,7 @@
 	  displayName: "TweetCard",
 
 	  render: function render() {
+
 	    return React.createElement(
 	      "div",
 	      { className: "tweet-card" },
@@ -41446,6 +41447,7 @@
 	            this.props.tweet.user.screen_name
 	          )
 	        ),
+	        React.createElement("div", { className: "sentiment" }),
 	        React.createElement(
 	          "div",
 	          { className: "text" },
