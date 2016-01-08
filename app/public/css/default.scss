@@ -301,6 +301,19 @@ header {
             font-weight: 600;
             text-align: center;
             background-color: white;
+            transition: all 0.2s ease-in-out;
+
+            &.positive {
+              background-color: $positive;
+            }
+
+            &.neutral {
+              background-color: $neutral;
+            }
+
+            &.negative {
+              background-color: $negative;
+            }
           }
 
           .total-tweets + .counter {

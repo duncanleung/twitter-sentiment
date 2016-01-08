@@ -70,7 +70,7 @@ var App = React.createClass({
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
     this.countTweets(tweet.sentiment);
 
-    console.log(tweet);
+    /*console.log(tweet);*/
   },
 
   //Inspect Sentiment Value. Increase count of Sentiment

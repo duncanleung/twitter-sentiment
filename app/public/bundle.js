@@ -19717,7 +19717,7 @@
 	    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
 	    this.countTweets(tweet.sentiment);
 
-	    console.log(tweet);
+	    /*console.log(tweet);*/
 	  },
 
 	  //Inspect Sentiment Value. Increase count of Sentiment
@@ -36821,6 +36821,7 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(1),
+	    ReactDOM = __webpack_require__(158),
 	    d3 = __webpack_require__(212);
 
 	var LineChart = __webpack_require__(218);
@@ -36848,6 +36849,30 @@
 	var TwitterActivityChart = React.createClass({
 	  displayName: 'TwitterActivityChart',
 
+	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+
+	    //Positive Highlighter
+	    if (Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
+	      this.refs.positive.classList.add('positive');
+	    } else {
+	      this.refs.positive.classList.remove('positive');
+	    }
+
+	    //Neutral Highlighter
+	    if (Number(this.refs.neutral.innerHTML) !== nextProps.totalTweets.neutTotal) {
+	      this.refs.neutral.classList.add('neutral');
+	    } else {
+	      this.refs.neutral.classList.remove('neutral');
+	    }
+
+	    //Negative Highlighter
+	    if (Number(this.refs.negative.innerHTML) !== nextProps.totalTweets.negTotal) {
+	      this.refs.negative.classList.add('negative');
+	    } else {
+	      this.refs.negative.classList.remove('negative');
+	    }
+	  },
+
 	  //{...settings} combines all props (aka. binnedTweets) into 'props'
 	  render: function render() {
 	    return React.createElement(
@@ -36873,7 +36898,7 @@
 	          React.createElement('div', { className: 'total-tweets' }),
 	          React.createElement(
 	            'div',
-	            { className: 'counter' },
+	            { ref: 'total', className: 'counter' },
 	            this.props.totalTweets.total
 	          )
 	        ),
@@ -36885,10 +36910,10 @@
 	            null,
 	            'Positive Tweets'
 	          ),
-	          React.createElement('div', { className: 'total-positive' }),
+	          React.createElement('div', { className: 'total-neutral' }),
 	          React.createElement(
 	            'div',
-	            { className: 'counter' },
+	            { ref: 'positive', className: 'counter' },
 	            this.props.totalTweets.posTotal
 	          )
 	        ),
@@ -36903,7 +36928,7 @@
 	          React.createElement('div', { className: 'total-neutral' }),
 	          React.createElement(
 	            'div',
-	            { className: 'counter' },
+	            { ref: 'neutral', className: 'counter' },
 	            this.props.totalTweets.neutTotal
 	          )
 	        ),
@@ -36918,7 +36943,7 @@
 	          React.createElement('div', { className: 'total-negative' }),
 	          React.createElement(
 	            'div',
-	            { className: 'counter' },
+	            { ref: 'negative', className: 'counter' },
 	            this.props.totalTweets.negTotal
 	          )
 	        )
