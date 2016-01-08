@@ -16,10 +16,10 @@ var App = React.createClass({
           keyword: '',
           initTimestamp: '',
           collectedTweets: [],
-          binnedTweets: [
-            {numTweets: 0, posTweets: 0,
-              negTweets: 0, neutTweets: 0,
-              timeBin: 5}]
+          binnedTweets: [{numTweets: 0, posTweets: 0,
+              negTweets: 0, neutTweets: 0, timeBin: 5}],
+          totalTweets: {total: 0, posTotal: 0,
+              negTotal: 0, neutTotal: 0}
       };
   },
 
@@ -59,8 +59,31 @@ var App = React.createClass({
     
     this.setState({ collectedTweets: newTweets });
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
+    this.countTweets(tweet.sentiment);
 
     // console.log(tweet.sentiment);
+  },
+
+  //Inspect Sentiment Value. Increase count of Sentiment
+  //Update the state of totalTweets
+  countTweets: function(sentiment) {
+    var totalTweets = this.state.totalTweets;
+    var newTotal = totalTweets;
+
+    if(sentiment == "positive") {
+        totalTweets.posTotal++;
+        totalTweets.total++;
+        this.setState({ totalTweets: newTotal });
+
+      } else if(sentiment == "negative") {
+        totalTweets.negTotal++;
+        totalTweets.total++;
+        this.setState({ totalTweets: newTotal });
+      } else {
+        totalTweets.neutTotal++;
+        totalTweets.total++;
+        this.setState({ totalTweets: newTotal });
+      }
   },
 
   //Push Tweet Counts into Bins: 5sec, 10sec, etc.
@@ -84,11 +107,11 @@ var App = React.createClass({
         this.setState({ binnedTweets: newBinnedTweets });
 
       } else if(sentiment == "negative") {
-          newBinnedTweets[binIndex].negTweets++;
-          this.setState({ binnedTweets: newBinnedTweets });
+        newBinnedTweets[binIndex].negTweets++;
+        this.setState({ binnedTweets: newBinnedTweets });
       } else {
-          newBinnedTweets[binIndex].neutTweets++;
-          this.setState({ binnedTweets: newBinnedTweets });
+        newBinnedTweets[binIndex].neutTweets++;
+        this.setState({ binnedTweets: newBinnedTweets });
       }
 
     } else {
@@ -100,11 +123,11 @@ var App = React.createClass({
         this.setState({ binnedTweets: newBinnedTweets });
 
       } else if(sentiment == "negative") {
-          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin+=5 });
-          this.setState({ binnedTweets: newBinnedTweets });
+        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin+=5 });
+        this.setState({ binnedTweets: newBinnedTweets });
       } else {
-          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin+=5 });
-          this.setState({ binnedTweets: newBinnedTweets });
+        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin+=5 });
+        this.setState({ binnedTweets: newBinnedTweets });
       }
     }
   },
@@ -119,7 +142,7 @@ var App = React.createClass({
     return (
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
-        <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets }/>
+        <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets } totalTweets={ this.state.totalTweets } />
       </div>
     );
   }

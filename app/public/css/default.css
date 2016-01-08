@@ -93,7 +93,7 @@ header nav ul li a:hover:after {
 ======================== */
 /* line 110, default.scss */
 .hero {
-  height: 100vh;
+  height: 700px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -164,94 +164,130 @@ header nav ul li a:hover:after {
   border-color: #218d43;
 }
 
-/* Results Styles
+/* Results Section Styles
 ======================== */
 /* line 186, default.scss */
 .results {
-  height: 100vh;
+  height: 700px;
+  /* Twitter Stream Styles
+  ======================== */
 }
-/* line 190, default.scss */
+/* line 192, default.scss */
 .results .dashboard {
-  height: 100vh;
-  padding: 20px 0;
+  height: 700px;
   overflow-y: hidden;
-  background-color: #e6e6e6;
+  background-color: #273333;
+  /* Activity Chart Styles
+  ======================== */
 }
-/* line 196, default.scss */
+/* line 197, default.scss */
 .results .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;
 }
-/* line 205, default.scss */
-.results .dashboard .twitter-activity-chart h4 {
-  text-align: center;
+/* line 206, default.scss */
+.results .dashboard .twitter-activity {
+  width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
 }
-/* line 209, default.scss */
-.results .dashboard .twitter-activity-chart .line-chart {
-  background-color: #f7f7f7;
+/* line 212, default.scss */
+.results .dashboard .twitter-activity h4 {
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 15px 5px 10px;
+  color: #4d4d4d;
+  border-radius: 5px 5px 0 0;
+  font-size: 20px;
+  text-align: center;
+  background-color: #d5d5d5;
+}
+/* line 223, default.scss */
+.results .dashboard .twitter-activity .line-chart {
+  background-color: #e6e6e6;
   display: block;
   margin: auto;
-  border-radius: 5px 5px 0 0;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 216, default.scss */
-.results .dashboard .twitter-activity-chart .line-chart .gridline path,
-.results .dashboard .twitter-activity-chart .line-chart .gridline line {
+/* line 229, default.scss */
+.results .dashboard .twitter-activity .line-chart .gridline path,
+.results .dashboard .twitter-activity .line-chart .gridline line {
   fill: none;
   stroke: #ccc;
   shape-rendering: crispEdges;
 }
-/* line 223, default.scss */
-.results .dashboard .twitter-activity-chart .line-chart .axis path,
-.results .dashboard .twitter-activity-chart .line-chart .axis line {
+/* line 236, default.scss */
+.results .dashboard .twitter-activity .line-chart .axis path,
+.results .dashboard .twitter-activity .line-chart .axis line {
   fill: none;
   stroke: #273333;
   shape-rendering: crispEdges;
 }
-/* line 230, default.scss */
-.results .dashboard .twitter-activity-chart .line-chart .axis text {
+/* line 243, default.scss */
+.results .dashboard .twitter-activity .line-chart .axis text {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
-/* line 235, default.scss */
-.results .dashboard .twitter-activity-chart .line-chart .axis text.x-label,
-.results .dashboard .twitter-activity-chart .line-chart .axis text.y-label {
+/* line 248, default.scss */
+.results .dashboard .twitter-activity .line-chart .axis text.x-label,
+.results .dashboard .twitter-activity .line-chart .axis text.y-label {
   font-family: "Open Sans", sans-serif;
   fill: #999;
 }
-/* line 244, default.scss */
+/* line 255, default.scss */
+.results .dashboard .twitter-activity .tweet-counters {
+  display: flex;
+  border-top: 1px solid #273333;
+}
+/* line 259, default.scss */
+.results .dashboard .twitter-activity .tweet-counters .total {
+  width: 100%;
+}
+/* line 262, default.scss */
+.results .dashboard .twitter-activity .tweet-counters .total h3 {
+  margin: 0;
+  padding: 10px 0;
+  color: #4d4d4d;
+  font-size: 14px;
+  text-align: center;
+  background-color: #d5d5d5;
+}
+/* line 279, default.scss */
 .results .stream {
-  height: 100vh;
+  height: 700px;
   background-color: #273333;
   padding: 0 25px 0 15px;
 }
-/* line 249, default.scss */
+/* line 284, default.scss */
 .results .stream h1 {
   margin-bottom: 0;
   padding: 15px 5px 10px;
   color: #4d4d4d;
   border-radius: 5px 5px 0 0;
-  font-size: 32px;
+  font-size: 20px;
   text-align: center;
-  background-color: #e6e6e6;
+  background-color: #d5d5d5;
 }
-/* line 259, default.scss */
+/* line 294, default.scss */
 .results .stream .tweet-list {
-  height: 90vh;
+  height: 600px;
   background-color: #e6e6e6;
   padding-bottom: 20px;
   overflow-y: scroll;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 265, default.scss */
+/* line 301, default.scss */
 .results .stream .tweet-list .tweet-card {
   padding: 10px 0px 10px 15px;
   margin: 0 10px 5px 10px;
   border-bottom: 1px solid #ccc;
   background-color: white;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 271, default.scss */
+/* line 308, default.scss */
 .results .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -260,23 +296,23 @@ header nav ul li a:hover:after {
   width: 50px;
   border-radius: 5px;
 }
-/* line 282, default.scss */
+/* line 319, default.scss */
 .results .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
 }
-/* line 286, default.scss */
+/* line 323, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .name {
   font-size: 14px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
 }
-/* line 293, default.scss */
+/* line 330, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .username {
   font-size: 14px;
 }
-/* line 298, default.scss */
+/* line 335, default.scss */
 .results .stream .tweet-list .tweet-card .content .text {
   font-size: 12px;
 }

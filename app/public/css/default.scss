@@ -5,8 +5,8 @@ $primary-green: #2bb656;
 $primary-blue: #1d67a7;
 
 $background-dark-gray: #273333;
-$background-chart-gray: #f7f7f7;
-$background-light-gray: #e6e6e6;
+$background-chart-gray: #e6e6e6;
+$background-light-gray: #d5d5d5;
 
 $text-black: #4d4d4d;
 $text-gray: #999;
@@ -108,7 +108,7 @@ header {
 /* Hero and Search Bar Styles
 ======================== */
 .hero {
-  height: 100vh;
+  height: 700px;
   background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -181,17 +181,18 @@ header {
 }
 
 
-/* Results Styles
+/* Results Section Styles
 ======================== */
 .results {
-  height: 100vh;
+  height: 700px;
+
+
 
 
   .dashboard {
-    height: 100vh;
-    padding: 20px 0;
+    height: 700px;
     overflow-y: hidden;
-    background-color: $background-light-gray;
+    background-color: $background-dark-gray;
 
     h1 {
       color: $text-black;
@@ -200,17 +201,29 @@ header {
       margin-bottom: 30px;
     }
 
-    .twitter-activity-chart {
-      
+    /* Activity Chart Styles
+    ======================== */
+    .twitter-activity {
+      width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+      display: block;
+
       h4 {
+        margin-top: 20px;
+        margin-bottom: 0;
+        padding: 15px 5px 10px;
+        color: $text-black;
+        border-radius: 5px 5px 0 0;
+        font-size: 20px;
         text-align: center;
+        background-color: $background-light-gray;
       }
 
       .line-chart {
         background-color: $background-chart-gray;
         display: block;
         margin: auto;
-        border-radius: 5px 5px 0 0;
         box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
 
         .gridline path,
@@ -238,11 +251,33 @@ header {
           fill: $text-gray;
         }
       }
+
+      .tweet-counters {
+        display: flex;
+        border-top: 1px solid $background-dark-gray;
+
+        .total {
+          width: 100%;
+          
+          h3 {
+            margin: 0;
+            padding: 10px 0;
+            color: $text-black;
+            font-size: 14px;
+            text-align: center;
+            background-color: $background-light-gray;
+
+          }
+        }
+      }
+
     }
   }
-
+  
+  /* Twitter Stream Styles
+  ======================== */
   .stream {
-    height: 100vh;
+    height: 700px;
     background-color: $background-dark-gray;
     padding: 0 25px 0 15px;
 
@@ -251,22 +286,24 @@ header {
       padding: 15px 5px 10px;
       color: $text-black;
       border-radius: 5px 5px 0 0;
-      font-size: 32px;
+      font-size: 20px;
       text-align: center;
       background-color: $background-light-gray;
     }
 
     .tweet-list {
-      height: 90vh;
-      background-color: $background-light-gray;
+      height: 600px;
+      background-color: $background-chart-gray;
       padding-bottom: 20px;
       overflow-y: scroll;
+      box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
 
       .tweet-card {
         padding: 10px 0px 10px 15px;
         margin: 0 10px 5px 10px;
         border-bottom: 1px solid #ccc;
         background-color: white;
+        box-shadow: 0 0 1px 1px rgba(0,0,0, 0.2);
 
         .profile-image {
           display: inline-block;

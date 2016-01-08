@@ -19664,8 +19664,9 @@
 	      initTimestamp: '',
 	      collectedTweets: [],
 	      binnedTweets: [{ numTweets: 0, posTweets: 0,
-	        negTweets: 0, neutTweets: 0,
-	        timeBin: 5 }]
+	        negTweets: 0, neutTweets: 0, timeBin: 5 }],
+	      totalTweets: { total: 0, posTotal: 0,
+	        negTotal: 0, neutTotal: 0 }
 	    };
 	  },
 
@@ -19705,8 +19706,30 @@
 
 	    this.setState({ collectedTweets: newTweets });
 	    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
+	    this.countTweets(tweet.sentiment);
 
 	    // console.log(tweet.sentiment);
+	  },
+
+	  //Inspect Sentiment Value. Increase count of Sentiment
+	  //Update the state of totalTweets
+	  countTweets: function countTweets(sentiment) {
+	    var totalTweets = this.state.totalTweets;
+	    var newTotal = totalTweets;
+
+	    if (sentiment == "positive") {
+	      totalTweets.posTotal++;
+	      totalTweets.total++;
+	      this.setState({ totalTweets: newTotal });
+	    } else if (sentiment == "negative") {
+	      totalTweets.negTotal++;
+	      totalTweets.total++;
+	      this.setState({ totalTweets: newTotal });
+	    } else {
+	      totalTweets.neutTotal++;
+	      totalTweets.total++;
+	      this.setState({ totalTweets: newTotal });
+	    }
 	  },
 
 	  //Push Tweet Counts into Bins: 5sec, 10sec, etc.
@@ -19763,7 +19786,7 @@
 	      'div',
 	      null,
 	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
-	      React.createElement(Results, { collectedTweets: this.state.collectedTweets, binnedTweets: this.state.binnedTweets })
+	      React.createElement(Results, { collectedTweets: this.state.collectedTweets, binnedTweets: this.state.binnedTweets, totalTweets: this.state.totalTweets })
 	    );
 	  }
 	});
@@ -36746,7 +36769,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'results row' },
-	      React.createElement(Dashboard, { binnedTweets: this.props.binnedTweets }),
+	      React.createElement(Dashboard, { binnedTweets: this.props.binnedTweets, totalTweets: this.props.totalTweets }),
 	      React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
 	    );
 	  }
@@ -36773,12 +36796,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'dashboard col-sm-8' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Twitterment Dashboard'
-	      ),
-	      React.createElement(TwitterActivityChart, { binnedTweets: this.props.binnedTweets })
+	      React.createElement(TwitterActivityChart, { binnedTweets: this.props.binnedTweets, totalTweets: this.props.totalTweets })
 	    );
 	  }
 	});
@@ -36802,7 +36820,7 @@
 	  chartWidth: 800,
 	  chartHeight: 400,
 	  margin: {
-	    top: 60,
+	    top: 30,
 	    bottom: 60,
 	    left: 60,
 	    right: 40
@@ -36814,6 +36832,9 @@
 	  height: chartProps.chartHeight - chartProps.margin.top - chartProps.margin.bottom
 	};
 
+	/*totalTweets: {total: 0, posTotal: 0,
+	              negTotal: 0, neutTotal: 0}*/
+
 	//TwitterActivityChart Is the LineChart Container
 	var TwitterActivityChart = React.createClass({
 	  displayName: 'TwitterActivityChart',
@@ -36822,13 +36843,77 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'twitter-activity-chart' },
+	      { className: 'twitter-activity' },
 	      React.createElement(
 	        'h4',
 	        null,
 	        'Twitter Activity'
 	      ),
-	      React.createElement(LineChart, _extends({ binnedTweets: this.props.binnedTweets }, chartProps, chartArea))
+	      React.createElement(LineChart, _extends({ binnedTweets: this.props.binnedTweets }, chartProps, chartArea)),
+	      React.createElement(
+	        'div',
+	        { className: 'tweet-counters' },
+	        React.createElement(
+	          'div',
+	          { className: 'total' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'Total Tweets'
+	          ),
+	          React.createElement('div', { className: 'total-tweets' }),
+	          React.createElement(
+	            'div',
+	            null,
+	            this.props.totalTweets.total
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'total' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'Positive Tweets'
+	          ),
+	          React.createElement('div', { className: 'total-positive' }),
+	          React.createElement(
+	            'div',
+	            null,
+	            this.props.totalTweets.posTotal
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'total' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'Neutral Tweets'
+	          ),
+	          React.createElement('div', { className: 'total-neutral' }),
+	          React.createElement(
+	            'div',
+	            null,
+	            this.props.totalTweets.neutTotal
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'total' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'Negative Tweets'
+	          ),
+	          React.createElement('div', { className: 'total-negative' }),
+	          React.createElement(
+	            'div',
+	            null,
+	            this.props.totalTweets.negTotal
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
@@ -41097,7 +41182,7 @@
 	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
 	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "gray" }),
 	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" }),
-	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "sky blue" })
+	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" })
 	    );
 	  }
 	});
@@ -41188,7 +41273,8 @@
 
 	  componentDidMount: function componentDidMount() {
 	    this.renderAxis();
-	    this.renderLabels();
+	    this.renderXLabel();
+	    this.renderYLabel();
 	  },
 
 	  //Use D3 to Create Axis on 'this DOM Node'
@@ -41201,15 +41287,16 @@
 	    d3.select(node).call(axis);
 	  },
 
-	  renderLabels: function renderLabels() {
+	  renderXLabel: function renderXLabel() {
 	    var node = this.getDOMNode();
 
-	    var xLabel = d3.select(".x.axis").append("text").text("Time in Seconds Since Search Started").classed("x-label", true).attr("x", 350).attr("y", 50).style("text-anchor", "middle");
+	    var xLabel = d3.select(".x.axis").append("text").text("Seconds Since Search").classed("x-label", true).attr("x", 350).attr("y", 40).style("text-anchor", "middle");
+	  },
 
-	    var yLabel = d3.select(".y.axis").append("text").text("Number of Tweets").classed("y-label", true).attr("x", -(this.props.height / 2)).attr("y", -30).style("text-anchor", "middle").attr("transform", "rotate(-90)");
+	  renderYLabel: function renderYLabel() {
+	    var node = this.getDOMNode();
 
-	    d3.select(node).call(xLabel);
-	    d3.select(node).call(yLabel);
+	    var yLabel = d3.select(".y.axis").append("text").text("Number of Tweets").classed("y-label", true).attr("x", -(this.props.height / 2)).attr("y", -35).style("text-anchor", "middle").attr("transform", "rotate(-90)");
 	  },
 
 	  //Use React to Append g Element (Usually D3 Handles This)
