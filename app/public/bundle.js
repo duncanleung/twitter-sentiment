@@ -56818,7 +56818,7 @@
 	          { className: 'input-group-btn' },
 	          React.createElement(
 	            'button',
-	            { id: 'submit', type: 'button', className: 'btn btn-default' },
+	            { id: 'submit', className: 'btn btn-default', type: 'button', onClick: this.search },
 	            'Search'
 	          )
 	        )
@@ -56922,24 +56922,30 @@
 
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 	    //Positive Highlighter
-	    if (Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
+	    if (Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
 	      this.refs.positivearrow.classList.add('positive');
+	      this.refs.positivecounter.classList.add('positive');
 	    } else {
 	      this.refs.positivearrow.classList.remove('positive');
+	      this.refs.positivecounter.classList.remove('positive');
 	    }
 
 	    //Neutral Highlighter
-	    if (Number(this.refs.neutral.innerHTML) !== nextProps.totalTweets.neutTotal) {
+	    if (Number(this.refs.neutralcounter.innerHTML) !== nextProps.totalTweets.neutTotal) {
 	      this.refs.neutralarrow.classList.add('neutral');
+	      this.refs.neutralcounter.classList.add('neutral');
 	    } else {
 	      this.refs.neutralarrow.classList.remove('neutral');
+	      this.refs.neutralcounter.classList.remove('neutral');
 	    }
 
 	    //Negative Highlighter
-	    if (Number(this.refs.negative.innerHTML) !== nextProps.totalTweets.negTotal) {
+	    if (Number(this.refs.negativecounter.innerHTML) !== nextProps.totalTweets.negTotal) {
 	      this.refs.negativearrow.classList.add('negative');
+	      this.refs.negativecounter.classList.add('negative');
 	    } else {
 	      this.refs.negativearrow.classList.remove('negative');
+	      this.refs.negativecounter.classList.remove('negative');
 	    }
 	  },
 
@@ -56983,7 +56989,7 @@
 	          React.createElement('div', { className: 'total-positive' }),
 	          React.createElement(
 	            'div',
-	            { ref: 'positive', className: 'counter' },
+	            { ref: 'positivecounter', className: 'counter' },
 	            this.props.totalTweets.posTotal
 	          ),
 	          React.createElement('div', { ref: 'positivearrow', className: 'arrow' })
@@ -56999,7 +57005,7 @@
 	          React.createElement('div', { className: 'total-neutral' }),
 	          React.createElement(
 	            'div',
-	            { ref: 'neutral', className: 'counter' },
+	            { ref: 'neutralcounter', className: 'counter' },
 	            this.props.totalTweets.neutTotal
 	          ),
 	          React.createElement('div', { ref: 'neutralarrow', className: 'arrow' })
@@ -57015,7 +57021,7 @@
 	          React.createElement('div', { className: 'total-negative' }),
 	          React.createElement(
 	            'div',
-	            { ref: 'negative', className: 'counter' },
+	            { ref: 'negativecounter', className: 'counter' },
 	            this.props.totalTweets.negTotal
 	          ),
 	          React.createElement('div', { ref: 'negativearrow', className: 'arrow' })
@@ -57157,7 +57163,7 @@
 	      cy: this.props.yScale(data.neutTweets),
 	      r: 4,
 	      fill: "none",
-	      stroke: "gray",
+	      stroke: "sandybrown",
 	      strokeWidth: 2,
 	      key: uuid.v4()
 	    };
@@ -57521,7 +57527,7 @@
 	      'g',
 	      null,
 	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
-	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "gray" }),
+	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "sandybrown" }),
 	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" }),
 	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" })
 	    );

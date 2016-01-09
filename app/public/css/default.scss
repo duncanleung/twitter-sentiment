@@ -16,7 +16,7 @@ $CTA-hover-green: #218d43;
 
 $total: blue;
 $positive: green;
-$neutral: gray;
+$neutral: sandybrown;
 $negative: red;
 
 $font-family: 'Open Sans', sans-serif;
@@ -299,18 +299,20 @@ header {
             font-weight: 600;
             text-align: center;
             background-color: white;
+            transition: all 0.2s ease-in-out;
 
-/*             .positive {
-              background-color: $positive;
+            &.positive {
+              color: $positive;
             }
 
-            .neutral {
-              background-color: $neutral;
+            
+            &.neutral {
+              color: $neutral;
             }
 
-            .negative {
-              background-color: $negative;
-            } */
+            &.negative {
+              color: $negative;
+            }
           }
 
           .total-tweets + .counter {

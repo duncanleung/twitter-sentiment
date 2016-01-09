@@ -31,24 +31,30 @@ var TwitterActivityChart = React.createClass({
 
   componentWillUpdate: function(nextProps, nextState) {
     //Positive Highlighter
-    if(Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
+    if(Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
       this.refs.positivearrow.classList.add('positive');
+      this.refs.positivecounter.classList.add('positive');
     } else {
       this.refs.positivearrow.classList.remove('positive');
+      this.refs.positivecounter.classList.remove('positive');
     }
 
     //Neutral Highlighter
-    if(Number(this.refs.neutral.innerHTML) !== nextProps.totalTweets.neutTotal) {
+    if(Number(this.refs.neutralcounter.innerHTML) !== nextProps.totalTweets.neutTotal) {
       this.refs.neutralarrow.classList.add('neutral');
+      this.refs.neutralcounter.classList.add('neutral');
     } else {
       this.refs.neutralarrow.classList.remove('neutral');
+      this.refs.neutralcounter.classList.remove('neutral');
     }
 
     //Negative Highlighter
-    if(Number(this.refs.negative.innerHTML) !== nextProps.totalTweets.negTotal) {
+    if(Number(this.refs.negativecounter.innerHTML) !== nextProps.totalTweets.negTotal) {
       this.refs.negativearrow.classList.add('negative');
+      this.refs.negativecounter.classList.add('negative');
     } else {
       this.refs.negativearrow.classList.remove('negative');
+      this.refs.negativecounter.classList.remove('negative');
     }
   },
 
@@ -67,19 +73,19 @@ var TwitterActivityChart = React.createClass({
           <div className="total">
             <h3>Positive Tweets</h3>
             <div className="total-positive"></div>
-            <div ref="positive" className="counter">{ this.props.totalTweets.posTotal }</div>
+            <div ref="positivecounter" className="counter">{ this.props.totalTweets.posTotal }</div>
             <div ref="positivearrow" className="arrow"></div>
           </div>
           <div className="total">
             <h3>Neutral Tweets</h3>
             <div className="total-neutral"></div>
-            <div ref="neutral" className="counter">{ this.props.totalTweets.neutTotal }</div>
+            <div ref="neutralcounter" className="counter">{ this.props.totalTweets.neutTotal }</div>
             <div ref="neutralarrow" className="arrow"></div>
           </div>
           <div className="total">
             <h3>Negative Tweets</h3>
             <div className="total-negative"></div>
-            <div ref="negative" className="counter">{ this.props.totalTweets.negTotal }</div>
+            <div ref="negativecounter" className="counter">{ this.props.totalTweets.negTotal }</div>
             <div ref="negativearrow" className="arrow"></div>
           </div>
         </div>

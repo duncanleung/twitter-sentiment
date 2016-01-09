@@ -17,7 +17,7 @@ var SearchForm = React.createClass({
             <input id="search" ref="keyword" type="search" placeholder="Enter Brand or Keyword"
                     autoFocus="autofocus" className="form-control" />
             <span className="input-group-btn">
-              <button id="submit" type="button" className="btn btn-default">Search</button>
+              <button id="submit" className="btn btn-default" type="button" onClick= { this.search }>Search</button>
             </span>
           </form>
       </div>

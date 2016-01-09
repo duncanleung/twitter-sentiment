@@ -32,7 +32,7 @@ var DataPoints = React.createClass({
       cy: this.props.yScale(data.neutTweets),
       r: 4,
       fill: "none",
-      stroke: "gray",
+      stroke: "sandybrown",
       strokeWidth: 2,
       key: uuid.v4()
     };

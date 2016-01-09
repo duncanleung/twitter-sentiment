@@ -50,7 +50,7 @@ var LinePath = React.createClass({
     return (
       <g>
         <Line path={ pathNegative(this.props.binnedTweets) } stroke={ "red" }/>
-        <Line path={ pathNeutral(this.props.binnedTweets) } stroke={ "gray" }/>
+        <Line path={ pathNeutral(this.props.binnedTweets) } stroke={ "sandybrown" }/>
         <Line path={ pathPositive(this.props.binnedTweets) } stroke={ "green" }/>
         <Line path={ pathTotal(this.props.binnedTweets) } stroke={ "blue" }/>
       </g>
