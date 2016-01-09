@@ -192,9 +192,6 @@ header {
 .results {
   height: 700px;
 
-
-
-
   .dashboard {
     height: 700px;
     overflow-y: hidden;
@@ -264,6 +261,7 @@ header {
 
         .total {
           width: 100%;
+          position: relative;
           
           h3 {
             margin: 0;
@@ -295,25 +293,24 @@ header {
           }
 
           .counter {
-            padding: 10px 0;
-            color: $text-black;
-            font-size: 14px;
+            padding: 5px 0;
+            color: #737373;
+            font-size: 28px;
             font-weight: 600;
             text-align: center;
             background-color: white;
-            transition: all 0.2s ease-in-out;
 
-            &.positive {
+/*             .positive {
               background-color: $positive;
             }
 
-            &.neutral {
+            .neutral {
               background-color: $neutral;
             }
 
-            &.negative {
+            .negative {
               background-color: $negative;
-            }
+            } */
           }
 
           .total-tweets + .counter {
@@ -322,6 +319,31 @@ header {
 
           .total-negative + .counter {
             border-radius: 0 0 5px 0;
+          }
+
+          .arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            transition: all 0.2s ease-in-out;
+
+            &.positive {
+              border-bottom: 10px solid $positive;
+            }
+
+            &.neutral,
+            &.null {
+              border-bottom: 10px solid $neutral;
+            }
+
+            &.negative {
+              border-bottom: 10px solid $negative;
+            }
           }
         }
       }

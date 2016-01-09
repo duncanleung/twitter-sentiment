@@ -7,7 +7,7 @@ var LineChart = require('./chart/LineChart.jsx');
 
 var chartProps = {
   chartWidth: 800,
-  chartHeight: 400,
+  chartHeight: 350,
   margin: {
     top: 30,
     bottom: 60,
@@ -32,23 +32,23 @@ var TwitterActivityChart = React.createClass({
   componentWillUpdate: function(nextProps, nextState) {
     //Positive Highlighter
     if(Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
-      this.refs.positive.classList.add('positive');
+      this.refs.positivearrow.classList.add('positive');
     } else {
-      this.refs.positive.classList.remove('positive');
+      this.refs.positivearrow.classList.remove('positive');
     }
 
     //Neutral Highlighter
     if(Number(this.refs.neutral.innerHTML) !== nextProps.totalTweets.neutTotal) {
-      this.refs.neutral.classList.add('neutral');
+      this.refs.neutralarrow.classList.add('neutral');
     } else {
-      this.refs.neutral.classList.remove('neutral');
+      this.refs.neutralarrow.classList.remove('neutral');
     }
 
     //Negative Highlighter
     if(Number(this.refs.negative.innerHTML) !== nextProps.totalTweets.negTotal) {
-      this.refs.negative.classList.add('negative');
+      this.refs.negativearrow.classList.add('negative');
     } else {
-      this.refs.negative.classList.remove('negative');
+      this.refs.negativearrow.classList.remove('negative');
     }
   },
 
@@ -68,16 +68,19 @@ var TwitterActivityChart = React.createClass({
             <h3>Positive Tweets</h3>
             <div className="total-positive"></div>
             <div ref="positive" className="counter">{ this.props.totalTweets.posTotal }</div>
+            <div ref="positivearrow" className="arrow"></div>
           </div>
           <div className="total">
             <h3>Neutral Tweets</h3>
             <div className="total-neutral"></div>
             <div ref="neutral" className="counter">{ this.props.totalTweets.neutTotal }</div>
+            <div ref="neutralarrow" className="arrow"></div>
           </div>
           <div className="total">
             <h3>Negative Tweets</h3>
             <div className="total-negative"></div>
             <div ref="negative" className="counter">{ this.props.totalTweets.negTotal }</div>
+            <div ref="negativearrow" className="arrow"></div>
           </div>
         </div>
         <div className="overall-sentiment">
