@@ -10,9 +10,11 @@ var Results = React.createClass({
   
   render: function() {
     return(
-      <div className="results row">
-        <Dashboard binnedTweets={ this.props.binnedTweets } totalTweets={ this.props.totalTweets } />
-        <TwitterStream collectedTweets={this.props.collectedTweets} />
+      <div className="results container-fluid">
+        <div className="row">
+          <Dashboard binnedTweets={ this.props.binnedTweets } totalTweets={ this.props.totalTweets } />
+          <TwitterStream collectedTweets={this.props.collectedTweets} />
+        </div>
       </div>
     );
   }

@@ -4,7 +4,7 @@ $primary-black: #1a1a1a;
 $primary-green: #2bb656;
 $primary-blue: #1d67a7;
 
-$background-dark-gray: #273333;
+$background-dark-gray: #1a252f;
 $background-header-gray: #b3b3b3;
 $background-chart-gray: #f7f7f7;
 $background-light-gray: #d5d5d5;
@@ -186,6 +186,116 @@ header {
   }
 }
 
+/* Technology Stack Section Styles
+======================== */
+.technology-stack {
+  height: 230px;
+  padding-bottom: 20px;
+  background-color: $background-dark-gray;
+  background-image: url('/img/tech-background.png');
+  background-size: 80%;
+  font-weight: 300;
+  font-size: 19px;
+  text-align: center;
+
+  .technologies-container {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+
+    .heading {
+      flex: 100%;
+      color: $text-gray;
+      margin-bottom: 30px;
+    }
+
+    .nodejs {
+      .nodejs-logo {
+        height: 120px;
+        width: 200px;
+        background-image: url("../img/logo/nodejs-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/nodejs.png");
+        }
+      }
+    }
+
+    .socketio {
+      .socketio-logo {
+        height: 120px;
+        width: 200px;
+        background-image: url("../img/logo/socketio-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/socketio.png");
+        }
+      }
+    }
+
+    .react {
+      .react-logo {
+        height: 120px;
+        width: 200px;
+        background-image: url("../img/logo/react-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/react.png");
+        }
+      }
+    }
+
+    .d3 {
+      padding-bottom: 10px;
+      .d3-logo {
+        height: 80px;
+        width: 80px;
+        background-image: url("../img/logo/d3-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/d3.png");
+        }
+      }
+    }
+
+    .twitter {
+      .twitter-logo {
+        height: 120px;
+        width: 250px;
+        background-image: url("../img/logo/twitter-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/twitter.png");
+        }
+      }
+    }
+
+  }
+}
 
 /* Results Section Styles
 ======================== */

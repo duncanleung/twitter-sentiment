@@ -19659,7 +19659,8 @@
 	    d3 = __webpack_require__(307);
 
 	var Hero = __webpack_require__(308),
-	    Results = __webpack_require__(310);
+	    TechStack = __webpack_require__(310),
+	    Results = __webpack_require__(311);
 
 	//App is the Main Container
 	var App = React.createClass({
@@ -19801,6 +19802,7 @@
 	      'div',
 	      null,
 	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
+	      React.createElement(TechStack, null),
 	      React.createElement(Results, { collectedTweets: this.state.collectedTweets, binnedTweets: this.state.binnedTweets, totalTweets: this.state.totalTweets })
 	    );
 	  }
@@ -56833,29 +56835,80 @@
 /* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(1);
 
-	var Dashboard = __webpack_require__(311),
-	    TwitterStream = __webpack_require__(321);
-
-	//Results Holds the Dashboard and TwitterStream Components
-	//Uses Dashboard.jsx and TwitterStream.jsx
-	var Results = React.createClass({
-	  displayName: 'Results',
+	var TechStack = React.createClass({
+	  displayName: "TechStack",
 
 	  render: function render() {
 	    return React.createElement(
-	      'div',
-	      { className: 'results row' },
-	      React.createElement(Dashboard, { binnedTweets: this.props.binnedTweets, totalTweets: this.props.totalTweets }),
-	      React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
+	      "div",
+	      { className: "technology-stack container-fluid" },
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "technologies-container col-sm-12" },
+	          React.createElement(
+	            "p",
+	            { className: "heading" },
+	            "Twitterment was built with these technologies:"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "nodejs" },
+	            React.createElement(
+	              "a",
+	              { href: "https://nodejs.org/en/" },
+	              React.createElement("div", { className: "nodejs-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "socketio" },
+	            React.createElement(
+	              "a",
+	              { href: "http://socket.io/" },
+	              React.createElement("div", { className: "socketio-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "react" },
+	            React.createElement(
+	              "a",
+	              { href: "https://facebook.github.io/react/index.html" },
+	              React.createElement("div", { className: "react-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "d3" },
+	            React.createElement(
+	              "a",
+	              { href: "http://d3js.org", target: "_blank" },
+	              React.createElement("div", { className: "d3-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "twitter" },
+	            React.createElement(
+	              "a",
+	              { href: "https://dev.twitter.com/streaming/overview" },
+	              React.createElement("div", { className: "twitter-logo" })
+	            )
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
 
-	module.exports = Results;
+	module.exports = TechStack;
 
 /***/ },
 /* 311 */
@@ -56865,7 +56918,39 @@
 
 	var React = __webpack_require__(1);
 
-	var TwitterActivityChart = __webpack_require__(312);
+	var Dashboard = __webpack_require__(312),
+	    TwitterStream = __webpack_require__(322);
+
+	//Results Holds the Dashboard and TwitterStream Components
+	//Uses Dashboard.jsx and TwitterStream.jsx
+	var Results = React.createClass({
+	  displayName: 'Results',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'results container-fluid' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(Dashboard, { binnedTweets: this.props.binnedTweets, totalTweets: this.props.totalTweets }),
+	        React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Results;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var TwitterActivityChart = __webpack_require__(313);
 
 	//Dashboard Holds the TwitterActivity Chart Component
 	//Uses TwitterActivityChart.jsx
@@ -56884,7 +56969,7 @@
 	module.exports = Dashboard;
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56895,7 +56980,7 @@
 	    ReactDOM = __webpack_require__(158),
 	    d3 = __webpack_require__(307);
 
-	var LineChart = __webpack_require__(313);
+	var LineChart = __webpack_require__(314);
 
 	var chartProps = {
 	  chartWidth: 800,
@@ -57044,7 +57129,7 @@
 	module.exports = TwitterActivityChart;
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57053,10 +57138,10 @@
 
 	var React = __webpack_require__(1);
 
-	var DataPoints = __webpack_require__(314),
-	    LinePath = __webpack_require__(316),
-	    XYAxes = __webpack_require__(318),
-	    GridLine = __webpack_require__(320);
+	var DataPoints = __webpack_require__(315),
+	    LinePath = __webpack_require__(317),
+	    XYAxes = __webpack_require__(319),
+	    GridLine = __webpack_require__(321);
 
 	//LineChart Holds All Data Points and the XYAxes
 	var LineChart = React.createClass({
@@ -57122,7 +57207,7 @@
 	module.exports = LineChart;
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57130,7 +57215,7 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(1),
-	    uuid = __webpack_require__(315);
+	    uuid = __webpack_require__(316);
 
 	//Datapoints Draws Each Tweet on the Chart
 	var DataPoints = React.createClass({
@@ -57202,7 +57287,7 @@
 	module.exports = DataPoints;
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(Buffer) {//     uuid.js
@@ -57481,7 +57566,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(201).Buffer))
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57489,7 +57574,7 @@
 	var React = __webpack_require__(1),
 	    d3 = __webpack_require__(307);
 
-	var Line = __webpack_require__(317);
+	var Line = __webpack_require__(318);
 
 	var LinePath = React.createClass({
 	  displayName: 'LinePath',
@@ -57537,7 +57622,7 @@
 	module.exports = LinePath;
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -57555,7 +57640,7 @@
 	module.exports = Line;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57564,7 +57649,7 @@
 
 	var React = __webpack_require__(1);
 
-	var Axis = __webpack_require__(319);
+	var Axis = __webpack_require__(320);
 
 	//XYAxes Holds the Separate X and Y Axis Components
 	var XYAxes = React.createClass({
@@ -57602,7 +57687,7 @@
 	module.exports = XYAxes;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57655,7 +57740,7 @@
 	module.exports = Axis;
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -57697,13 +57782,13 @@
 	module.exports = GridLine;
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(322);
+	    TweetList = __webpack_require__(323);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -57728,13 +57813,13 @@
 	module.exports = TwitterStream;
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(323);
+	    TweetCard = __webpack_require__(324);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
@@ -57758,7 +57843,7 @@
 	module.exports = TweetList;
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -4,6 +4,7 @@ var React = require('react'),
     d3 = require('d3');
 
 var Hero = require('./Hero.jsx'),
+    TechStack = require('./TechStack.jsx'),
     Results = require('./Results.jsx');
 
 
@@ -149,6 +150,7 @@ var App = React.createClass({
     return (
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
+        <TechStack />
         <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets } totalTweets={ this.state.totalTweets } />
       </div>
     );
