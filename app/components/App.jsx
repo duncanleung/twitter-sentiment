@@ -15,16 +15,7 @@ var App = React.createClass({
           status: 'disconnected',
           keyword: '',
           initTimestamp: '',
-          collectedTweets: [{
-            sentiment: "neutral",
-            text: "bla bla bla",
-            user: {
-              name: "Tomlinson",
-              profile_image_url_https: "https://pbs.twimg.com/profile_images/607143037026902017/euduoJij_normal.jpg",
-              screen_name: "Yaiza_06455"
-            }
-
-          }],
+          collectedTweets: [],
           binnedTweets: [{numTweets: 0, posTweets: 0,
               negTweets: 0, neutTweets: 0, timeBin: 5}],
           totalTweets: {total: 0, posTotal: 0,
@@ -144,6 +135,13 @@ var App = React.createClass({
   //Outgoing Data to Server Handler
   emit: function(eventName, payload) {
     this.socket.emit(eventName, payload)
+    this.setState({
+      collectedTweets: [],
+      binnedTweets: [{numTweets: 0, posTweets: 0,
+          negTweets: 0, neutTweets: 0, timeBin: 5}],
+      totalTweets: {total: 0, posTotal: 0,
+          negTotal: 0, neutTotal: 0}
+    });
   },
 
   //Render the App!

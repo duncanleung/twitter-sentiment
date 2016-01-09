@@ -387,10 +387,11 @@ header nav ul li a:hover:after {
 .results .stream .tweet-list .tweet-card .content .sentiment.neutral, .results .stream .tweet-list .tweet-card .content .sentiment.null {
   height: 10px;
   width: 10px;
+  margin-right: 5px;
   border-radius: 50%;
   background-color: gray;
 }
-/* line 416, default.scss */
+/* line 417, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.negative {
   width: 0;
   height: 0;
@@ -398,7 +399,7 @@ header nav ul li a:hover:after {
   border-right: 10px solid transparent;
   border-top: 10px solid red;
 }
-/* line 425, default.scss */
+/* line 426, default.scss */
 .results .stream .tweet-list .tweet-card .content .text {
   font-size: 12px;
 }

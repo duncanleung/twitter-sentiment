@@ -30,8 +30,6 @@ var TwitterActivityChart = React.createClass({
 
 
   componentWillUpdate: function(nextProps, nextState) {
-    
-
     //Positive Highlighter
     if(Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
       this.refs.positive.classList.add('positive');
@@ -68,7 +66,7 @@ var TwitterActivityChart = React.createClass({
           </div>
           <div className="total">
             <h3>Positive Tweets</h3>
-            <div className="total-neutral"></div>
+            <div className="total-positive"></div>
             <div ref="positive" className="counter">{ this.props.totalTweets.posTotal }</div>
           </div>
           <div className="total">
@@ -81,6 +79,10 @@ var TwitterActivityChart = React.createClass({
             <div className="total-negative"></div>
             <div ref="negative" className="counter">{ this.props.totalTweets.negTotal }</div>
           </div>
+        </div>
+        <div className="overall-sentiment">
+          <h3>Overall Sentiment</h3>
+          <h3></h3>
         </div>
       </div>
     );

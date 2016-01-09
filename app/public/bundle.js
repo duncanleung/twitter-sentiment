@@ -19662,16 +19662,7 @@
 	      status: 'disconnected',
 	      keyword: '',
 	      initTimestamp: '',
-	      collectedTweets: [{
-	        sentiment: "neutral",
-	        text: "bla bla bla",
-	        user: {
-	          name: "Tomlinson",
-	          profile_image_url_https: "https://pbs.twimg.com/profile_images/607143037026902017/euduoJij_normal.jpg",
-	          screen_name: "Yaiza_06455"
-	        }
-
-	      }],
+	      collectedTweets: [],
 	      binnedTweets: [{ numTweets: 0, posTweets: 0,
 	        negTweets: 0, neutTweets: 0, timeBin: 5 }],
 	      totalTweets: { total: 0, posTotal: 0,
@@ -19787,6 +19778,13 @@
 	  //Outgoing Data to Server Handler
 	  emit: function emit(eventName, payload) {
 	    this.socket.emit(eventName, payload);
+	    this.setState({
+	      collectedTweets: [],
+	      binnedTweets: [{ numTweets: 0, posTweets: 0,
+	        negTweets: 0, neutTweets: 0, timeBin: 5 }],
+	      totalTweets: { total: 0, posTotal: 0,
+	        negTotal: 0, neutTotal: 0 }
+	    });
 	  },
 
 	  //Render the App!
@@ -36850,7 +36848,6 @@
 	  displayName: 'TwitterActivityChart',
 
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
-
 	    //Positive Highlighter
 	    if (Number(this.refs.positive.innerHTML) !== nextProps.totalTweets.posTotal) {
 	      this.refs.positive.classList.add('positive');
@@ -36910,7 +36907,7 @@
 	            null,
 	            'Positive Tweets'
 	          ),
-	          React.createElement('div', { className: 'total-neutral' }),
+	          React.createElement('div', { className: 'total-positive' }),
 	          React.createElement(
 	            'div',
 	            { ref: 'positive', className: 'counter' },
@@ -36947,6 +36944,16 @@
 	            this.props.totalTweets.negTotal
 	          )
 	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'overall-sentiment' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Overall Sentiment'
+	        ),
+	        React.createElement('h3', null)
 	      )
 	    );
 	  }
