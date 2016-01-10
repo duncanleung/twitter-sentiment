@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/default.css">
     <title>Twitterment</title>
   </head>
@@ -23,9 +24,68 @@
     </header>
     
     <section id="App"> <!-- Attach React App -->
-
     </section> <!-- END React App -->
 
+    <section id="about" class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title">
+            <h3>True Real Time Tracking</h3>
+            <p>See how your brand sentiment is trending at this moment.</p>
+          </div>
+          <div class="features col-sm-12">
+            <div class="col-sm-4">
+              <div class="tile">
+                <h3>
+                  <div class="circle"></div>
+                  Real Time with Socket.io
+                </h3>
+                <p>
+                  Twitterment is built upon NodeJS and Socket.io to provide real-time analytics. When someone Tweets about your brand, Twitterment updates your dashboard real-time so you don't miss a beat.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="tile">
+                <h3>
+                  <div class="circle"></div>
+                  Twitter Streaming API
+                </h3>
+                <p>
+                  Track specific keywords from Twitter's streaming API. Know exactly what's happening on Twitter, at this instant.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="tile">
+                <h3>
+                  <div class="circle"></div>
+                  Data Driven Documents: D3
+                </h3>
+                <p>
+                  Twitterment uses D3 to provide instantaneous graphical updates of how your brand is trending on Twitter.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="baseline-container col-sm-12">
+          <div class="connect-container">
+            <p>Connect with the author:</p><a href="http://github.com/duncanleung">
+              <div class="github-logo"></div></a><a href="https://www.linkedin.com/in/duncanleung">
+              <div class="linkedin-logo"></div></a>
+          </div>
+          <div class="branding-container col-sm-12">
+            <p>Twitterment &copy; 2015</p>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src='/js/bundle.js'></script>
     <script src="/js/default.js"></script>
   </body>

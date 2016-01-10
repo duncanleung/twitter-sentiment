@@ -10,6 +10,7 @@ $background-chart-gray: #f7f7f7;
 $background-light-gray: #d5d5d5;
 
 $text-black: #4d4d4d;
+$text-dark-gray: #666;
 $text-gray: #999;
 $CTA-green: #59cb59;
 $CTA-hover-green: #218d43;
@@ -81,7 +82,7 @@ header {
           padding: 10px 0;
           text-decoration: none !important;
           text-transform: uppercase;
-          font-size: 13px;
+          font-size: 15px;
           color: $text-gray;
           transition: all 0.25s ease-in-out;
 
@@ -105,6 +106,15 @@ header {
           &:hover:after {
             width: 100%;
           }
+        }
+      }
+
+      #home-nav {
+
+        a {
+          color: $primary-green;
+          font-weight: 600;
+          font-size: 17px;
         }
       }
     }
@@ -293,9 +303,55 @@ header {
         }
       }
     }
-
   }
 }
+
+/* About Section Styles
+======================== */
+#about {
+  padding-top: 30px;
+
+  .title {
+    text-align: center;
+
+    h3 {
+      font-weight: 600;
+      font-size: 32px;
+      color: $primary-green;
+    }
+    p {
+      color: $text-dark-gray;
+    }
+  }
+
+  .features {
+    margin-top: 20px;
+    padding-bottom: 50px;
+
+    .tile {
+      padding: 0 10px;
+      border-radius: 10px;
+      border: 1px solid $background-light-gray;
+      box-shadow: 0 4px 8px rgba(166, 166, 166, 0.3);
+
+      h3 {
+        color: $primary-green;
+        text-align: center;
+
+        .circle {
+
+        }
+      }
+
+      p {
+        color: $text-dark-gray;
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 
 /* Results Section Styles
 ======================== */
@@ -566,12 +622,82 @@ header {
   } 
 }
 
+/* Footer Styles
+======================== */
 
+footer {
+  height: 80px;
+  background-color: $primary-black;
 
+  .baseline-container {
+    position: relative;
 
+    .connect-container {
+      position: absolute;
+      right: 40px;
+      bottom: 0;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
 
+      p {
+        margin-top: 10px;
+        margin-right: 20px;
+        font-size: 14px;
+        font-weight: 300;
+        color: $text-gray;
+      }
 
+      .github-logo {
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+        background-image: url("../img/logo/github-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
 
+        &:hover {
+          background-image: url("../img/logo/github.png");
+        }
+      }
+
+      .linkedin-logo {
+        height: 25px;
+        width: 25px;
+        margin-top: 5px;
+        margin-left: 10px;
+        background-image: url("../img/logo/linkedin-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/linkedin.png");
+        }
+      }
+
+      @media(max-width: 930px) {
+        position: relative;
+        right: 0;
+        margin-right: 0;
+      }
+    }
+
+    .branding-container {
+      margin-top: 30px;
+
+      p {
+        color: $text-black;
+        font-size: 16px;
+      }
+    }
+  }
+}
 
 
 
