@@ -14,6 +14,7 @@ var App = React.createClass({
   getInitialState: function() {
       return {
           status: 'disconnected',
+          search: false,
           keyword: '',
           initTimestamp: '',
           collectedTweets: [],
@@ -50,6 +51,7 @@ var App = React.createClass({
 
   initTimestamp: function(timestamp) {
     this.setState({ initTimestamp: timestamp.initTimestamp });
+    this.setState({ search: true });
   },
 
   //Add receivedTweet onto beginning of array
@@ -151,10 +153,11 @@ var App = React.createClass({
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
         <TechStack />
-        <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets } totalTweets={ this.state.totalTweets } />
+        { this.state.search ? <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets } totalTweets={ this.state.totalTweets } /> : null }
       </div>
     );
   }
 });
 
 module.exports = App;
+

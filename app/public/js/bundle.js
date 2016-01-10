@@ -19669,6 +19669,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      status: 'disconnected',
+	      search: false,
 	      keyword: '',
 	      initTimestamp: '',
 	      collectedTweets: [],
@@ -19705,6 +19706,7 @@
 
 	  initTimestamp: function initTimestamp(timestamp) {
 	    this.setState({ initTimestamp: timestamp.initTimestamp });
+	    this.setState({ search: true });
 	  },
 
 	  //Add receivedTweet onto beginning of array
@@ -19803,7 +19805,7 @@
 	      null,
 	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
 	      React.createElement(TechStack, null),
-	      React.createElement(Results, { collectedTweets: this.state.collectedTweets, binnedTweets: this.state.binnedTweets, totalTweets: this.state.totalTweets })
+	      this.state.search ? React.createElement(Results, { collectedTweets: this.state.collectedTweets, binnedTweets: this.state.binnedTweets, totalTweets: this.state.totalTweets }) : null
 	    );
 	  }
 	});
