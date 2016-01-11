@@ -32,3 +32,4 @@ process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';
 - Run `npm install` to install dependencies
 - Run `node server/app-server.js` to start!
 - FYI: `npm start` will run webpack and bundle any changes you may make
+- `ctrl-c` to stop your server! You will burn through your Datum Sentiment 1000/day request limit fast!
