@@ -33,3 +33,7 @@ process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';
 - Run `node server/app-server.js` to start!
 - FYI: `npm start` will run webpack and bundle any changes you may make
 - `ctrl-c` to stop your server! You will burn through your Datum Sentiment 1000/day request limit fast!
+
+![Twitterment Main Screen](http://www.duncanleung.com/portfolio/twitterment-github/twitterment-search.png)
+![Twitterment Technologies Screen](http://www.duncanleung.com/portfolio/twitterment-github/twitterment-features.png)
+![Twitterment Stream Screen](http://www.duncanleung.com/portfolio/twitterment-github/twitterment-stream.png)
