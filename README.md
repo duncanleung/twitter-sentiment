@@ -16,10 +16,12 @@ To run an instance of this app, you need:
 - `config.js` holds your own Twitter API Keys
 
 `config.js`
-`process.env.TWITTER_CONSUMER_KEY = 'YOUR-CONSUMER-KEY-HERE';`
-`process.env.TWITTER_CONSUMER_SECRET = 'YOUR-CONSUMER-SECRET-HERE';`
-`process.env.TWITTER_ACCESS_TOKEN_KEY = 'YOUR-TOKEN-HERE';`
-`process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';`
+```
+process.env.TWITTER_CONSUMER_KEY = 'YOUR-CONSUMER-KEY-HERE';
+process.env.TWITTER_CONSUMER_SECRET = 'YOUR-CONSUMER-SECRET-HERE';
+process.env.TWITTER_ACCESS_TOKEN_KEY = 'YOUR-TOKEN-HERE';
+process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';
+```
 
 2. =========== Datum Sentiment API Key ===========
 - Register your own Datum Sentiment API Key at: http://www.datumbox.com/machine-learning-api/
