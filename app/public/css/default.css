@@ -1,6 +1,6 @@
 /* Reusable Styles
 ======================== */
-/* line 25, default.scss */
+/* line 26, default.scss */
 html,
 body {
   position: relative;
@@ -11,19 +11,19 @@ body {
   overflow-x: hidden;
 }
 
-/* line 35, default.scss */
+/* line 36, default.scss */
 .intro-text {
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
   color: #4d4d4d;
 }
-/* line 41, default.scss */
+/* line 42, default.scss */
 .intro-text h2 {
   font-size: 35px;
   font-weight: 700;
 }
-/* line 46, default.scss */
+/* line 47, default.scss */
 .intro-text p {
   font-weight: 400;
   font-size: 16px;
@@ -31,7 +31,7 @@ body {
 
 /* Header and Nav Styles
 ======================== */
-/* line 56, default.scss */
+/* line 57, default.scss */
 header {
   position: absolute;
   top: 0;
@@ -39,13 +39,13 @@ header {
   z-index: 100;
   width: 100%;
 }
-/* line 63, default.scss */
+/* line 64, default.scss */
 header nav {
   height: 60px;
   background-color: #1a1a1a;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 68, default.scss */
+/* line 69, default.scss */
 header nav ul {
   width: 80% !important;
   margin-right: auto;
@@ -54,13 +54,13 @@ header nav ul {
   padding: 0;
   width: 100%;
 }
-/* line 76, default.scss */
+/* line 77, default.scss */
 header nav ul li {
   display: inline-block;
   padding-top: 22px;
   margin-right: 40px;
 }
-/* line 81, default.scss */
+/* line 82, default.scss */
 header nav ul li a {
   padding: 10px 0;
   text-decoration: none !important;
@@ -69,12 +69,12 @@ header nav ul li a {
   color: #999;
   transition: all 0.25s ease-in-out;
 }
-/* line 89, default.scss */
+/* line 90, default.scss */
 header nav ul li a:hover, header nav ul li a:active, header nav ul li a:focus {
   color: #2bb656;
   outline: none;
 }
-/* line 96, default.scss */
+/* line 97, default.scss */
 header nav ul li a:after {
   content: "";
   padding-bottom: 7px;
@@ -84,20 +84,27 @@ header nav ul li a:after {
   transition: all 0.25s ease-in-out;
   pointer-events: none;
 }
-/* line 106, default.scss */
+/* line 107, default.scss */
 header nav ul li a:hover:after {
   width: 100%;
 }
-/* line 114, default.scss */
+/* line 113, default.scss */
+header nav ul #nav-logo {
+  height: 25px;
+  width: auto;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+/* line 121, default.scss */
 header nav ul #home-nav a {
-  color: #2bb656;
+  color: #59BBFF;
   font-weight: 600;
   font-size: 17px;
 }
 
 /* Hero and Search Bar Styles
 ======================== */
-/* line 126, default.scss */
+/* line 133, default.scss */
 .hero {
   height: 700px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(../img/hero.jpg);
@@ -106,7 +113,7 @@ header nav ul #home-nav a {
   background-position: bottom;
   position: relative;
 }
-/* line 134, default.scss */
+/* line 141, default.scss */
 .hero .content {
   position: absolute;
   display: flex;
@@ -114,13 +121,13 @@ header nav ul #home-nav a {
   justify-content: center;
   height: 800px;
 }
-/* line 141, default.scss */
+/* line 148, default.scss */
 .hero .content h1,
 .hero .content h2 {
   color: white;
   text-align: center;
 }
-/* line 147, default.scss */
+/* line 154, default.scss */
 .hero .content h1 {
   order: 3;
   font-size: 20px;
@@ -128,20 +135,27 @@ header nav ul #home-nav a {
   letter-spacing: 1px;
   color: #cfcfcf;
 }
-/* line 155, default.scss */
+/* line 162, default.scss */
 .hero .content h2 {
   order: 2;
   font-size: 40px;
   font-weight: 700;
 }
-/* line 161, default.scss */
+/* line 168, default.scss */
 .hero .content .text-logo {
   order: 1;
   font-weight: 600;
   font-size: 40px;
-  color: #2bb656;
+  color: #59BBFF;
 }
-/* line 169, default.scss */
+/* line 170, default.scss */
+.hero .content .text-logo img {
+  height: 60px;
+  width: auto;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+/* line 184, default.scss */
 .hero .content #search-bar {
   order: 4;
   width: 350px;
@@ -149,12 +163,12 @@ header nav ul #home-nav a {
   margin-right: auto;
   margin-left: auto;
 }
-/* line 176, default.scss */
+/* line 191, default.scss */
 .hero .content #search-bar input:focus {
   border: 1px solid #218d43;
   box-shadow: 0 0 4px #218d43;
 }
-/* line 181, default.scss */
+/* line 196, default.scss */
 .hero .content #search-bar .btn-default {
   background-color: #2bb656;
   border-color: #2bb656;
@@ -164,7 +178,7 @@ header nav ul #home-nav a {
   text-transform: uppercase;
   transition: all 0.25s ease-in-out;
 }
-/* line 190, default.scss */
+/* line 205, default.scss */
 .hero .content #search-bar .btn-default:hover {
   background-color: #218d43;
   border-color: #218d43;
@@ -172,7 +186,7 @@ header nav ul #home-nav a {
 
 /* Technology Stack Section Styles
 ======================== */
-/* line 201, default.scss */
+/* line 216, default.scss */
 .technology-stack {
   height: 230px;
   padding-bottom: 20px;
@@ -183,7 +197,7 @@ header nav ul #home-nav a {
   font-size: 19px;
   text-align: center;
 }
-/* line 211, default.scss */
+/* line 226, default.scss */
 .technology-stack .technologies-container {
   padding-top: 20px;
   margin-bottom: 20px;
@@ -193,13 +207,13 @@ header nav ul #home-nav a {
   align-items: center;
   justify-content: space-around;
 }
-/* line 220, default.scss */
+/* line 235, default.scss */
 .technology-stack .technologies-container .heading {
   flex: 100%;
   color: #999;
   margin-bottom: 30px;
 }
-/* line 227, default.scss */
+/* line 242, default.scss */
 .technology-stack .technologies-container .nodejs .nodejs-logo {
   height: 120px;
   width: 200px;
@@ -209,11 +223,11 @@ header nav ul #home-nav a {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 236, default.scss */
+/* line 251, default.scss */
 .technology-stack .technologies-container .nodejs .nodejs-logo:hover {
   background-image: url("../img/logo/nodejs.png");
 }
-/* line 243, default.scss */
+/* line 258, default.scss */
 .technology-stack .technologies-container .socketio .socketio-logo {
   height: 120px;
   width: 200px;
@@ -223,11 +237,11 @@ header nav ul #home-nav a {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 252, default.scss */
+/* line 267, default.scss */
 .technology-stack .technologies-container .socketio .socketio-logo:hover {
   background-image: url("../img/logo/socketio.png");
 }
-/* line 259, default.scss */
+/* line 274, default.scss */
 .technology-stack .technologies-container .react .react-logo {
   height: 120px;
   width: 200px;
@@ -237,15 +251,15 @@ header nav ul #home-nav a {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 268, default.scss */
+/* line 283, default.scss */
 .technology-stack .technologies-container .react .react-logo:hover {
   background-image: url("../img/logo/react.png");
 }
-/* line 274, default.scss */
+/* line 289, default.scss */
 .technology-stack .technologies-container .d3 {
   padding-bottom: 10px;
 }
-/* line 276, default.scss */
+/* line 291, default.scss */
 .technology-stack .technologies-container .d3 .d3-logo {
   height: 80px;
   width: 80px;
@@ -255,11 +269,11 @@ header nav ul #home-nav a {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 285, default.scss */
+/* line 300, default.scss */
 .technology-stack .technologies-container .d3 .d3-logo:hover {
   background-image: url("../img/logo/d3.png");
 }
-/* line 292, default.scss */
+/* line 307, default.scss */
 .technology-stack .technologies-container .twitter .twitter-logo {
   height: 120px;
   width: 250px;
@@ -269,64 +283,81 @@ header nav ul #home-nav a {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 301, default.scss */
+/* line 316, default.scss */
 .technology-stack .technologies-container .twitter .twitter-logo:hover {
   background-image: url("../img/logo/twitter.png");
 }
 
 /* About Section Styles
 ======================== */
-/* line 311, default.scss */
+/* line 326, default.scss */
 #about {
   padding-top: 30px;
 }
-/* line 314, default.scss */
+/* line 329, default.scss */
 #about .title {
   text-align: center;
 }
-/* line 317, default.scss */
+/* line 332, default.scss */
 #about .title h3 {
   font-weight: 600;
   font-size: 32px;
   color: #2bb656;
 }
-/* line 322, default.scss */
+/* line 337, default.scss */
 #about .title p {
   color: #666;
 }
-/* line 327, default.scss */
+/* line 342, default.scss */
 #about .features {
   margin-top: 20px;
   padding-bottom: 50px;
 }
-/* line 331, default.scss */
+/* line 346, default.scss */
 #about .features .tile {
-  padding: 0 10px;
+  min-height: 320px;
+  padding: 0 10px 20px;
   border-radius: 10px;
   border: 1px solid #d5d5d5;
   box-shadow: 0 4px 8px rgba(166, 166, 166, 0.3);
 }
-/* line 337, default.scss */
+/* line 353, default.scss */
 #about .features .tile h3 {
-  color: #2bb656;
+  color: #4d4d4d;
   text-align: center;
+  margin-bottom: 30px;
 }
-/* line 346, default.scss */
+/* line 358, default.scss */
+#about .features .tile h3 .circle {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 30px auto;
+  display: block;
+  border: 3px solid rgba(0, 0, 0, 0.13);
+  border-radius: 50%;
+}
+/* line 366, default.scss */
+#about .features .tile h3 .circle .fa {
+  color: #2bb656;
+  margin-top: 15px;
+  font-size: 40px;
+}
+/* line 374, default.scss */
 #about .features .tile p {
   color: #666;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Results Section Styles
 ======================== */
-/* line 358, default.scss */
+/* line 386, default.scss */
 .results {
   height: 700px;
   /* Twitter Stream Styles
   ======================== */
 }
-/* line 361, default.scss */
+/* line 389, default.scss */
 .results .dashboard {
   height: 700px;
   overflow-y: hidden;
@@ -334,21 +365,21 @@ header nav ul #home-nav a {
   /* Activity Chart Styles
   ======================== */
 }
-/* line 366, default.scss */
+/* line 394, default.scss */
 .results .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;
 }
-/* line 375, default.scss */
+/* line 403, default.scss */
 .results .dashboard .twitter-activity {
   width: 800px;
   margin-right: auto;
   margin-left: auto;
   display: block;
 }
-/* line 381, default.scss */
+/* line 409, default.scss */
 .results .dashboard .twitter-activity h4 {
   margin-top: 20px;
   margin-bottom: 0;
@@ -359,49 +390,49 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #b3b3b3;
 }
-/* line 392, default.scss */
+/* line 420, default.scss */
 .results .dashboard .twitter-activity .line-chart {
   background-color: #f7f7f7;
   display: block;
   margin: auto;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 398, default.scss */
+/* line 426, default.scss */
 .results .dashboard .twitter-activity .line-chart .gridline path,
 .results .dashboard .twitter-activity .line-chart .gridline line {
   fill: none;
   stroke: #ccc;
   shape-rendering: crispEdges;
 }
-/* line 405, default.scss */
+/* line 433, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis path,
 .results .dashboard .twitter-activity .line-chart .axis line {
   fill: none;
   stroke: #1a252f;
   shape-rendering: crispEdges;
 }
-/* line 412, default.scss */
+/* line 440, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis text {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
-/* line 417, default.scss */
+/* line 445, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis text.x-label,
 .results .dashboard .twitter-activity .line-chart .axis text.y-label {
   font-family: "Open Sans", sans-serif;
   fill: #999;
 }
-/* line 424, default.scss */
+/* line 452, default.scss */
 .results .dashboard .twitter-activity .tweet-counters {
   display: flex;
   border-top: 1px solid #1a252f;
 }
-/* line 428, default.scss */
+/* line 456, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total {
   width: 100%;
   position: relative;
 }
-/* line 432, default.scss */
+/* line 460, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total h3 {
   margin: 0;
   padding: 10px 0;
@@ -410,27 +441,27 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #d5d5d5;
 }
-/* line 441, default.scss */
+/* line 469, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-tweets {
   height: 5px;
   background-color: blue;
 }
-/* line 446, default.scss */
+/* line 474, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-positive {
   height: 5px;
   background-color: green;
 }
-/* line 451, default.scss */
+/* line 479, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-neutral {
   height: 5px;
   background-color: sandybrown;
 }
-/* line 456, default.scss */
+/* line 484, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-negative {
   height: 5px;
   background-color: red;
 }
-/* line 461, default.scss */
+/* line 489, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter {
   padding: 5px 0;
   color: #737373;
@@ -440,27 +471,27 @@ header nav ul #home-nav a {
   background-color: white;
   transition: all 0.2s ease-in-out;
 }
-/* line 470, default.scss */
+/* line 498, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.positive {
   color: green;
 }
-/* line 475, default.scss */
+/* line 503, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.neutral {
   color: sandybrown;
 }
-/* line 479, default.scss */
+/* line 507, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.negative {
   color: red;
 }
-/* line 484, default.scss */
+/* line 512, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-tweets + .counter {
   border-radius: 0 0 0 5px;
 }
-/* line 488, default.scss */
+/* line 516, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-negative + .counter {
   border-radius: 0 0 5px 0;
 }
-/* line 492, default.scss */
+/* line 520, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow {
   position: absolute;
   bottom: 20px;
@@ -472,25 +503,25 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   transition: all 0.2s ease-in-out;
 }
-/* line 503, default.scss */
+/* line 531, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.positive {
   border-bottom: 10px solid green;
 }
-/* line 507, default.scss */
+/* line 535, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.neutral, .results .dashboard .twitter-activity .tweet-counters .total .arrow.null {
   border-bottom: 10px solid sandybrown;
 }
-/* line 512, default.scss */
+/* line 540, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.negative {
   border-bottom: 10px solid red;
 }
-/* line 524, default.scss */
+/* line 552, default.scss */
 .results .stream {
   height: 700px;
   background-color: #1a252f;
   padding: 0 25px 0 15px;
 }
-/* line 529, default.scss */
+/* line 557, default.scss */
 .results .stream h1 {
   margin-bottom: 0;
   padding: 15px 5px 10px;
@@ -500,7 +531,7 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #b3b3b3;
 }
-/* line 539, default.scss */
+/* line 567, default.scss */
 .results .stream .tweet-list {
   height: 600px;
   background-color: #f7f7f7;
@@ -508,7 +539,7 @@ header nav ul #home-nav a {
   overflow-y: scroll;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 546, default.scss */
+/* line 574, default.scss */
 .results .stream .tweet-list .tweet-card {
   padding: 10px 0px 10px 15px;
   margin: 5px 10px 5px 10px;
@@ -516,7 +547,7 @@ header nav ul #home-nav a {
   background-color: white;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 553, default.scss */
+/* line 581, default.scss */
 .results .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -525,36 +556,36 @@ header nav ul #home-nav a {
   width: 50px;
   border-radius: 5px;
 }
-/* line 562, default.scss */
+/* line 590, default.scss */
 .results .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
   position: relative;
 }
-/* line 567, default.scss */
+/* line 595, default.scss */
 .results .stream .tweet-list .tweet-card .content .user {
   display: inline-block;
   width: 90%;
 }
-/* line 571, default.scss */
+/* line 599, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .name {
   font-size: 14px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
 }
-/* line 578, default.scss */
+/* line 606, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .username {
   font-size: 14px;
 }
-/* line 583, default.scss */
+/* line 611, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment {
   position: absolute;
   top: 5px;
   right: 0;
   display: inline-block;
 }
-/* line 589, default.scss */
+/* line 617, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.positive {
   width: 0;
   height: 0;
@@ -562,7 +593,7 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   border-bottom: 10px solid green;
 }
-/* line 597, default.scss */
+/* line 625, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.neutral, .results .stream .tweet-list .tweet-card .content .sentiment.null {
   height: 10px;
   width: 10px;
@@ -570,7 +601,7 @@ header nav ul #home-nav a {
   border-radius: 50%;
   background-color: sandybrown;
 }
-/* line 607, default.scss */
+/* line 635, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.negative {
   width: 0;
   height: 0;
@@ -578,23 +609,23 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   border-top: 10px solid red;
 }
-/* line 616, default.scss */
+/* line 644, default.scss */
 .results .stream .tweet-list .tweet-card .content .text {
   font-size: 12px;
 }
 
 /* Footer Styles
 ======================== */
-/* line 628, default.scss */
+/* line 656, default.scss */
 footer {
   height: 80px;
   background-color: #1a1a1a;
 }
-/* line 632, default.scss */
+/* line 660, default.scss */
 footer .baseline-container {
   position: relative;
 }
-/* line 635, default.scss */
+/* line 663, default.scss */
 footer .baseline-container .connect-container {
   position: absolute;
   right: 40px;
@@ -605,7 +636,7 @@ footer .baseline-container .connect-container {
   justify-content: center;
   z-index: 50;
 }
-/* line 645, default.scss */
+/* line 673, default.scss */
 footer .baseline-container .connect-container p {
   margin-top: 10px;
   margin-right: 20px;
@@ -613,7 +644,7 @@ footer .baseline-container .connect-container p {
   font-weight: 300;
   color: #999;
 }
-/* line 653, default.scss */
+/* line 681, default.scss */
 footer .baseline-container .connect-container .github-logo {
   height: 30px;
   width: 30px;
@@ -624,11 +655,11 @@ footer .baseline-container .connect-container .github-logo {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 663, default.scss */
+/* line 691, default.scss */
 footer .baseline-container .connect-container .github-logo:hover {
   background-image: url("../img/logo/github.png");
 }
-/* line 668, default.scss */
+/* line 696, default.scss */
 footer .baseline-container .connect-container .linkedin-logo {
   height: 25px;
   width: 25px;
@@ -640,23 +671,23 @@ footer .baseline-container .connect-container .linkedin-logo {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 679, default.scss */
+/* line 707, default.scss */
 footer .baseline-container .connect-container .linkedin-logo:hover {
   background-image: url("../img/logo/linkedin.png");
 }
 @media (max-width: 930px) {
-  /* line 635, default.scss */
+  /* line 663, default.scss */
   footer .baseline-container .connect-container {
     position: relative;
     right: 0;
     margin-right: 0;
   }
 }
-/* line 691, default.scss */
+/* line 719, default.scss */
 footer .baseline-container .branding-container {
   margin-top: 30px;
 }
-/* line 694, default.scss */
+/* line 722, default.scss */
 footer .baseline-container .branding-container p {
   color: #4d4d4d;
   font-size: 16px;

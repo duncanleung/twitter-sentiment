@@ -3,6 +3,7 @@
 $primary-black: #1a1a1a;
 $primary-green: #2bb656;
 $primary-blue: #1d67a7;
+$twitter-blue: #59BBFF;
 
 $background-dark-gray: #1a252f;
 $background-header-gray: #b3b3b3;
@@ -109,10 +110,16 @@ header {
         }
       }
 
-      #home-nav {
+      #nav-logo {
+        height: 25px;
+        width: auto;
+        margin-right: 5px;
+        margin-bottom: 2px;
+      }
 
+      #home-nav {
         a {
-          color: $primary-green;
+          color: $twitter-blue;
           font-weight: 600;
           font-size: 17px;
         }
@@ -159,10 +166,18 @@ header {
     }
 
     .text-logo {
+
+      img {
+        height: 60px;
+        width: auto;
+        margin-right: 10px;
+        margin-bottom: 15px;
+      }
+
       order: 1;
       font-weight: 600;
       font-size: 40px;
-      color: $primary-green;
+      color: $twitter-blue;
     }
 
 
@@ -329,24 +344,37 @@ header {
     padding-bottom: 50px;
 
     .tile {
-      padding: 0 10px;
+      min-height: 320px;
+      padding: 0 10px 20px;
       border-radius: 10px;
       border: 1px solid $background-light-gray;
       box-shadow: 0 4px 8px rgba(166, 166, 166, 0.3);
 
       h3 {
-        color: $primary-green;
+        color: $text-black;
         text-align: center;
+        margin-bottom: 30px;
 
         .circle {
+          width: 75px;
+          height: 75px;
+          margin: 0 auto 30px auto;
+          display: block;
+          border: 3px solid rgba(0, 0, 0, 0.13);
+          border-radius: 50%;
 
+          .fa {
+            color: $primary-green;
+            margin-top: 15px;
+            font-size: 40px;
+          }
         }
       }
 
       p {
         color: $text-dark-gray;
         text-align: center;
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }

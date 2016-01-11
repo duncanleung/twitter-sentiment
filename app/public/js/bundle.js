@@ -56779,6 +56779,7 @@
 	          React.createElement(
 	            'h2',
 	            { className: 'text-logo' },
+	            React.createElement('img', { id: 'logo', src: '/img/twitterment.png' }),
 	            'Twitterment'
 	          ),
 	          React.createElement(SearchForm, { emit: this.props.emit, initTimestamp: this.props.initTimestamp })
