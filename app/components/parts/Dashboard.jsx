@@ -10,7 +10,11 @@ var Dashboard = React.createClass({
   render: function() {
     return (
       <div className="dashboard col-sm-8">
-        <TwitterActivityChart binnedTweets={ this.props.binnedTweets } totalTweets={ this.props.totalTweets } />
+        <TwitterActivityChart
+          binnedTweets={ this.props.binnedTweets }
+          totalTweets={ this.props.totalTweets }
+          sentiment= { this.props.sentiment }
+        />
       </div>
     );
   }

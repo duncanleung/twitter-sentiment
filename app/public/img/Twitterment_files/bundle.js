@@ -19669,7 +19669,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      status: 'disconnected',
-	      search: false,
+	      search: true,
 	      keyword: '',
 	      initTimestamp: '',
 	      collectedTweets: [],
@@ -57041,9 +57041,6 @@
 	  displayName: 'TwitterActivityChart',
 
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
-
-	    /*Counter Highlighter
-	    ===============*/
 	    //Positive Highlighter
 	    if (Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
 	      this.refs.positivearrow.classList.add('positive');
@@ -57069,19 +57066,6 @@
 	    } else {
 	      this.refs.negativearrow.classList.remove('negative');
 	      this.refs.negativecounter.classList.remove('negative');
-	    }
-
-	    /*Overall Sentiment Highlighter
-	    ===============*/
-	    if (this.props.sentiment == 'Positive') {
-	      this.refs.sentiment.classList.add('positive');
-	      this.refs.sentiment.classList.remove('negative');
-	    } else if (this.props.sentiment == 'Negative') {
-	      this.refs.sentiment.classList.add('negative');
-	      this.refs.sentiment.classList.remove('positive');
-	    } else {
-	      this.refs.sentiment.classList.remove('negative');
-	      this.refs.sentiment.classList.remove('positive');
 	    }
 	  },
 
@@ -57174,7 +57158,7 @@
 	        ),
 	        React.createElement(
 	          'p',
-	          { ref: 'sentiment' },
+	          null,
 	          this.props.sentiment
 	        )
 	      )

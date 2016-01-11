@@ -21,7 +21,8 @@ var App = React.createClass({
           binnedTweets: [{numTweets: 0, posTweets: 0,
               negTweets: 0, neutTweets: 0, timeBin: 5}],
           totalTweets: {total: 0, posTotal: 0,
-              negTotal: 0, neutTotal: 0}
+              negTotal: 0, neutTotal: 0},
+          sentiment: 'Neutral'
       };
   },
 
@@ -63,6 +64,7 @@ var App = React.createClass({
     this.setState({ collectedTweets: newTweets });
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
     this.countTweets(tweet.sentiment);
+    this.overallSentiment();
 
     /*console.log(tweet);*/
   },
@@ -87,6 +89,20 @@ var App = React.createClass({
         totalTweets.total++;
         this.setState({ totalTweets: newTotal });
       }
+  },
+
+  overallSentiment: function() {
+    var totalTweets = this.state.totalTweets.posTotal + this.state.totalTweets.negTotal;
+    var posTweets = this.state.totalTweets.posTotal
+    var sentiment = posTweets/totalTweets;
+
+    if(sentiment < 0.5) {
+      this.setState({ sentiment: 'Negative' });
+    } else if(sentiment > 0.5) {
+      this.setState({ sentiment: 'Positive' });
+    } else {
+      this.setState({ sentiment: 'Neutral' });
+    }
   },
 
   //Push Tweet Counts into Bins: 5sec, 10sec, etc.
@@ -118,8 +134,6 @@ var App = React.createClass({
       }
 
     } else {
-      //newBinnedTweets.push({ numTweets: 1, timeBin: currentBin+=5 });
-      //this.setState({ binnedTweets: newBinnedTweets });
 
       if(sentiment == "positive") {
         newBinnedTweets.push({ numTweets: 1, posTweets: 1, negTweets: 0, neutTweets: 0, timeBin: currentBin+=5 });
@@ -153,7 +167,13 @@ var App = React.createClass({
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
         <TechStack />
-        { this.state.search ? <Results collectedTweets={ this.state.collectedTweets } binnedTweets={ this.state.binnedTweets } totalTweets={ this.state.totalTweets } /> : null }
+        { this.state.search ? 
+          <Results 
+            collectedTweets={ this.state.collectedTweets }
+            binnedTweets={ this.state.binnedTweets }
+            totalTweets={ this.state.totalTweets }
+            sentiment= { this.state.sentiment }
+          /> : null }
       </div>
     );
   }

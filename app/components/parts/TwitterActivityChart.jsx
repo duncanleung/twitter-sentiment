@@ -21,6 +21,11 @@ var chartArea = {
   height: chartProps.chartHeight - chartProps.margin.top - chartProps.margin.bottom,
 }
 
+var barProps = {
+  chartWidth: 400,
+  chartHeight: 100
+};
+
 
 /*totalTweets: {total: 0, posTotal: 0,
               negTotal: 0, neutTotal: 0}*/
@@ -30,6 +35,9 @@ var TwitterActivityChart = React.createClass({
 
 
   componentWillUpdate: function(nextProps, nextState) {
+    
+    /*Counter Highlighter
+    ===============*/
     //Positive Highlighter
     if(Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
       this.refs.positivearrow.classList.add('positive');
@@ -56,6 +64,20 @@ var TwitterActivityChart = React.createClass({
       this.refs.negativearrow.classList.remove('negative');
       this.refs.negativecounter.classList.remove('negative');
     }
+
+    /*Overall Sentiment Highlighter
+    ===============*/
+    if(this.props.sentiment == 'Positive') {
+      this.refs.sentiment.classList.add('positive');
+      this.refs.sentiment.classList.remove('negative');
+    } else if(this.props.sentiment == 'Negative') {
+      this.refs.sentiment.classList.add('negative');
+      this.refs.sentiment.classList.remove('positive');
+    } else {
+      this.refs.sentiment.classList.remove('negative');
+      this.refs.sentiment.classList.remove('positive');
+    }
+
   },
 
   //{...settings} combines all props (aka. binnedTweets) into 'props'
@@ -63,7 +85,11 @@ var TwitterActivityChart = React.createClass({
     return(
       <div className="twitter-activity">
         <h4>Twitter Activity</h4>
-        <LineChart binnedTweets={ this.props.binnedTweets } { ...chartProps } { ...chartArea }/>
+        <LineChart binnedTweets={ this.props.binnedTweets }
+          { ...chartProps }
+          { ...chartArea }
+        />
+
         <div className="tweet-counters">
           <div className="total">
             <h3>Total Tweets</h3>
@@ -91,7 +117,7 @@ var TwitterActivityChart = React.createClass({
         </div>
         <div className="overall-sentiment">
           <h3>Overall Sentiment</h3>
-          <h3></h3>
+          <p ref="sentiment">{this.props.sentiment}</p>
         </div>
       </div>
     );
