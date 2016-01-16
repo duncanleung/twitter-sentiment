@@ -57049,27 +57049,33 @@
 	    if (Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
 	      this.refs.positivearrow.classList.add('positive');
 	      this.refs.positivecounter.classList.add('positive');
-	    } else {
-	      this.refs.positivearrow.classList.remove('positive');
-	      this.refs.positivecounter.classList.remove('positive');
+
+	      this.refs.neutralarrow.classList.remove('neutral');
+	      this.refs.neutralcounter.classList.remove('neutral');
+	      this.refs.negativearrow.classList.remove('negative');
+	      this.refs.negativecounter.classList.remove('negative');
 	    }
 
 	    //Neutral Highlighter
 	    if (Number(this.refs.neutralcounter.innerHTML) != nextProps.totalTweets.neutTotal) {
 	      this.refs.neutralarrow.classList.add('neutral');
 	      this.refs.neutralcounter.classList.add('neutral');
-	    } else {
-	      this.refs.neutralarrow.classList.remove('neutral');
-	      this.refs.neutralcounter.classList.remove('neutral');
+
+	      this.refs.positivearrow.classList.remove('positive');
+	      this.refs.positivecounter.classList.remove('positive');
+	      this.refs.negativearrow.classList.remove('negative');
+	      this.refs.negativecounter.classList.remove('negative');
 	    }
 
 	    //Negative Highlighter
 	    if (Number(this.refs.negativecounter.innerHTML) !== nextProps.totalTweets.negTotal) {
 	      this.refs.negativearrow.classList.add('negative');
 	      this.refs.negativecounter.classList.add('negative');
-	    } else {
-	      this.refs.negativearrow.classList.remove('negative');
-	      this.refs.negativecounter.classList.remove('negative');
+
+	      this.refs.neutralarrow.classList.remove('neutral');
+	      this.refs.neutralcounter.classList.remove('neutral');
+	      this.refs.positivearrow.classList.remove('positive');
+	      this.refs.positivecounter.classList.remove('positive');
 	    }
 
 	    /*Overall Sentiment Highlighter
