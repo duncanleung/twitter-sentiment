@@ -39,7 +39,8 @@ var TwitterActivityChart = React.createClass({
     /*Counter Highlighter
     ===============*/
     //Positive Highlighter
-    if(Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
+
+    if(Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
       this.refs.positivearrow.classList.add('positive');
       this.refs.positivecounter.classList.add('positive');
     } else {
@@ -48,7 +49,7 @@ var TwitterActivityChart = React.createClass({
     }
 
     //Neutral Highlighter
-    if(Number(this.refs.neutralcounter.innerHTML) !== nextProps.totalTweets.neutTotal) {
+    if(Number(this.refs.neutralcounter.innerHTML) != nextProps.totalTweets.neutTotal) {
       this.refs.neutralarrow.classList.add('neutral');
       this.refs.neutralcounter.classList.add('neutral');
     } else {

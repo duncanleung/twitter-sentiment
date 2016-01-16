@@ -19669,7 +19669,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      status: 'disconnected',
-	      search: false,
+	      search: true,
 	      keyword: '',
 	      initTimestamp: '',
 	      collectedTweets: [],
@@ -57045,7 +57045,8 @@
 	    /*Counter Highlighter
 	    ===============*/
 	    //Positive Highlighter
-	    if (Number(this.refs.positivecounter.innerHTML) !== nextProps.totalTweets.posTotal) {
+
+	    if (Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
 	      this.refs.positivearrow.classList.add('positive');
 	      this.refs.positivecounter.classList.add('positive');
 	    } else {
@@ -57054,7 +57055,7 @@
 	    }
 
 	    //Neutral Highlighter
-	    if (Number(this.refs.neutralcounter.innerHTML) !== nextProps.totalTweets.neutTotal) {
+	    if (Number(this.refs.neutralcounter.innerHTML) != nextProps.totalTweets.neutTotal) {
 	      this.refs.neutralarrow.classList.add('neutral');
 	      this.refs.neutralcounter.classList.add('neutral');
 	    } else {
@@ -57074,14 +57075,14 @@
 	    /*Overall Sentiment Highlighter
 	    ===============*/
 	    if (this.props.sentiment == 'Positive') {
-	      this.refs.sentiment.classList.add('positive');
+	      this.refs.sentiment.classList.add('positive arrow');
 	      this.refs.sentiment.classList.remove('negative');
 	    } else if (this.props.sentiment == 'Negative') {
 	      this.refs.sentiment.classList.add('negative');
-	      this.refs.sentiment.classList.remove('positive');
+	      this.refs.sentiment.classList.remove('positive arrow');
 	    } else {
 	      this.refs.sentiment.classList.remove('negative');
-	      this.refs.sentiment.classList.remove('positive');
+	      this.refs.sentiment.classList.remove('positive arrow');
 	    }
 	  },
 

@@ -1,17 +1,26 @@
-var datum = require('datumbox')
-            .factory('');
+var nodeSentiment = require('sentiment');
 
 var sentiment = {};
 
-//Send Tweet Text to Sentiment API
+// var r1 = sentiment('Cats are stupid.');
+
+//Send Tweet Text to Sentiment Analysis
 sentiment.getSentiment = function(tweet, socket) {
-  datum.twitterSentimentAnalysis(tweet.text, function(err, data) {
-    if (err) {
-      console.log(err);
-    }
-    console.log('Datum Sentiment is: ' + data);
-    sentiment.appendSentiment(tweet, data, socket);
-  });
+  var tweetSentiment = nodeSentiment(tweet.text);
+  
+  // console.log(tweetSentiment);
+
+  if(tweetSentiment.score < 0) {
+    tweetSentiment = 'negative';
+  } else if(tweetSentiment.score > 0) {
+    tweetSentiment = 'positive';
+  } else {
+    tweetSentiment = 'neutral';
+  }
+
+  // console.log('Adjusted Sentiment: ' + tweetSentiment);
+
+  sentiment.appendSentiment(tweet, tweetSentiment, socket);
 };
 
 //Construct New Tweet Object

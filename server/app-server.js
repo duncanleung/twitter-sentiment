@@ -2,7 +2,7 @@
 var express = require('express');
 
 var Twitter = require('./Twitter'),
-    sentiment = require('./Sentiment');
+    sentiment = require('./NodeSentiment.js');
 
 //Create Express Server Instance
 var app = express(),

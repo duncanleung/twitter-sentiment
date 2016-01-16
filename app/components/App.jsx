@@ -14,7 +14,7 @@ var App = React.createClass({
   getInitialState: function() {
       return {
           status: 'disconnected',
-          search: false,
+          search: true,
           keyword: '',
           initTimestamp: '',
           collectedTweets: [],
@@ -166,7 +166,9 @@ var App = React.createClass({
     return (
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
+
         <TechStack />
+        
         { this.state.search ? 
           <Results 
             collectedTweets={ this.state.collectedTweets }
