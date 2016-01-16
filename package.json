@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "webpack",
-    "start": "nodemon ./server/app-server.js"
+    "start": "node ./server/app-server.js"
   },
   "repository": {
     "type": "git",
