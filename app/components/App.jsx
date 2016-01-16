@@ -14,7 +14,7 @@ var App = React.createClass({
   getInitialState: function() {
       return {
           status: 'disconnected',
-          search: true,
+          search: false,
           keyword: '',
           initTimestamp: '',
           collectedTweets: [],

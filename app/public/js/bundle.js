@@ -19669,7 +19669,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      status: 'disconnected',
-	      search: true,
+	      search: false,
 	      keyword: '',
 	      initTimestamp: '',
 	      collectedTweets: [],
