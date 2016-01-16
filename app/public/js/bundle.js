@@ -57075,14 +57075,14 @@
 	    /*Overall Sentiment Highlighter
 	    ===============*/
 	    if (this.props.sentiment == 'Positive') {
-	      this.refs.sentiment.classList.add('positive arrow');
+	      this.refs.sentiment.classList.add('positive');
 	      this.refs.sentiment.classList.remove('negative');
 	    } else if (this.props.sentiment == 'Negative') {
 	      this.refs.sentiment.classList.add('negative');
-	      this.refs.sentiment.classList.remove('positive arrow');
+	      this.refs.sentiment.classList.remove('positive');
 	    } else {
 	      this.refs.sentiment.classList.remove('negative');
-	      this.refs.sentiment.classList.remove('positive arrow');
+	      this.refs.sentiment.classList.remove('positive');
 	    }
 	  },
 

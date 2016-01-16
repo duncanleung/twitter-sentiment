@@ -27,23 +27,39 @@ var connections = [];
 //All Socket Listeners Here
 io.sockets.on('connection', function(socket) {
   
-  socket.once('disconnect', function() {
-    connections.splice(connections.indexOf(socket), 1);
-    socket.disconnect();
-    console.log('Socket disconnected: %s sockets remaining', connections.length);
-  });
+  
 
   connections.push(socket);
   console.log('%s Connected. %s sockets connected', socket.id, connections.length);
   
+  var prevSearch = false;
+  var twitterStream;
+
   socket.on('search', function(payload) {
     console.log('Keyword: %s', payload.keyword);
 
-    var twitterStream = Twitter.stream('statuses/filter', {language: 'en', track: payload.keyword});
+    if(prevSearch) {
+      twitterStream.stop();
+      console.log(prevSearch);
+      console.log('stop stream');
+
+    } else {
+
+      prevSearch = true;
+    }
+
+    twitterStream = Twitter.stream('statuses/filter', {language: 'en', track: payload.keyword});
 
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
       sentiment.getSentiment(tweet, socket);
+    });
+
+    socket.once('disconnect', function() {
+      connections.splice(connections.indexOf(socket), 1);
+      socket.disconnect();
+      twitterStream.stop();
+      console.log('Socket disconnected: %s sockets remaining', connections.length);
     });
   });
 

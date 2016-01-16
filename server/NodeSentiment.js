@@ -7,8 +7,6 @@ var sentiment = {};
 //Send Tweet Text to Sentiment Analysis
 sentiment.getSentiment = function(tweet, socket) {
   var tweetSentiment = nodeSentiment(tweet.text);
-  
-  // console.log(tweetSentiment);
 
   if(tweetSentiment.score < 0) {
     tweetSentiment = 'negative';
@@ -17,8 +15,6 @@ sentiment.getSentiment = function(tweet, socket) {
   } else {
     tweetSentiment = 'neutral';
   }
-
-  // console.log('Adjusted Sentiment: ' + tweetSentiment);
 
   sentiment.appendSentiment(tweet, tweetSentiment, socket);
 };
@@ -41,7 +37,7 @@ sentiment.appendSentiment = function(tweet, sentiment, socket) {
     text: tweet.text,
     lang: tweet.lang
   };
-
+  console.log(sentimentTweet.text);
   socket.emit('sendTweet', {tweet: sentimentTweet}); //sendTweet to Client
 };
 
