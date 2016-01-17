@@ -30,7 +30,7 @@ var App = React.createClass({
   componentWillMount: function() {
     var self = this;
 
-    this.socket = io/*('http://localhost:3000')*/;
+    this.socket = io.connect();
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
     this.socket.on('sendTweet', function(receivedTweet) {

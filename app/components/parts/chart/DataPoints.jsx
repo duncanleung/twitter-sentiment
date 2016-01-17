@@ -49,13 +49,13 @@ var DataPoints = React.createClass({
 
     return (
       <g>
-        <circle className="negative point" {...dataNegativeProps}>
-        </circle>
-        <circle className="positive point" {...dataPositiveProps}>
+        <circle className="total point" {...dataTotalProps}>
         </circle>
         <circle className="neutral point" {...dataNeutralProps}>
         </circle>
-        <circle className="total point" {...dataTotalProps}>
+        <circle className="negative point" {...dataNegativeProps}>
+        </circle>
+        <circle className="positive point" {...dataPositiveProps}>
         </circle>
       </g>
     );

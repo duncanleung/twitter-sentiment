@@ -141,21 +141,27 @@ header nav ul #home-nav a {
   font-size: 40px;
   font-weight: 700;
 }
-/* line 168, default.scss */
+@media (max-width: 640px) {
+  /* line 162, default.scss */
+  .hero .content h2 {
+    font-size: 30px;
+  }
+}
+/* line 172, default.scss */
 .hero .content .text-logo {
   order: 1;
   font-weight: 600;
   font-size: 40px;
   color: #59BBFF;
 }
-/* line 170, default.scss */
+/* line 174, default.scss */
 .hero .content .text-logo img {
   height: 60px;
   width: auto;
   margin-right: 10px;
   margin-bottom: 15px;
 }
-/* line 184, default.scss */
+/* line 188, default.scss */
 .hero .content #search-bar {
   order: 4;
   width: 350px;
@@ -163,12 +169,12 @@ header nav ul #home-nav a {
   margin-right: auto;
   margin-left: auto;
 }
-/* line 191, default.scss */
+/* line 195, default.scss */
 .hero .content #search-bar input:focus {
   border: 1px solid #218d43;
   box-shadow: 0 0 4px #218d43;
 }
-/* line 196, default.scss */
+/* line 200, default.scss */
 .hero .content #search-bar .btn-default {
   background-color: #2bb656;
   border-color: #2bb656;
@@ -178,7 +184,7 @@ header nav ul #home-nav a {
   text-transform: uppercase;
   transition: all 0.25s ease-in-out;
 }
-/* line 205, default.scss */
+/* line 209, default.scss */
 .hero .content #search-bar .btn-default:hover {
   background-color: #218d43;
   border-color: #218d43;
@@ -186,9 +192,8 @@ header nav ul #home-nav a {
 
 /* Technology Stack Section Styles
 ======================== */
-/* line 216, default.scss */
+/* line 220, default.scss */
 .technology-stack {
-  height: 230px;
   padding-bottom: 20px;
   background-color: #1a252f;
   background-image: url("/img/tech-background.png");
@@ -197,26 +202,23 @@ header nav ul #home-nav a {
   font-size: 19px;
   text-align: center;
 }
-/* line 226, default.scss */
+/* line 229, default.scss */
 .technology-stack .technologies-container {
   padding-top: 20px;
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
 }
-/* line 235, default.scss */
+/* line 234, default.scss */
 .technology-stack .technologies-container .heading {
-  flex: 100%;
   color: #999;
   margin-bottom: 30px;
 }
-/* line 242, default.scss */
+/* line 240, default.scss */
 .technology-stack .technologies-container .nodejs .nodejs-logo {
   height: 120px;
   width: 200px;
+  margin-right: auto;
+  margin-left: auto;
   background-image: url("../img/logo/nodejs-gray.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -231,89 +233,113 @@ header nav ul #home-nav a {
 .technology-stack .technologies-container .socketio .socketio-logo {
   height: 120px;
   width: 200px;
+  margin-right: auto;
+  margin-left: auto;
   background-image: url("../img/logo/socketio-gray.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 267, default.scss */
+/* line 269, default.scss */
 .technology-stack .technologies-container .socketio .socketio-logo:hover {
   background-image: url("../img/logo/socketio.png");
 }
-/* line 274, default.scss */
+/* line 276, default.scss */
 .technology-stack .technologies-container .react .react-logo {
   height: 120px;
   width: 200px;
+  margin-right: auto;
+  margin-left: auto;
   background-image: url("../img/logo/react-gray.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 283, default.scss */
+/* line 287, default.scss */
 .technology-stack .technologies-container .react .react-logo:hover {
   background-image: url("../img/logo/react.png");
 }
-/* line 289, default.scss */
+/* line 293, default.scss */
 .technology-stack .technologies-container .d3 {
   padding-bottom: 10px;
 }
-/* line 291, default.scss */
+/* line 295, default.scss */
 .technology-stack .technologies-container .d3 .d3-logo {
   height: 80px;
   width: 80px;
+  margin-right: auto;
+  margin-left: auto;
   background-image: url("../img/logo/d3-gray.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 300, default.scss */
+/* line 306, default.scss */
 .technology-stack .technologies-container .d3 .d3-logo:hover {
   background-image: url("../img/logo/d3.png");
 }
-/* line 307, default.scss */
+/* line 313, default.scss */
 .technology-stack .technologies-container .twitter .twitter-logo {
   height: 120px;
   width: 250px;
+  margin-right: auto;
+  margin-left: auto;
   background-image: url("../img/logo/twitter-gray.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 316, default.scss */
+/* line 324, default.scss */
 .technology-stack .technologies-container .twitter .twitter-logo:hover {
   background-image: url("../img/logo/twitter.png");
+}
+/* line 331, default.scss */
+.technology-stack .technologies-container .heroku .heroku-logo {
+  height: 120px;
+  width: 250px;
+  margin-right: auto;
+  margin-left: auto;
+  background-image: url("../img/logo/heroku-gray.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  transition: all 0.2s ease-in-out;
+}
+/* line 342, default.scss */
+.technology-stack .technologies-container .heroku .heroku-logo:hover {
+  background-image: url("../img/logo/heroku.png");
 }
 
 /* About Section Styles
 ======================== */
-/* line 326, default.scss */
+/* line 353, default.scss */
 #about {
   padding-top: 30px;
 }
-/* line 329, default.scss */
+/* line 356, default.scss */
 #about .title {
   text-align: center;
 }
-/* line 332, default.scss */
+/* line 359, default.scss */
 #about .title h3 {
   font-weight: 600;
   font-size: 32px;
   color: #2bb656;
 }
-/* line 337, default.scss */
+/* line 364, default.scss */
 #about .title p {
   color: #666;
 }
-/* line 342, default.scss */
+/* line 369, default.scss */
 #about .features {
   margin-top: 20px;
   padding-bottom: 50px;
 }
-/* line 346, default.scss */
+/* line 373, default.scss */
 #about .features .tile {
   min-height: 320px;
   padding: 0 10px 20px;
@@ -322,13 +348,20 @@ header nav ul #home-nav a {
   box-shadow: 0 4px 8px rgba(166, 166, 166, 0.3);
   background-color: white;
 }
-/* line 354, default.scss */
+@media (max-width: 992px) {
+  /* line 373, default.scss */
+  #about .features .tile {
+    min-height: 200px;
+    margin-top: 5px;
+  }
+}
+/* line 386, default.scss */
 #about .features .tile h3 {
   color: #4d4d4d;
   text-align: center;
   margin-bottom: 30px;
 }
-/* line 359, default.scss */
+/* line 391, default.scss */
 #about .features .tile h3 .circle {
   width: 75px;
   height: 75px;
@@ -337,13 +370,13 @@ header nav ul #home-nav a {
   border: 3px solid rgba(0, 0, 0, 0.13);
   border-radius: 50%;
 }
-/* line 367, default.scss */
+/* line 399, default.scss */
 #about .features .tile h3 .circle .fa {
   color: #2bb656;
   margin-top: 15px;
   font-size: 40px;
 }
-/* line 375, default.scss */
+/* line 407, default.scss */
 #about .features .tile p {
   color: #666;
   text-align: center;
@@ -352,13 +385,13 @@ header nav ul #home-nav a {
 
 /* Results Section Styles
 ======================== */
-/* line 387, default.scss */
+/* line 419, default.scss */
 .results {
   height: 700px;
   /* Twitter Stream Styles
   ======================== */
 }
-/* line 390, default.scss */
+/* line 422, default.scss */
 .results .dashboard {
   height: 700px;
   overflow-y: hidden;
@@ -366,21 +399,21 @@ header nav ul #home-nav a {
   /* Activity Chart Styles
   ======================== */
 }
-/* line 395, default.scss */
+/* line 427, default.scss */
 .results .dashboard h1 {
   color: #4d4d4d;
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;
 }
-/* line 404, default.scss */
+/* line 436, default.scss */
 .results .dashboard .twitter-activity {
   width: 800px;
   margin-right: auto;
   margin-left: auto;
   display: block;
 }
-/* line 410, default.scss */
+/* line 442, default.scss */
 .results .dashboard .twitter-activity h4 {
   margin-top: 20px;
   margin-bottom: 0;
@@ -391,49 +424,49 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #b3b3b3;
 }
-/* line 421, default.scss */
+/* line 453, default.scss */
 .results .dashboard .twitter-activity .line-chart {
   background-color: #f7f7f7;
   display: block;
   margin: auto;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 427, default.scss */
+/* line 459, default.scss */
 .results .dashboard .twitter-activity .line-chart .gridline path,
 .results .dashboard .twitter-activity .line-chart .gridline line {
   fill: none;
   stroke: #ccc;
   shape-rendering: crispEdges;
 }
-/* line 434, default.scss */
+/* line 466, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis path,
 .results .dashboard .twitter-activity .line-chart .axis line {
   fill: none;
   stroke: #1a252f;
   shape-rendering: crispEdges;
 }
-/* line 441, default.scss */
+/* line 473, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis text {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
-/* line 446, default.scss */
+/* line 478, default.scss */
 .results .dashboard .twitter-activity .line-chart .axis text.x-label,
 .results .dashboard .twitter-activity .line-chart .axis text.y-label {
   font-family: "Open Sans", sans-serif;
   fill: #999;
 }
-/* line 453, default.scss */
+/* line 485, default.scss */
 .results .dashboard .twitter-activity .tweet-counters {
   display: flex;
   border-top: 1px solid #1a252f;
 }
-/* line 457, default.scss */
+/* line 489, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total {
   width: 100%;
   position: relative;
 }
-/* line 461, default.scss */
+/* line 493, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total h3 {
   margin: 0;
   padding: 10px 0;
@@ -442,27 +475,27 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #d5d5d5;
 }
-/* line 470, default.scss */
+/* line 502, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-tweets {
   height: 5px;
   background-color: blue;
 }
-/* line 475, default.scss */
+/* line 507, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-positive {
   height: 5px;
   background-color: green;
 }
-/* line 480, default.scss */
+/* line 512, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-neutral {
   height: 5px;
   background-color: sandybrown;
 }
-/* line 485, default.scss */
+/* line 517, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-negative {
   height: 5px;
   background-color: red;
 }
-/* line 490, default.scss */
+/* line 522, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter {
   padding: 5px 0;
   color: #737373;
@@ -472,27 +505,27 @@ header nav ul #home-nav a {
   background-color: white;
   transition: all 0.2s ease-in-out;
 }
-/* line 499, default.scss */
+/* line 531, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.positive {
   color: green;
 }
-/* line 504, default.scss */
+/* line 536, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.neutral {
   color: sandybrown;
 }
-/* line 508, default.scss */
+/* line 540, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .counter.negative {
   color: red;
 }
-/* line 513, default.scss */
+/* line 545, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-tweets + .counter {
   border-radius: 0 0 0 5px;
 }
-/* line 517, default.scss */
+/* line 549, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .total-negative + .counter {
   border-radius: 0 0 5px 0;
 }
-/* line 521, default.scss */
+/* line 553, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow {
   position: absolute;
   bottom: 20px;
@@ -504,26 +537,26 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   transition: all 0.2s ease-in-out;
 }
-/* line 532, default.scss */
+/* line 564, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.positive {
   border-bottom: 10px solid green;
 }
-/* line 536, default.scss */
+/* line 568, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.neutral, .results .dashboard .twitter-activity .tweet-counters .total .arrow.null {
   border-bottom: 10px solid sandybrown;
 }
-/* line 541, default.scss */
+/* line 573, default.scss */
 .results .dashboard .twitter-activity .tweet-counters .total .arrow.negative {
   border-bottom: 10px solid red;
 }
-/* line 548, default.scss */
+/* line 580, default.scss */
 .results .dashboard .twitter-activity .overall-sentiment {
   margin-top: 30px;
   display: inline-block;
   background-color: #f7f7f7;
   border-radius: 5px 5px 5px 5px;
 }
-/* line 554, default.scss */
+/* line 586, default.scss */
 .results .dashboard .twitter-activity .overall-sentiment h3 {
   display: inline-block;
   padding: 10px 0 10px 10px;
@@ -535,7 +568,7 @@ header nav ul #home-nav a {
   border-radius: 5px 0 0 5px;
   background-color: #d5d5d5;
 }
-/* line 566, default.scss */
+/* line 598, default.scss */
 .results .dashboard .twitter-activity .overall-sentiment p {
   display: inline-block;
   margin-bottom: 0;
@@ -543,21 +576,21 @@ header nav ul #home-nav a {
   font-size: 24px;
   color: #666;
 }
-/* line 573, default.scss */
+/* line 605, default.scss */
 .results .dashboard .twitter-activity .overall-sentiment p.positive {
   color: green;
 }
-/* line 577, default.scss */
+/* line 609, default.scss */
 .results .dashboard .twitter-activity .overall-sentiment p.negative {
   color: red;
 }
-/* line 587, default.scss */
+/* line 619, default.scss */
 .results .stream {
   height: 700px;
   background-color: #1a252f;
   padding: 0 25px 0 15px;
 }
-/* line 592, default.scss */
+/* line 624, default.scss */
 .results .stream h1 {
   margin-bottom: 0;
   padding: 15px 5px 10px;
@@ -567,7 +600,7 @@ header nav ul #home-nav a {
   text-align: center;
   background-color: #b3b3b3;
 }
-/* line 602, default.scss */
+/* line 634, default.scss */
 .results .stream .tweet-list {
   height: 600px;
   background-color: #f7f7f7;
@@ -576,7 +609,7 @@ header nav ul #home-nav a {
   overflow-x: hidden;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 610, default.scss */
+/* line 642, default.scss */
 .results .stream .tweet-list .tweet-card {
   padding: 10px 0px 10px 15px;
   margin: 5px 10px 5px 10px;
@@ -584,7 +617,7 @@ header nav ul #home-nav a {
   background-color: white;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 617, default.scss */
+/* line 649, default.scss */
 .results .stream .tweet-list .tweet-card .profile-image {
   display: inline-block;
   vertical-align: top;
@@ -593,36 +626,36 @@ header nav ul #home-nav a {
   width: 50px;
   border-radius: 5px;
 }
-/* line 626, default.scss */
+/* line 658, default.scss */
 .results .stream .tweet-list .tweet-card .content {
   display: inline-block;
   width: 80%;
   position: relative;
 }
-/* line 631, default.scss */
+/* line 663, default.scss */
 .results .stream .tweet-list .tweet-card .content .user {
   display: inline-block;
   width: 90%;
 }
-/* line 635, default.scss */
+/* line 667, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .name {
   font-size: 14px;
   color: #4d4d4d;
   font-weight: 700;
   margin-right: 10px;
 }
-/* line 642, default.scss */
+/* line 674, default.scss */
 .results .stream .tweet-list .tweet-card .content .user .username {
   font-size: 14px;
 }
-/* line 647, default.scss */
+/* line 679, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment {
   position: absolute;
   top: 5px;
   right: 0;
   display: inline-block;
 }
-/* line 653, default.scss */
+/* line 685, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.positive {
   width: 0;
   height: 0;
@@ -630,7 +663,7 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   border-bottom: 10px solid green;
 }
-/* line 661, default.scss */
+/* line 693, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.neutral, .results .stream .tweet-list .tweet-card .content .sentiment.null {
   height: 10px;
   width: 10px;
@@ -638,7 +671,7 @@ header nav ul #home-nav a {
   border-radius: 50%;
   background-color: sandybrown;
 }
-/* line 671, default.scss */
+/* line 703, default.scss */
 .results .stream .tweet-list .tweet-card .content .sentiment.negative {
   width: 0;
   height: 0;
@@ -646,23 +679,23 @@ header nav ul #home-nav a {
   border-right: 10px solid transparent;
   border-top: 10px solid red;
 }
-/* line 680, default.scss */
+/* line 712, default.scss */
 .results .stream .tweet-list .tweet-card .content .text {
   font-size: 12px;
 }
 
 /* Footer Styles
 ======================== */
-/* line 692, default.scss */
+/* line 724, default.scss */
 footer {
   height: 80px;
   background-color: #1a1a1a;
 }
-/* line 696, default.scss */
+/* line 728, default.scss */
 footer .baseline-container {
   position: relative;
 }
-/* line 699, default.scss */
+/* line 731, default.scss */
 footer .baseline-container .connect-container {
   position: absolute;
   right: 40px;
@@ -673,7 +706,7 @@ footer .baseline-container .connect-container {
   justify-content: center;
   z-index: 50;
 }
-/* line 709, default.scss */
+/* line 741, default.scss */
 footer .baseline-container .connect-container p {
   margin-top: 10px;
   margin-right: 20px;
@@ -681,7 +714,7 @@ footer .baseline-container .connect-container p {
   font-weight: 300;
   color: #999;
 }
-/* line 717, default.scss */
+/* line 749, default.scss */
 footer .baseline-container .connect-container .github-logo {
   height: 30px;
   width: 30px;
@@ -692,11 +725,11 @@ footer .baseline-container .connect-container .github-logo {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 727, default.scss */
+/* line 759, default.scss */
 footer .baseline-container .connect-container .github-logo:hover {
   background-image: url("../img/logo/github.png");
 }
-/* line 732, default.scss */
+/* line 764, default.scss */
 footer .baseline-container .connect-container .linkedin-logo {
   height: 25px;
   width: 25px;
@@ -708,23 +741,23 @@ footer .baseline-container .connect-container .linkedin-logo {
   background-size: 100%;
   transition: all 0.2s ease-in-out;
 }
-/* line 743, default.scss */
+/* line 775, default.scss */
 footer .baseline-container .connect-container .linkedin-logo:hover {
   background-image: url("../img/logo/linkedin.png");
 }
 @media (max-width: 930px) {
-  /* line 699, default.scss */
+  /* line 731, default.scss */
   footer .baseline-container .connect-container {
     position: relative;
     right: 0;
     margin-right: 0;
   }
 }
-/* line 755, default.scss */
+/* line 787, default.scss */
 footer .baseline-container .branding-container {
   margin-top: 30px;
 }
-/* line 758, default.scss */
+/* line 790, default.scss */
 footer .baseline-container .branding-container p {
   color: #4d4d4d;
   font-size: 16px;

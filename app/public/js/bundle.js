@@ -19685,7 +19685,7 @@
 	  componentWillMount: function componentWillMount() {
 	    var self = this;
 
-	    this.socket = io('http://localhost:3000');
+	    this.socket = io.connect();
 	    this.socket.on('connect', this.connect);
 	    this.socket.on('disconnect', this.disconnect);
 	    this.socket.on('sendTweet', function (receivedTweet) {
@@ -56881,50 +56881,72 @@
 	          ),
 	          React.createElement(
 	            "div",
-	            { className: "nodejs" },
+	            { className: "row" },
 	            React.createElement(
-	              "a",
-	              { href: "https://nodejs.org/en/" },
-	              React.createElement("div", { className: "nodejs-logo" })
+	              "div",
+	              { className: "nodejs col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "https://nodejs.org/en/" },
+	                React.createElement("div", { className: "nodejs-logo" })
+	              )
+	            ),
+	            React.createElement(
+	              "div",
+	              { className: "socketio col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "http://socket.io/" },
+	                React.createElement("div", { className: "socketio-logo" })
+	              )
+	            ),
+	            React.createElement(
+	              "div",
+	              { className: "heroku col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "https://www.heroku.com/" },
+	                React.createElement("div", { className: "heroku-logo" })
+	              )
 	            )
 	          ),
 	          React.createElement(
 	            "div",
-	            { className: "socketio" },
+	            { className: "row" },
 	            React.createElement(
-	              "a",
-	              { href: "http://socket.io/" },
-	              React.createElement("div", { className: "socketio-logo" })
-	            )
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "react" },
+	              "div",
+	              { className: "react col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "https://facebook.github.io/react/index.html" },
+	                React.createElement("div", { className: "react-logo" })
+	              )
+	            ),
 	            React.createElement(
-	              "a",
-	              { href: "https://facebook.github.io/react/index.html" },
-	              React.createElement("div", { className: "react-logo" })
-	            )
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "d3" },
+	              "div",
+	              { className: "d3 col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "http://d3js.org", target: "_blank" },
+	                React.createElement("div", { className: "d3-logo" })
+	              )
+	            ),
 	            React.createElement(
-	              "a",
-	              { href: "http://d3js.org", target: "_blank" },
-	              React.createElement("div", { className: "d3-logo" })
-	            )
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "twitter" },
-	            React.createElement(
-	              "a",
-	              { href: "https://dev.twitter.com/streaming/overview" },
-	              React.createElement("div", { className: "twitter-logo" })
+	              "div",
+	              { className: "twitter col-sm-4 col-xs-12" },
+	              React.createElement(
+	                "a",
+	                { href: "https://dev.twitter.com/streaming/overview" },
+	                React.createElement("div", { className: "twitter-logo" })
+	              )
 	            )
 	          )
 	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement("p", null)
 	      )
 	    );
 	  }
@@ -57329,10 +57351,10 @@
 	    return React.createElement(
 	      'g',
 	      null,
-	      React.createElement('circle', _extends({ className: 'negative point' }, dataNegativeProps)),
-	      React.createElement('circle', _extends({ className: 'positive point' }, dataPositiveProps)),
+	      React.createElement('circle', _extends({ className: 'total point' }, dataTotalProps)),
 	      React.createElement('circle', _extends({ className: 'neutral point' }, dataNeutralProps)),
-	      React.createElement('circle', _extends({ className: 'total point' }, dataTotalProps))
+	      React.createElement('circle', _extends({ className: 'negative point' }, dataNegativeProps)),
+	      React.createElement('circle', _extends({ className: 'positive point' }, dataPositiveProps))
 	    );
 	  },
 
@@ -57674,10 +57696,10 @@
 	    return React.createElement(
 	      'g',
 	      null,
-	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
+	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" }),
 	      React.createElement(Line, { path: pathNeutral(this.props.binnedTweets), stroke: "sandybrown" }),
-	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" }),
-	      React.createElement(Line, { path: pathTotal(this.props.binnedTweets), stroke: "blue" })
+	      React.createElement(Line, { path: pathNegative(this.props.binnedTweets), stroke: "red" }),
+	      React.createElement(Line, { path: pathPositive(this.props.binnedTweets), stroke: "green" })
 	    );
 	  }
 	});

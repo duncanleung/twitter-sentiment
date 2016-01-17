@@ -163,6 +163,10 @@ header {
       order: 2;
       font-size: 40px;
       font-weight: 700;
+
+      @media(max-width: 640px) {
+        font-size: 30px;
+      }
     }
 
     .text-logo {
@@ -214,7 +218,6 @@ header {
 /* Technology Stack Section Styles
 ======================== */
 .technology-stack {
-  height: 230px;
   padding-bottom: 20px;
   background-color: $background-dark-gray;
   background-image: url('/img/tech-background.png');
@@ -226,14 +229,9 @@ header {
   .technologies-container {
     padding-top: 20px;
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
 
     .heading {
-      flex: 100%;
       color: $text-gray;
       margin-bottom: 30px;
     }
@@ -242,6 +240,8 @@ header {
       .nodejs-logo {
         height: 120px;
         width: 200px;
+        margin-right: auto;
+        margin-left: auto;
         background-image: url("../img/logo/nodejs-gray.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -258,6 +258,8 @@ header {
       .socketio-logo {
         height: 120px;
         width: 200px;
+        margin-right: auto;
+        margin-left: auto;
         background-image: url("../img/logo/socketio-gray.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -274,6 +276,8 @@ header {
       .react-logo {
         height: 120px;
         width: 200px;
+        margin-right: auto;
+        margin-left: auto;
         background-image: url("../img/logo/react-gray.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -291,6 +295,8 @@ header {
       .d3-logo {
         height: 80px;
         width: 80px;
+        margin-right: auto;
+        margin-left: auto;
         background-image: url("../img/logo/d3-gray.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -307,6 +313,8 @@ header {
       .twitter-logo {
         height: 120px;
         width: 250px;
+        margin-right: auto;
+        margin-left: auto;
         background-image: url("../img/logo/twitter-gray.png");
         background-repeat: no-repeat;
         background-position: center;
@@ -318,6 +326,25 @@ header {
         }
       }
     }
+
+    .heroku {
+      .heroku-logo {
+        height: 120px;
+        width: 250px;
+        margin-right: auto;
+        margin-left: auto;
+        background-image: url("../img/logo/heroku-gray.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-image: url("../img/logo/heroku.png");
+        }
+      }
+    }
+
   }
 }
 
@@ -350,6 +377,11 @@ header {
       border: 1px solid $background-light-gray;
       box-shadow: 0 4px 8px rgba(166, 166, 166, 0.3);
       background-color: white;
+
+      @media(max-width: 992px) {
+        min-height: 200px;
+        margin-top: 5px;
+      }
 
       h3 {
         color: $text-black;
