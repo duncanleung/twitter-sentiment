@@ -2,16 +2,15 @@
 var express = require('express');
 
 var Twitter = require('./Twitter'),
-    sentiment = require('./NodeSentiment.js');
+    sentiment = require('./NodeSentiment.js'),
+    twitterStream = Twitter;
 
 //Create Express Server Instance
 var app = express(),
-    port = process.env.PORT || 3000,
-    twitterStream = Twitter;
+    port = process.env.PORT || 3000;
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
-
 
 
 
@@ -20,6 +19,7 @@ Create Server and Socket.io Instance
 ==================*/
 var server = app.listen(port);
 console.log('Server on port: %s', port);
+
 var io = require('socket.io').listen(server);
 var connections = [];
 
