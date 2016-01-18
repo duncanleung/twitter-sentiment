@@ -166,8 +166,6 @@ var App = React.createClass({
     return (
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
-
-        <TechStack />
         
         { this.state.search ? 
           <Results 
@@ -176,6 +174,8 @@ var App = React.createClass({
             totalTweets={ this.state.totalTweets }
             sentiment= { this.state.sentiment }
           /> : null }
+
+        <TechStack />
       </div>
     );
   }

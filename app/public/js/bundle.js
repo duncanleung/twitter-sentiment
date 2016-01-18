@@ -19818,13 +19818,13 @@
 	      'div',
 	      null,
 	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
-	      React.createElement(TechStack, null),
 	      this.state.search ? React.createElement(Results, {
 	        collectedTweets: this.state.collectedTweets,
 	        binnedTweets: this.state.binnedTweets,
 	        totalTweets: this.state.totalTweets,
 	        sentiment: this.state.sentiment
-	      }) : null
+	      }) : null,
+	      React.createElement(TechStack, null)
 	    );
 	  }
 	});
