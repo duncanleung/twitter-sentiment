@@ -26,8 +26,6 @@ var connections = [];
 //Create socket.io Connection with Client
 //All Socket Listeners Here
 io.sockets.on('connection', function(socket) {
-  
-  
 
   connections.push(socket);
   console.log('%s Connected. %s sockets connected', socket.id, connections.length);

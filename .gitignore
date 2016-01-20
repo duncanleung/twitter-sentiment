@@ -31,5 +31,5 @@ psd
 *.codekit
 
 #Twitter API Keys
-config.js
+#config.js
 
