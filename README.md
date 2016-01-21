@@ -1,7 +1,8 @@
 # twitter-sentiment
 **A real-time Twitter sentiment dashboard for companies who want to monitor the sentiment around their brand.**
 
-Twitterment listens to the Twitter Streaming API and uses Socket.io to update the client in real-time when new tweets are received. New Tweets are drawn onto the DOM with a reusable React TweetCard.jsx component. New Tweet sentiment data is also drawn onto a line graph to show the sentiment trend since the search started.
+Twitterment listens to the Twitter Streaming API for the searched keyword. Node.js (express) and Socket.io is used to achieve real-time client-server updates when new tweets are received on the server. React.js is used as the view layer to manage DOM rendering of new real-time Tweets with a reusable React TweetCard.jsx component.
+D3.js is used to render analyzed Tweet sentiment onto a line graph to show the sentiment trend since the search started.
 
 Regarding D3 and React integration, Twitterment uses React to handle DOM manipulations for plotting Data Points (DataPoints.jsx) and Line Paths (LinePath.jsx) for the line graph. This decision was made since React already knows when to rerender the graph when new tweets are received and the tweet counts are updated in the app.
 
