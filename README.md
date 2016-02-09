@@ -25,13 +25,14 @@ Twitterment was my second project for [Orange County Code School](https://www.or
 - D3.js real-time multi-line graph visualize sentiment Tweet data over time
 - Use user-entered keywords to monitor the Twitter Stream API in real-time
 
-####Built Upon the following technologies:
+####Built With the Following Technologies:
 - Node (Express)
 - Socket.io
 - React.js
 - D3.js
 - Sass
 - Twitter Streaming API
+- Babel
 - Webpack
 
 
