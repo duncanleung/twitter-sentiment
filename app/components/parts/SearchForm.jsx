@@ -1,11 +1,12 @@
-var React = require('react'),
-    ReactDOM = require('react-dom');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 var SearchForm = React.createClass({
   
   search() {
     var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
     var initTimestamp = new Date().getTime();
+    
     this.props.emit('search', { keyword: keyword });
     this.props.initTimestamp({ initTimestamp: initTimestamp });
   },

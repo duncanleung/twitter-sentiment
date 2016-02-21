@@ -1,7 +1,7 @@
 var React = require('react');
 
-var Dashboard = require('./parts/Dashboard.jsx'),
-    TwitterStream = require('./parts/TwitterStream.jsx');
+var Dashboard = require('./parts/Dashboard.jsx');
+var TwitterStream = require('./parts/TwitterStream.jsx');
 
 
 //Results Holds the Dashboard and TwitterStream Components

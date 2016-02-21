@@ -1,5 +1,5 @@
-var React = require('react'),
-    d3 = require('d3');
+var React = require('react');
+var d3 = require('d3');
 
 var Line = require('./Line.jsx');
 
@@ -7,45 +7,45 @@ var Line = require('./Line.jsx');
 var LinePath = React.createClass({
 
   render: function() {
-    var props = this.props,
-        xScale = props.xScale,
-        yScale = props.yScale;
+    var props = this.props;
+    var xScale = props.xScale;
+    var yScale = props.yScale;
 
     var pathTotal = d3.svg.line()
-      .x(function(d) {
-        return xScale(d.timeBin);
-      })
-      .y(function(d) {
-        return yScale(d.numTweets);
-      })
-      .interpolate("cardinal");
+                      .x(function(d) {
+                        return xScale(d.timeBin);
+                      })
+                      .y(function(d) {
+                        return yScale(d.numTweets);
+                      })
+                      .interpolate("cardinal");
 
     var pathPositive = d3.svg.line()
-      .x(function(d) {
-        return xScale(d.timeBin);
-      })
-      .y(function(d) {
-        return yScale(d.posTweets);
-      })
-      .interpolate("cardinal");
+                        .x(function(d) {
+                          return xScale(d.timeBin);
+                        })
+                        .y(function(d) {
+                          return yScale(d.posTweets);
+                        })
+                        .interpolate("cardinal");
 
     var pathNegative = d3.svg.line()
-      .x(function(d) {
-        return xScale(d.timeBin);
-      })
-      .y(function(d) {
-        return yScale(d.negTweets);
-      })
-      .interpolate("cardinal");
+                        .x(function(d) {
+                          return xScale(d.timeBin);
+                        })
+                        .y(function(d) {
+                          return yScale(d.negTweets);
+                        })
+                        .interpolate("cardinal");
 
     var pathNeutral = d3.svg.line()
-      .x(function(d) {
-        return xScale(d.timeBin);
-      })
-      .y(function(d) {
-        return yScale(d.neutTweets);
-      })
-      .interpolate("cardinal");
+                        .x(function(d) {
+                          return xScale(d.timeBin);
+                        })
+                        .y(function(d) {
+                          return yScale(d.neutTweets);
+                        })
+                        .interpolate("cardinal");
 
     return (
       <g>

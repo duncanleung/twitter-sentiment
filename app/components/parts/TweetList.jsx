@@ -1,5 +1,5 @@
-var React = require('react'),
-    TweetCard = require('./TweetCard.jsx');
+var React = require('react');
+var TweetCard = require('./TweetCard.jsx');
 
 //TweetList Contains All Twitter Messages as Cards
 //Uses TweetCard.jsx

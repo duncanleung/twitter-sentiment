@@ -1,5 +1,5 @@
-var React = require('react'),
-    d3 = require('d3');
+var React = require('react');
+var d3 = require('d3');
 
 //Axis is a Reusable Axis Creator for Charts
 var Axis = React.createClass({
@@ -9,9 +9,9 @@ var Axis = React.createClass({
   },
 
   componentDidMount: function() {
-      this.renderAxis();
-      this.renderXLabel();
-      this.renderYLabel();
+    this.renderAxis();
+    this.renderXLabel();
+    this.renderYLabel();
   },
 
   //Use D3 to Create Axis on 'this DOM Node'
@@ -19,9 +19,9 @@ var Axis = React.createClass({
     var node = this.getDOMNode();
 
     var axis = d3.svg.axis()
-              .scale(this.props.scale)
-              .orient(this.props.orient)
-              .ticks(this.props.ticks)
+                  .scale(this.props.scale)
+                  .orient(this.props.orient)
+                  .ticks(this.props.ticks)
 
     //This is where the magic happens!
     d3.select(node).call(axis);
@@ -31,25 +31,25 @@ var Axis = React.createClass({
     var node = this.getDOMNode();
 
     var xLabel = d3.select(".x.axis")
-                .append("text")
-                .text("Seconds Since Search")
-                .classed("x-label", true)
-                .attr("x", 350)
-                .attr("y", 40)
-                .style("text-anchor", "middle");
+                    .append("text")
+                    .text("Seconds Since Search")
+                    .classed("x-label", true)
+                    .attr("x", 350)
+                    .attr("y", 40)
+                    .style("text-anchor", "middle");
   },
 
   renderYLabel: function() {
     var node = this.getDOMNode();
 
     var yLabel = d3.select(".y.axis")
-                .append("text")
-                .text("Number of Tweets")
-                .classed("y-label", true)
-                .attr("x", -(this.props.height/2))
-                .attr("y", -35)
-                .style("text-anchor", "middle")
-                .attr("transform", "rotate(-90)");
+                    .append("text")
+                    .text("Number of Tweets")
+                    .classed("y-label", true)
+                    .attr("x", -(this.props.height/2))
+                    .attr("y", -35)
+                    .style("text-anchor", "middle")
+                    .attr("transform", "rotate(-90)");
   },
 
   //Use React to Append g Element (Usually D3 Handles This)

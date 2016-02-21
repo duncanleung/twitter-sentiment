@@ -2,7 +2,6 @@ var nodeSentiment = require('sentiment');
 
 var sentiment = {};
 
-// var r1 = sentiment('Cats are stupid.');
 
 //Send Tweet Text to Sentiment Analysis
 sentiment.getSentiment = function(tweet, socket) {

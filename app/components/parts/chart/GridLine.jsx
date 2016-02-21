@@ -8,7 +8,7 @@ var GridLine = React.createClass({
   },
 
   componentDidMount: function() {
-      this.renderGridline();
+    this.renderGridline();
   },
 
   //Use D3 to Create Axis on 'this DOM Node'
@@ -16,11 +16,11 @@ var GridLine = React.createClass({
     var node = this.getDOMNode();
 
     var gridline = d3.svg.axis()
-              .scale(this.props.yScale)
-              .tickSize(-this.props.width, 0, 0)
-              .ticks(6)
-              .tickFormat("")
-              .orient("left")
+                      .scale(this.props.yScale)
+                      .tickSize(-this.props.width, 0, 0)
+                      .ticks(6)
+                      .tickFormat("")
+                      .orient("left")
 
     //This is where the magic happens!
     d3.select(node).call(gridline);

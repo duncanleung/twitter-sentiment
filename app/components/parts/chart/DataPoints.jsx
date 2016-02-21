@@ -1,5 +1,5 @@
-var React = require('react'),
-    uuid = require('node-uuid');
+var React = require('react');
+var uuid = require('node-uuid');
 
 
 //Datapoints Draws Each Tweet on the Chart

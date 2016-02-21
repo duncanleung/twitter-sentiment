@@ -1,5 +1,5 @@
-var React = require('react'),
-    SearchForm = require('./parts/SearchForm.jsx');
+var React = require('react');
+var SearchForm = require('./parts/SearchForm.jsx');
 
 var Hero = React.createClass({
   render: function() {

@@ -1,5 +1,5 @@
-var React = require('react'),
-    TweetList = require('./TweetList.jsx');
+var React = require('react');
+var TweetList = require('./TweetList.jsx');
 
 //TwitterStream Displays A List of All Twitter Messages as Cards
 //Uses TweetList.jsx

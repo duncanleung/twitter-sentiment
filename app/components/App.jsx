@@ -1,29 +1,29 @@
-var React = require('react'),
-    io = require('socket.io-client'),
-    update = require('react-addons-update'),
-    d3 = require('d3');
+var React = require('react');
+var io = require('socket.io-client');
+var update = require('react-addons-update');
+var d3 = require('d3');
 
-var Hero = require('./Hero.jsx'),
-    TechStack = require('./TechStack.jsx'),
-    Results = require('./Results.jsx');
+var Hero = require('./Hero.jsx');
+var TechStack = require('./TechStack.jsx');
+var Results = require('./Results.jsx');
 
 
 //App is the Main Container
 var App = React.createClass({
 
   getInitialState: function() {
-      return {
-          status: 'disconnected',
-          search: false,
-          keyword: '',
-          initTimestamp: '',
-          collectedTweets: [],
-          binnedTweets: [{numTweets: 0, posTweets: 0,
-              negTweets: 0, neutTweets: 0, timeBin: 5}],
-          totalTweets: {total: 0, posTotal: 0,
-              negTotal: 0, neutTotal: 0},
-          sentiment: 'Neutral'
-      };
+    return {
+      status: 'disconnected',
+      search: false,
+      keyword: '',
+      initTimestamp: '',
+      collectedTweets: [],
+      binnedTweets: [{numTweets: 0, posTweets: 0,
+          negTweets: 0, neutTweets: 0, timeBin: 5}],
+      totalTweets: {total: 0, posTotal: 0,
+          negTotal: 0, neutTotal: 0},
+      sentiment: 'Neutral'
+    };
   },
 
   //Incoming Data from Server Handlers
@@ -65,8 +65,6 @@ var App = React.createClass({
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
     this.countTweets(tweet.sentiment);
     this.overallSentiment();
-
-    /*console.log(tweet);*/
   },
 
   //Inspect Sentiment Value. Increase count of Sentiment
@@ -119,7 +117,6 @@ var App = React.createClass({
 
     if(timeDiff < currentBin) {
       newBinnedTweets[binIndex].numTweets++;
-      //this.setState({ binnedTweets: newBinnedTweets });
 
       if(sentiment == "positive") {
         newBinnedTweets[binIndex].posTweets++;

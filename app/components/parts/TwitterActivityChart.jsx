@@ -1,6 +1,6 @@
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    d3 = require('d3');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var d3 = require('d3');
 
 var LineChart = require('./chart/LineChart.jsx');
 
@@ -27,19 +27,15 @@ var barProps = {
 };
 
 
-/*totalTweets: {total: 0, posTotal: 0,
-              negTotal: 0, neutTotal: 0}*/
-
 //TwitterActivityChart Is the LineChart Container
 var TwitterActivityChart = React.createClass({
-
 
   componentWillUpdate: function(nextProps, nextState) {
     
     /*Counter Highlighter
     ===============*/
+    
     //Positive Highlighter
-
     if(Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
       this.refs.positivearrow.classList.add('positive');
       this.refs.positivecounter.classList.add('positive');
@@ -87,7 +83,8 @@ var TwitterActivityChart = React.createClass({
 
   },
 
-  //{...settings} combines all props (aka. binnedTweets) into 'props'
+  //{...chartProps}: Properties of chartProps are copied into component's props
+  //{...chartArea}: Properties of chartArea are copied into component's props
   render: function() {
     return(
       <div className="twitter-activity">

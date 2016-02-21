@@ -1,13 +1,13 @@
 //Require Dependencies
 var express = require('express');
 
-var Twitter = require('./Twitter'),
-    sentiment = require('./NodeSentiment.js'),
-    twitterStream = Twitter;
+var Twitter = require('./Twitter');
+var sentiment = require('./NodeSentiment.js');
+var twitterStream = Twitter;
 
 //Create Express Server Instance
-var app = express(),
-    port = process.env.PORT || 4000;
+var app = express();
+var port = process.env.PORT || 4000;
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
@@ -42,7 +42,6 @@ io.sockets.on('connection', function(socket) {
       console.log('stop stream');
 
     } else {
-
       prevSearch = true;
     }
 
@@ -54,7 +53,6 @@ io.sockets.on('connection', function(socket) {
       // Send Received Tweets to Sentiment API
       sentiment.getSentiment(tweet, socket);
     });
-
 
     socket.once('disconnect', function() {
       connections.splice(connections.indexOf(socket), 1);

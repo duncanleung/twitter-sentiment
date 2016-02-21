@@ -19653,14 +19653,14 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    io = __webpack_require__(160),
-	    update = __webpack_require__(305),
-	    d3 = __webpack_require__(307);
+	var React = __webpack_require__(1);
+	var io = __webpack_require__(160);
+	var update = __webpack_require__(305);
+	var d3 = __webpack_require__(307);
 
-	var Hero = __webpack_require__(308),
-	    TechStack = __webpack_require__(310),
-	    Results = __webpack_require__(311);
+	var Hero = __webpack_require__(308);
+	var TechStack = __webpack_require__(310);
+	var Results = __webpack_require__(311);
 
 	//App is the Main Container
 	var App = React.createClass({
@@ -19720,8 +19720,6 @@
 	    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
 	    this.countTweets(tweet.sentiment);
 	    this.overallSentiment();
-
-	    /*console.log(tweet);*/
 	  },
 
 	  //Inspect Sentiment Value. Increase count of Sentiment
@@ -19773,7 +19771,6 @@
 
 	    if (timeDiff < currentBin) {
 	      newBinnedTweets[binIndex].numTweets++;
-	      //this.setState({ binnedTweets: newBinnedTweets });
 
 	      if (sentiment == "positive") {
 	        newBinnedTweets[binIndex].posTweets++;
@@ -19803,6 +19800,8 @@
 	  //Outgoing Data to Server Handler
 	  emit: function emit(eventName, payload) {
 	    this.socket.emit(eventName, payload);
+
+	    // Reset Dashboard on New Search
 	    this.setState({
 	      collectedTweets: [],
 	      binnedTweets: [{ numTweets: 0, posTweets: 0,
@@ -56769,8 +56768,8 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    SearchForm = __webpack_require__(309);
+	var React = __webpack_require__(1);
+	var SearchForm = __webpack_require__(309);
 
 	var Hero = React.createClass({
 	  displayName: 'Hero',
@@ -56816,14 +56815,15 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    ReactDOM = __webpack_require__(158);
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
 
 	var SearchForm = React.createClass({
 	  displayName: 'SearchForm',
 	  search: function search() {
 	    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
 	    var initTimestamp = new Date().getTime();
+
 	    this.props.emit('search', { keyword: keyword });
 	    this.props.initTimestamp({ initTimestamp: initTimestamp });
 	  },
@@ -56962,8 +56962,8 @@
 
 	var React = __webpack_require__(1);
 
-	var Dashboard = __webpack_require__(312),
-	    TwitterStream = __webpack_require__(322);
+	var Dashboard = __webpack_require__(312);
+	var TwitterStream = __webpack_require__(322);
 
 	//Results Holds the Dashboard and TwitterStream Components
 	//Uses Dashboard.jsx and TwitterStream.jsx
@@ -57028,9 +57028,9 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(1),
-	    ReactDOM = __webpack_require__(158),
-	    d3 = __webpack_require__(307);
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
+	var d3 = __webpack_require__(307);
 
 	var LineChart = __webpack_require__(314);
 
@@ -57055,9 +57055,6 @@
 	  chartHeight: 100
 	};
 
-	/*totalTweets: {total: 0, posTotal: 0,
-	              negTotal: 0, neutTotal: 0}*/
-
 	//TwitterActivityChart Is the LineChart Container
 	var TwitterActivityChart = React.createClass({
 	  displayName: 'TwitterActivityChart',
@@ -57066,8 +57063,8 @@
 
 	    /*Counter Highlighter
 	    ===============*/
-	    //Positive Highlighter
 
+	    //Positive Highlighter
 	    if (Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
 	      this.refs.positivearrow.classList.add('positive');
 	      this.refs.positivecounter.classList.add('positive');
@@ -57223,10 +57220,10 @@
 
 	var React = __webpack_require__(1);
 
-	var DataPoints = __webpack_require__(315),
-	    LinePath = __webpack_require__(317),
-	    XYAxes = __webpack_require__(319),
-	    GridLine = __webpack_require__(321);
+	var DataPoints = __webpack_require__(315);
+	var LinePath = __webpack_require__(317);
+	var XYAxes = __webpack_require__(319);
+	var GridLine = __webpack_require__(321);
 
 	//LineChart Holds All Data Points and the XYAxes
 	var LineChart = React.createClass({
@@ -57299,8 +57296,8 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(1),
-	    uuid = __webpack_require__(316);
+	var React = __webpack_require__(1);
+	var uuid = __webpack_require__(316);
 
 	//Datapoints Draws Each Tweet on the Chart
 	var DataPoints = React.createClass({
@@ -57656,8 +57653,8 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    d3 = __webpack_require__(307);
+	var React = __webpack_require__(1);
+	var d3 = __webpack_require__(307);
 
 	var Line = __webpack_require__(318);
 
@@ -57665,9 +57662,9 @@
 	  displayName: 'LinePath',
 
 	  render: function render() {
-	    var props = this.props,
-	        xScale = props.xScale,
-	        yScale = props.yScale;
+	    var props = this.props;
+	    var xScale = props.xScale;
+	    var yScale = props.yScale;
 
 	    var pathTotal = d3.svg.line().x(function (d) {
 	      return xScale(d.timeBin);
@@ -57777,8 +57774,8 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    d3 = __webpack_require__(307);
+	var React = __webpack_require__(1);
+	var d3 = __webpack_require__(307);
 
 	//Axis is a Reusable Axis Creator for Charts
 	var Axis = React.createClass({
@@ -57872,8 +57869,8 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    TweetList = __webpack_require__(323);
+	var React = __webpack_require__(1);
+	var TweetList = __webpack_require__(323);
 
 	//TwitterStream Displays A List of All Twitter Messages as Cards
 	//Uses TweetList.jsx
@@ -57903,8 +57900,8 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1),
-	    TweetCard = __webpack_require__(324);
+	var React = __webpack_require__(1);
+	var TweetCard = __webpack_require__(324);
 
 	//TweetList Contains All Twitter Messages as Cards
 	//Uses TweetCard.jsx
