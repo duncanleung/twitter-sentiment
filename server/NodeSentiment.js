@@ -37,7 +37,10 @@ sentiment.appendSentiment = function(tweet, sentiment, socket) {
     text: tweet.text,
     lang: tweet.lang
   };
+  
   console.log(sentimentTweet.text);
+
+  // Send Tweet Object to Client
   socket.emit('sendTweet', {tweet: sentimentTweet}); //sendTweet to Client
 };
 

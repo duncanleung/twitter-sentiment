@@ -152,6 +152,8 @@ var App = React.createClass({
   //Outgoing Data to Server Handler
   emit: function(eventName, payload) {
     this.socket.emit(eventName, payload)
+
+    // Reset Dashboard on New Search
     this.setState({
       collectedTweets: [],
       binnedTweets: [{numTweets: 0, posTweets: 0,

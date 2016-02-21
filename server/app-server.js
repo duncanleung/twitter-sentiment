@@ -7,7 +7,7 @@ var Twitter = require('./Twitter'),
 
 //Create Express Server Instance
 var app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 4000;
 
 //Routes and Serve Static Files
 app.use(express.static(__dirname + './../app/public'));
@@ -50,8 +50,11 @@ io.sockets.on('connection', function(socket) {
 
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
+
+      // Send Received Tweets to Sentiment API
       sentiment.getSentiment(tweet, socket);
     });
+
 
     socket.once('disconnect', function() {
       connections.splice(connections.indexOf(socket), 1);
@@ -62,3 +65,5 @@ io.sockets.on('connection', function(socket) {
   });
 
 }); //END io.sockets.on
+
+
