@@ -39631,41 +39631,37 @@
 	var React = __webpack_require__(1);
 	var SearchForm = __webpack_require__(238);
 
-	var Hero = React.createClass({
-	  displayName: 'Hero',
-
-	  render: function render() {
-	    return React.createElement(
+	function Hero(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'hero container-fluid' },
+	    React.createElement(
 	      'div',
-	      { className: 'hero container-fluid' },
+	      { className: 'row' },
 	      React.createElement(
 	        'div',
-	        { className: 'row' },
+	        { className: 'content col-sm-12' },
 	        React.createElement(
-	          'div',
-	          { className: 'content col-sm-12' },
-	          React.createElement(
-	            'h1',
-	            null,
-	            'Track your Brand Sentiment on Twitter'
-	          ),
-	          React.createElement(
-	            'h2',
-	            null,
-	            'What are people saying about your brand?'
-	          ),
-	          React.createElement(
-	            'h2',
-	            { className: 'text-logo' },
-	            React.createElement('img', { id: 'logo', src: '/img/twitterment.png' }),
-	            'Twitterment'
-	          ),
-	          React.createElement(SearchForm, { emit: this.props.emit, initTimestamp: this.props.initTimestamp })
-	        )
+	          'h1',
+	          null,
+	          'Track your Brand Sentiment on Twitter'
+	        ),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'What are people saying about your brand?'
+	        ),
+	        React.createElement(
+	          'h2',
+	          { className: 'text-logo' },
+	          React.createElement('img', { id: 'logo', src: '/img/twitterment.png' }),
+	          'Twitterment'
+	        ),
+	        React.createElement(SearchForm, { emit: props.emit, initTimestamp: props.initTimestamp })
 	      )
-	    );
-	  }
-	});
+	    )
+	  );
+	}
 
 	module.exports = Hero;
 
@@ -39675,42 +39671,62 @@
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 
-	var SearchForm = React.createClass({
-	  displayName: 'SearchForm',
-	  search: function search() {
-	    var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
-	    var initTimestamp = new Date().getTime();
+	var SearchForm = function (_React$Component) {
+	  _inherits(SearchForm, _React$Component);
 
-	    this.props.emit('search', { keyword: keyword });
-	    this.props.initTimestamp({ initTimestamp: initTimestamp });
-	  },
+	  function SearchForm() {
+	    _classCallCheck(this, SearchForm);
 
+	    return _possibleConstructorReturn(this, (SearchForm.__proto__ || Object.getPrototypeOf(SearchForm)).apply(this, arguments));
+	  }
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { id: 'search-bar' },
-	      React.createElement(
-	        'form',
-	        { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search },
-	        React.createElement('input', { id: 'search', ref: 'keyword', type: 'search', placeholder: 'Enter Brand or Keyword',
-	          autoFocus: 'autofocus', className: 'form-control' }),
+	  _createClass(SearchForm, [{
+	    key: 'search',
+	    value: function search() {
+	      var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
+	      var initTimestamp = new Date().getTime();
+
+	      this.props.emit('search', { keyword: keyword });
+	      this.props.initTimestamp({ initTimestamp: initTimestamp });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { id: 'search-bar' },
 	        React.createElement(
-	          'span',
-	          { className: 'input-group-btn' },
+	          'form',
+	          { className: 'input-group', action: 'javascript:void(0)', onSubmit: this.search.bind(this) },
+	          React.createElement('input', { id: 'search', ref: 'keyword', type: 'search', placeholder: 'Enter Brand or Keyword',
+	            autoFocus: 'autofocus', className: 'form-control' }),
 	          React.createElement(
-	            'button',
-	            { id: 'submit', className: 'btn btn-default', type: 'button', onClick: this.search },
-	            'Search'
+	            'span',
+	            { className: 'input-group-btn' },
+	            React.createElement(
+	              'button',
+	              { id: 'submit', className: 'btn btn-default', type: 'button', onClick: this.search.bind(this) },
+	              'Search'
+	            )
 	          )
 	        )
-	      )
-	    );
-	  }
-	});
+	      );
+	    }
+	  }]);
+
+	  return SearchForm;
+	}(React.Component);
 
 	module.exports = SearchForm;
 
