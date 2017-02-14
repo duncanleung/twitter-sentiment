@@ -48787,6 +48787,7 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
 	var d3 = __webpack_require__(236);
 
 	//Axis is a Reusable Axis Creator for Charts
@@ -48806,7 +48807,7 @@
 
 	  //Use D3 to Create Axis on 'this DOM Node'
 	  renderAxis: function renderAxis() {
-	    var node = this.getDOMNode();
+	    var node = ReactDOM.findDOMNode();
 
 	    var axis = d3.svg.axis().scale(this.props.scale).orient(this.props.orient).ticks(this.props.ticks);
 
@@ -48815,13 +48816,13 @@
 	  },
 
 	  renderXLabel: function renderXLabel() {
-	    var node = this.getDOMNode();
+	    var node = ReactDOM.findDOMNode();
 
 	    var xLabel = d3.select(".x.axis").append("text").text("Seconds Since Search").classed("x-label", true).attr("x", 350).attr("y", 40).style("text-anchor", "middle");
 	  },
 
 	  renderYLabel: function renderYLabel() {
-	    var node = this.getDOMNode();
+	    var node = ReactDOM.findDOMNode();
 
 	    var yLabel = d3.select(".y.axis").append("text").text("Number of Tweets").classed("y-label", true).attr("x", -(this.props.height / 2)).attr("y", -35).style("text-anchor", "middle").attr("transform", "rotate(-90)");
 	  },
@@ -48838,13 +48839,14 @@
 /* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
 
 	//GridLine
 	var GridLine = React.createClass({
-	  displayName: "GridLine",
+	  displayName: 'GridLine',
 
 
 	  componentDidUpdate: function componentDidUpdate() {
@@ -48857,7 +48859,7 @@
 
 	  //Use D3 to Create Axis on 'this DOM Node'
 	  renderGridline: function renderGridline() {
-	    var node = this.getDOMNode();
+	    var node = ReactDOM.findDOMNode();
 
 	    var gridline = d3.svg.axis().scale(this.props.yScale).tickSize(-this.props.width, 0, 0).ticks(6).tickFormat("").orient("left");
 
@@ -48871,7 +48873,7 @@
 	      transform: 'translate(0, 0)'
 	    };
 
-	    return React.createElement("g", yGridline);
+	    return React.createElement('g', yGridline);
 	  }
 	});
 

@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var d3 = require('d3');
 
 //Axis is a Reusable Axis Creator for Charts
@@ -16,7 +17,7 @@ var Axis = React.createClass({
 
   //Use D3 to Create Axis on 'this DOM Node'
   renderAxis: function() {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode();
 
     var axis = d3.svg.axis()
                   .scale(this.props.scale)
@@ -28,7 +29,7 @@ var Axis = React.createClass({
   },
 
   renderXLabel: function() {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode();
 
     var xLabel = d3.select(".x.axis")
                     .append("text")
@@ -40,7 +41,7 @@ var Axis = React.createClass({
   },
 
   renderYLabel: function() {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode();
 
     var yLabel = d3.select(".y.axis")
                     .append("text")

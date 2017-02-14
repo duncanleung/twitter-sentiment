@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 //GridLine
 var GridLine = React.createClass({
@@ -13,7 +14,7 @@ var GridLine = React.createClass({
 
   //Use D3 to Create Axis on 'this DOM Node'
   renderGridline: function() {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode();
 
     var gridline = d3.svg.axis()
                       .scale(this.props.yScale)
