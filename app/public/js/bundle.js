@@ -21789,6 +21789,14 @@
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var React = __webpack_require__(1);
 	var io = __webpack_require__(184);
 	var update = __webpack_require__(234);
@@ -21799,12 +21807,16 @@
 	var Results = __webpack_require__(240);
 
 	//App is the Main Container
-	var App = React.createClass({
-	  displayName: 'App',
 
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
 
-	  getInitialState: function getInitialState() {
-	    return {
+	  function App(props) {
+	    _classCallCheck(this, App);
+
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	    _this.state = {
 	      status: 'disconnected',
 	      search: false,
 	      keyword: '',
@@ -21816,154 +21828,192 @@
 	        negTotal: 0, neutTotal: 0 },
 	      sentiment: 'Neutral'
 	    };
-	  },
+
+	    _this.emit = _this.emit.bind(_this);
+	    _this.initTimestamp = _this.initTimestamp.bind(_this);
+	    return _this;
+	  }
 
 	  //Incoming Data from Server Handlers
-	  componentWillMount: function componentWillMount() {
-	    var self = this;
 
-	    this.socket = io.connect();
-	    this.socket.on('connect', this.connect);
-	    this.socket.on('disconnect', this.disconnect);
-	    this.socket.on('sendTweet', function (receivedTweet) {
-	      self.addTweet(receivedTweet.tweet);
-	    });
-	  },
 
-	  //Connect Handler
-	  connect: function connect() {
-	    this.setState({ status: 'connected' });
-	    console.log('Connected on socket: %s', this.socket.id);
-	  },
+	  _createClass(App, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var self = this;
 
-	  //Disconnect Handler
-	  disconnect: function disconnect() {
-	    this.setState({ status: 'disconnected' });
-	    console.log('Disconnected: %s', this.socket.id);
-	  },
-
-	  initTimestamp: function initTimestamp(timestamp) {
-	    this.setState({ initTimestamp: timestamp.initTimestamp });
-	    this.setState({ search: true });
-	  },
-
-	  //Add receivedTweet onto beginning of array
-	  //Update the state of collectedTweets
-	  addTweet: function addTweet(tweet) {
-	    var tweets = this.state.collectedTweets;
-	    var newTweets = update(tweets, { $unshift: [tweet] });
-
-	    this.setState({ collectedTweets: newTweets });
-	    this.binTweets(tweet.timestamp_ms, tweet.sentiment);
-	    this.countTweets(tweet.sentiment);
-	    this.overallSentiment();
-	  },
-
-	  //Inspect Sentiment Value. Increase count of Sentiment
-	  //Update the state of totalTweets
-	  countTweets: function countTweets(sentiment) {
-	    var totalTweets = this.state.totalTweets;
-	    var newTotal = totalTweets;
-
-	    if (sentiment == "positive") {
-	      totalTweets.posTotal++;
-	      totalTweets.total++;
-	      this.setState({ totalTweets: newTotal });
-	    } else if (sentiment == "negative") {
-	      totalTweets.negTotal++;
-	      totalTweets.total++;
-	      this.setState({ totalTweets: newTotal });
-	    } else {
-	      totalTweets.neutTotal++;
-	      totalTweets.total++;
-	      this.setState({ totalTweets: newTotal });
+	      this.socket = io.connect();
+	      this.socket.on('connect', this.connect.bind(this));
+	      this.socket.on('disconnect', this.disconnect.bind(this));
+	      this.socket.on('sendTweet', function (receivedTweet) {
+	        self.addTweet(receivedTweet.tweet);
+	      });
 	    }
-	  },
 
-	  overallSentiment: function overallSentiment() {
-	    var totalTweets = this.state.totalTweets.posTotal + this.state.totalTweets.negTotal;
-	    var posTweets = this.state.totalTweets.posTotal;
-	    var sentiment = posTweets / totalTweets;
+	    //Outgoing Data to Server Handler
 
-	    if (sentiment < 0.5) {
-	      this.setState({ sentiment: 'Negative' });
-	    } else if (sentiment > 0.5) {
-	      this.setState({ sentiment: 'Positive' });
-	    } else {
-	      this.setState({ sentiment: 'Neutral' });
+	  }, {
+	    key: 'emit',
+	    value: function emit(eventName, payload) {
+	      this.socket.emit(eventName, payload);
+
+	      // Reset Dashboard on New Search
+	      this.setState({
+	        collectedTweets: [],
+	        binnedTweets: [{ numTweets: 0, posTweets: 0,
+	          negTweets: 0, neutTweets: 0, timeBin: 5 }],
+	        totalTweets: { total: 0, posTotal: 0,
+	          negTotal: 0, neutTotal: 0 }
+	      });
 	    }
-	  },
 
-	  //Push Tweet Counts into Bins: 5sec, 10sec, etc.
-	  //Update the state of binnedTweets
-	  binTweets: function binTweets(tweetTimestamp, sentiment) {
-	    var initTimestamp = this.state.initTimestamp;
-	    var timeDiff = (tweetTimestamp - initTimestamp) / 1000;
+	    //Connect Handler
 
-	    var binnedTweets = this.state.binnedTweets;
-	    var newBinnedTweets = binnedTweets;
+	  }, {
+	    key: 'connect',
+	    value: function connect() {
+	      this.setState({ status: 'connected' });
+	      console.log('Connected on socket: %s', this.socket.id);
+	    }
 
-	    var binIndex = binnedTweets.length - 1;
-	    var currentBin = binnedTweets[binIndex].timeBin;
+	    //Disconnect Handler
 
-	    if (timeDiff < currentBin) {
-	      newBinnedTweets[binIndex].numTweets++;
+	  }, {
+	    key: 'disconnect',
+	    value: function disconnect() {
+	      this.setState({ status: 'disconnected' });
+	      console.log('Disconnected: %s', this.socket.id);
+	    }
+	  }, {
+	    key: 'initTimestamp',
+	    value: function initTimestamp(timestamp) {
+	      this.setState({ initTimestamp: timestamp.initTimestamp });
+	      this.setState({ search: true });
+	    }
+
+	    //Add receivedTweet onto beginning of array
+	    //Update the state of collectedTweets
+
+	  }, {
+	    key: 'addTweet',
+	    value: function addTweet(tweet) {
+	      var tweets = this.state.collectedTweets;
+	      var newTweets = update(tweets, { $unshift: [tweet] });
+
+	      this.setState({ collectedTweets: newTweets });
+	      this.binTweets(tweet.timestamp_ms, tweet.sentiment);
+	      this.countTweets(tweet.sentiment);
+	      this.overallSentiment();
+	    }
+
+	    //Inspect Sentiment Value. Increase count of Sentiment
+	    //Update the state of totalTweets
+
+	  }, {
+	    key: 'countTweets',
+	    value: function countTweets(sentiment) {
+	      var totalTweets = this.state.totalTweets;
+	      var newTotal = totalTweets;
 
 	      if (sentiment == "positive") {
-	        newBinnedTweets[binIndex].posTweets++;
-	        this.setState({ binnedTweets: newBinnedTweets });
+	        totalTweets.posTotal++;
+	        totalTweets.total++;
+	        this.setState({ totalTweets: newTotal });
 	      } else if (sentiment == "negative") {
-	        newBinnedTweets[binIndex].negTweets++;
-	        this.setState({ binnedTweets: newBinnedTweets });
+	        totalTweets.negTotal++;
+	        totalTweets.total++;
+	        this.setState({ totalTweets: newTotal });
 	      } else {
-	        newBinnedTweets[binIndex].neutTweets++;
-	        this.setState({ binnedTweets: newBinnedTweets });
-	      }
-	    } else {
-
-	      if (sentiment == "positive") {
-	        newBinnedTweets.push({ numTweets: 1, posTweets: 1, negTweets: 0, neutTweets: 0, timeBin: currentBin += 5 });
-	        this.setState({ binnedTweets: newBinnedTweets });
-	      } else if (sentiment == "negative") {
-	        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin += 5 });
-	        this.setState({ binnedTweets: newBinnedTweets });
-	      } else {
-	        newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin += 5 });
-	        this.setState({ binnedTweets: newBinnedTweets });
+	        totalTweets.neutTotal++;
+	        totalTweets.total++;
+	        this.setState({ totalTweets: newTotal });
 	      }
 	    }
-	  },
+	  }, {
+	    key: 'overallSentiment',
+	    value: function overallSentiment() {
+	      var totalTweets = this.state.totalTweets.posTotal + this.state.totalTweets.negTotal;
+	      var posTweets = this.state.totalTweets.posTotal;
+	      var sentiment = posTweets / totalTweets;
 
-	  //Outgoing Data to Server Handler
-	  emit: function emit(eventName, payload) {
-	    this.socket.emit(eventName, payload);
+	      if (sentiment < 0.5) {
+	        this.setState({ sentiment: 'Negative' });
+	      } else if (sentiment > 0.5) {
+	        this.setState({ sentiment: 'Positive' });
+	      } else {
+	        this.setState({ sentiment: 'Neutral' });
+	      }
+	    }
 
-	    // Reset Dashboard on New Search
-	    this.setState({
-	      collectedTweets: [],
-	      binnedTweets: [{ numTweets: 0, posTweets: 0,
-	        negTweets: 0, neutTweets: 0, timeBin: 5 }],
-	      totalTweets: { total: 0, posTotal: 0,
-	        negTotal: 0, neutTotal: 0 }
-	    });
-	  },
+	    //Push Tweet Counts into Bins: 5sec, 10sec, etc.
+	    //Update the state of binnedTweets
 
-	  //Render the App!
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
-	      this.state.search ? React.createElement(Results, {
-	        collectedTweets: this.state.collectedTweets,
-	        binnedTweets: this.state.binnedTweets,
-	        totalTweets: this.state.totalTweets,
-	        sentiment: this.state.sentiment
-	      }) : null,
-	      React.createElement(TechStack, null)
-	    );
-	  }
-	});
+	  }, {
+	    key: 'binTweets',
+	    value: function binTweets(tweetTimestamp, sentiment) {
+	      var initTimestamp = this.state.initTimestamp;
+	      var timeDiff = (tweetTimestamp - initTimestamp) / 1000;
+
+	      var binnedTweets = this.state.binnedTweets;
+	      var newBinnedTweets = binnedTweets;
+
+	      var binIndex = binnedTweets.length - 1;
+	      var currentBin = binnedTweets[binIndex].timeBin;
+
+	      if (timeDiff < currentBin) {
+	        newBinnedTweets[binIndex].numTweets++;
+
+	        if (sentiment == "positive") {
+	          newBinnedTweets[binIndex].posTweets++;
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        } else if (sentiment == "negative") {
+	          newBinnedTweets[binIndex].negTweets++;
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        } else {
+	          newBinnedTweets[binIndex].neutTweets++;
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        }
+	      } else {
+
+	        if (sentiment == "positive") {
+	          newBinnedTweets.push({ numTweets: 1, posTweets: 1, negTweets: 0, neutTweets: 0, timeBin: currentBin += 5 });
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        } else if (sentiment == "negative") {
+	          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 1, neutTweets: 0, timeBin: currentBin += 5 });
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        } else {
+	          newBinnedTweets.push({ numTweets: 1, posTweets: 0, negTweets: 0, neutTweets: 1, timeBin: currentBin += 5 });
+	          this.setState({ binnedTweets: newBinnedTweets });
+	        }
+	      }
+	    }
+
+	    //Render the App!
+
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(Hero, { emit: this.emit, initTimestamp: this.initTimestamp }),
+	        this.state.search ? React.createElement(Results, {
+	          collectedTweets: this.state.collectedTweets,
+	          binnedTweets: this.state.binnedTweets,
+	          totalTweets: this.state.totalTweets,
+	          sentiment: this.state.sentiment
+	        }) : null,
+	        React.createElement(TechStack, null)
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(React.Component);
+	// var App = React.createClass({
+
+
+	// });
 
 	module.exports = App;
 
@@ -39738,96 +39788,92 @@
 
 	var React = __webpack_require__(1);
 
-	var TechStack = React.createClass({
-	  displayName: "TechStack",
-
-	  render: function render() {
-	    return React.createElement(
+	function TechStack() {
+	  return React.createElement(
+	    "div",
+	    { className: "technology-stack container-fluid" },
+	    React.createElement(
 	      "div",
-	      { className: "technology-stack container-fluid" },
+	      { className: "row" },
 	      React.createElement(
 	        "div",
-	        { className: "row" },
+	        { className: "technologies-container col-sm-12" },
+	        React.createElement(
+	          "p",
+	          { className: "heading" },
+	          "Twitterment was built with these technologies:"
+	        ),
 	        React.createElement(
 	          "div",
-	          { className: "technologies-container col-sm-12" },
-	          React.createElement(
-	            "p",
-	            { className: "heading" },
-	            "Twitterment was built with these technologies:"
-	          ),
+	          { className: "row" },
 	          React.createElement(
 	            "div",
-	            { className: "row" },
+	            { className: "nodejs col-sm-4 col-xs-12" },
 	            React.createElement(
-	              "div",
-	              { className: "nodejs col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "https://nodejs.org/en/" },
-	                React.createElement("div", { className: "nodejs-logo" })
-	              )
-	            ),
-	            React.createElement(
-	              "div",
-	              { className: "socketio col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "http://socket.io/" },
-	                React.createElement("div", { className: "socketio-logo" })
-	              )
-	            ),
-	            React.createElement(
-	              "div",
-	              { className: "heroku col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "https://www.heroku.com/" },
-	                React.createElement("div", { className: "heroku-logo" })
-	              )
+	              "a",
+	              { href: "https://nodejs.org/en/" },
+	              React.createElement("div", { className: "nodejs-logo" })
 	            )
 	          ),
 	          React.createElement(
 	            "div",
-	            { className: "row" },
+	            { className: "socketio col-sm-4 col-xs-12" },
 	            React.createElement(
-	              "div",
-	              { className: "react col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "https://facebook.github.io/react/index.html" },
-	                React.createElement("div", { className: "react-logo" })
-	              )
-	            ),
+	              "a",
+	              { href: "http://socket.io/" },
+	              React.createElement("div", { className: "socketio-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "heroku col-sm-4 col-xs-12" },
 	            React.createElement(
-	              "div",
-	              { className: "d3 col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "http://d3js.org", target: "_blank" },
-	                React.createElement("div", { className: "d3-logo" })
-	              )
-	            ),
+	              "a",
+	              { href: "https://www.heroku.com/" },
+	              React.createElement("div", { className: "heroku-logo" })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "row" },
+	          React.createElement(
+	            "div",
+	            { className: "react col-sm-4 col-xs-12" },
 	            React.createElement(
-	              "div",
-	              { className: "twitter col-sm-4 col-xs-12" },
-	              React.createElement(
-	                "a",
-	                { href: "https://dev.twitter.com/streaming/overview" },
-	                React.createElement("div", { className: "twitter-logo" })
-	              )
+	              "a",
+	              { href: "https://facebook.github.io/react/index.html" },
+	              React.createElement("div", { className: "react-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "d3 col-sm-4 col-xs-12" },
+	            React.createElement(
+	              "a",
+	              { href: "http://d3js.org", target: "_blank" },
+	              React.createElement("div", { className: "d3-logo" })
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "twitter col-sm-4 col-xs-12" },
+	            React.createElement(
+	              "a",
+	              { href: "https://dev.twitter.com/streaming/overview" },
+	              React.createElement("div", { className: "twitter-logo" })
 	            )
 	          )
 	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement("p", null)
 	      )
-	    );
-	  }
-	});
+	    ),
+	    React.createElement(
+	      "div",
+	      { className: "row" },
+	      React.createElement("p", null)
+	    )
+	  );
+	}
 
 	module.exports = TechStack;
 
@@ -39844,27 +39890,22 @@
 
 	//Results Holds the Dashboard and TwitterStream Components
 	//Uses Dashboard.jsx and TwitterStream.jsx
-	var Results = React.createClass({
-	  displayName: 'Results',
-
-
-	  render: function render() {
-	    return React.createElement(
+	function Results(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'results container-fluid' },
+	    React.createElement(
 	      'div',
-	      { className: 'results container-fluid' },
-	      React.createElement(
-	        'div',
-	        { className: 'row' },
-	        React.createElement(Dashboard, {
-	          binnedTweets: this.props.binnedTweets,
-	          totalTweets: this.props.totalTweets,
-	          sentiment: this.props.sentiment
-	        }),
-	        React.createElement(TwitterStream, { collectedTweets: this.props.collectedTweets })
-	      )
-	    );
-	  }
-	});
+	      { className: 'row' },
+	      React.createElement(Dashboard, {
+	        binnedTweets: props.binnedTweets,
+	        totalTweets: props.totalTweets,
+	        sentiment: props.sentiment
+	      }),
+	      React.createElement(TwitterStream, { collectedTweets: props.collectedTweets })
+	    )
+	  );
+	}
 
 	module.exports = Results;
 

@@ -1,8 +1,7 @@
 var React = require('react');
 
-var TechStack = React.createClass({
-  render: function() {
-    return (
+function TechStack() {
+  return (
       <div className="technology-stack container-fluid">
         <div className="row">
           <div className="technologies-container col-sm-12">
@@ -22,7 +21,6 @@ var TechStack = React.createClass({
                 <div className="d3-logo"></div></a></div>
               <div className="twitter col-sm-4 col-xs-12"><a href="https://dev.twitter.com/streaming/overview">
                 <div className="twitter-logo"></div></a></div>
-              
             </div>
           </div>
         </div>
@@ -31,7 +29,6 @@ var TechStack = React.createClass({
         </div>
       </div>
     )
-  }
-});
+}
 
 module.exports = TechStack;

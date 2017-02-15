@@ -6,22 +6,19 @@ var TwitterStream = require('./parts/TwitterStream.jsx');
 
 //Results Holds the Dashboard and TwitterStream Components
 //Uses Dashboard.jsx and TwitterStream.jsx
-var Results = React.createClass({
-  
-  render: function() {
-    return(
+function Results(props){
+  return(
       <div className="results container-fluid">
         <div className="row">
           <Dashboard
-            binnedTweets={ this.props.binnedTweets }
-            totalTweets={ this.props.totalTweets }
-            sentiment= { this.props.sentiment }
+            binnedTweets={ props.binnedTweets }
+            totalTweets={ props.totalTweets }
+            sentiment= { props.sentiment }
           />
-          <TwitterStream collectedTweets={this.props.collectedTweets} />
+          <TwitterStream collectedTweets={ props.collectedTweets } />
         </div>
       </div>
     );
-  }
-});
+}
 
 module.exports = Results;
