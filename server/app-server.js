@@ -47,14 +47,20 @@ io.sockets.on('connection', function(socket) {
 
     twitterStream = Twitter.stream('statuses/filter', {language: 'en', track: payload.keyword});
 
+
+    var lastTimestamp = Date.now(),
+        speedLimiter = 800; //800ms
+
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
-      
-      // Send Received Tweets to Sentiment API
-      var sentimentTweet = sentiment.getSentiment(tweet, socket);
 
-      // Send Tweet Object to Client
-      socket.volatile.emit('sendTweet', {tweet: sentimentTweet}); //sendTweet to Client
+      if(tweet.timestamp_ms - lastTimestamp > speedLimiter) {
+
+        lastTimestamp = Date.now();
+
+        // Send Tweet Object to Client
+        socket.emit('sendTweet', {tweet: sentiment.getSentiment(tweet, socket)});
+      }
     });
 
     socket.once('disconnect', function() {
