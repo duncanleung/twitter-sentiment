@@ -1,6 +1,6 @@
 var React = require('react');
 var io = require('socket.io-client');
-var update = require('react-addons-update');
+var update = require('immutability-helper');
 var d3 = require('d3');
 
 var Hero = require('./Hero.jsx');
@@ -49,9 +49,9 @@ class App extends React.Component {
     this.setState({
       collectedTweets: [],
       binnedTweets: [{numTweets: 0, posTweets: 0,
-          negTweets: 0, neutTweets: 0, timeBin: 5}],
+      negTweets: 0, neutTweets: 0, timeBin: 5}],
       totalTweets: {total: 0, posTotal: 0,
-          negTotal: 0, neutTotal: 0}
+      negTotal: 0, neutTotal: 0}
     });
   }
 

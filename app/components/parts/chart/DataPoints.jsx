@@ -6,7 +6,7 @@ var uuid = require('node-uuid');
 var DataPoints = React.createClass({
 
   //renderPoints Returns a <circle></circle> for Each Data Point
-  renderPoints: function(data) {
+  renderPoints: function(data, index) {
     var dataNegativeProps = {
       cx: this.props.xScale(data.timeBin),
       cy: this.props.yScale(data.negTweets),
@@ -48,7 +48,7 @@ var DataPoints = React.createClass({
     };
 
     return (
-      <g>
+      <g key={index}>
         <circle className="total point" {...dataTotalProps}>
         </circle>
         <circle className="neutral point" {...dataNeutralProps}>

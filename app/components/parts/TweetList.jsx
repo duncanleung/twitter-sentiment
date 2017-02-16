@@ -6,8 +6,8 @@ var TweetCard = require('./TweetCard.jsx');
 var TweetList = React.createClass({
   render: function() {
     
-    var tweetLoop = this.props.collectedTweets.map(function(mappedTweet) {
-      return (<TweetCard tweet={mappedTweet} />);
+    var tweetLoop = this.props.collectedTweets.map(function(mappedTweet, index) {
+      return (<TweetCard tweet={mappedTweet} key={index} />);
     });
 
     return (
