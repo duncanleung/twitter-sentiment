@@ -49,9 +49,12 @@ io.sockets.on('connection', function(socket) {
 
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
-
+      
       // Send Received Tweets to Sentiment API
-      sentiment.getSentiment(tweet, socket);
+      var sentimentTweet = sentiment.getSentiment(tweet, socket);
+
+      // Send Tweet Object to Client
+      socket.volatile.emit('sendTweet', {tweet: sentimentTweet}); //sendTweet to Client
     });
 
     socket.once('disconnect', function() {

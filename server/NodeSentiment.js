@@ -15,7 +15,7 @@ sentiment.getSentiment = function(tweet, socket) {
     tweetSentiment = 'neutral';
   }
 
-  sentiment.appendSentiment(tweet, tweetSentiment, socket);
+  return sentiment.appendSentiment(tweet, tweetSentiment, socket);
 };
 
 //Construct New Tweet Object
@@ -39,8 +39,7 @@ sentiment.appendSentiment = function(tweet, sentiment, socket) {
   
   console.log(sentimentTweet.text);
 
-  // Send Tweet Object to Client
-  socket.emit('sendTweet', {tweet: sentimentTweet}); //sendTweet to Client
+  return sentimentTweet;
 };
 
 module.exports = sentiment;
