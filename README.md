@@ -6,24 +6,25 @@ _There is a daily limit on the number of Twitter Stream API requests. **Please d
 
 >_Or, you can also download the repo and run it on your own server with your own Twitter Stream API keys =)_
 
-####Summary
+####About
 Twitterment (Twitter Sentiment) Is a real-time Twitter sentiment dashboard that analyzes and graphs the sentiment of a tracked keyword.
 
+This is an experimental project to test out:
+- Socket.io
+- React.js
+- D3.js
+
+I am currently in the process refactoring to update to:
+- ES6
+- React 0.x to 15.x
+- React controller views and stateless functional components
+
+####Summary
 Twitterment listens to the Twitter Streaming API for the searched keyword. Received Tweets are analyzed with an [AFINN-based sentiment analysis npm module](https://github.com/thisandagain/sentiment), and the analyzed Tweet object is sent to the client.
 
 Node.js (Express) and Socket.io is used on the backend to achieve real-time client-server updates when new tweets are received on the server. React.js is used as the view layer to manage DOM rendering of new Tweets in real-time with a reusable React TweetCard.jsx component. D3.js is used to render each sentiment analyzed Tweet onto a line graph to show the sentiment trend since the search started.
 
 Regarding D3 and React integration, Twitterment uses React to handle DOM manipulations for plotting Data Points (DataPoints.jsx) and Line Paths (LinePath.jsx) for the line graph. This decision was made since React already knows when to rerender the graph when new tweets are received and the tweet counts are updated in the app.
-
-####Key Achievements
-Twitterment was my second project for [Orange County Code School](https://www.orangecountycodeschool.com) and my key achievements for this project are:
-
-- Learned and implemented React.js, Socket.io, and D3.js through self-study (was not taught in class curriculum)
-- Websocket server on Node.js, Express, and Socket.io to enable real-time ‘push-data’ functionality from server to client
-- React.js front-end with modularized and reusable React.js components for maintainability
-- Utilized React.js component lifecycle to animate sentiment analysis hit-counters
-- D3.js real-time multi-line graph visualize sentiment Tweet data over time
-- Use user-entered keywords to monitor the Twitter Stream API in real-time
 
 ####Built With the Following Technologies:
 - Node (Express)
