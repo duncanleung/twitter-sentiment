@@ -9,12 +9,12 @@ _There is a daily limit on the number of Twitter Stream API requests. **Please d
 ####About
 Twitterment (Twitter Sentiment) Is a real-time Twitter sentiment dashboard that analyzes and graphs the sentiment of a tracked keyword.
 
-This is an experimental project to test out:
+Testing out:
 - Socket.io
 - React.js
 - D3.js
 
-I am currently in the process refactoring to update to:
+Currently in the process of refactoring to update to:
 - ES6
 - React 0.x to 15.x
 - React controller views and stateless functional components
